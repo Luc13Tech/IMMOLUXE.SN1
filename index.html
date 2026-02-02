@@ -6,14 +6,15 @@
     <meta name="theme-color" content="#1a1a2e">
     <meta name="description" content="IMMOLUXE.SN - Prestige Real Estate Agency in Senegal">
     
-    <!-- PWA Meta Tags -->
+    <!-- PWA Meta Tags CORRIGÉS -->
     <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <link rel="icon" href="icon-192x192.png">
     
-    <!-- iOS PWA Support -->
+    <!-- iOS PWA Support CORRIGÉ -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="IMMOLUXE.SN">
+    <link rel="apple-touch-icon" href="icon-192x192.png">
     
     <title>IMMOLUXE.SN - Mobile Application</title>
     
@@ -29,6 +30,7 @@
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             color: #fff;
             overflow-x: hidden;
+            min-height: 100vh;
         }
         
         .app-container {
@@ -926,17 +928,33 @@
     </div>
     
     <script>
-        // Language Management
+        // ============================================
+        // SERVICE WORKER ENREGISTREMENT (CRITIQUE POUR PWA)
+        // ============================================
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('sw.js')
+                    .then(function(registration) {
+                        console.log('Service Worker enregistré avec succès:', registration.scope);
+                    })
+                    .catch(function(error) {
+                        console.log('Erreur Service Worker:', error);
+                    });
+            });
+        }
+        
+        // ============================================
+        // GESTION DES LANGUES
+        // ============================================
         let currentLang = 'fr';
         const langSwitch = document.getElementById('langSwitch');
         const langText = document.querySelector('.lang-text');
         
-        // Function to switch language
         function switchLanguage(lang) {
             currentLang = lang;
             document.querySelector('.app-container').setAttribute('data-lang', lang);
             
-            // Update all elements with data attributes
+            // Mettre à jour tous les éléments avec data attributes
             document.querySelectorAll('[data-fr], [data-en]').forEach(element => {
                 const text = element.getAttribute(`data-${lang}`);
                 if (text) {
@@ -951,7 +969,7 @@
                 }
             });
             
-            // Update select options text
+            // Mettre à jour le texte des options select
             document.querySelectorAll('select option').forEach(option => {
                 const text = option.getAttribute(`data-${lang}`);
                 if (text) {
@@ -959,10 +977,10 @@
                 }
             });
             
-            // Update button text
+            // Mettre à jour le texte du bouton de langue
             langText.textContent = lang === 'fr' ? 'FR' : 'EN';
             
-            // Update fixed install button
+            // Mettre à jour le bouton d'installation fixe
             const fixedInstallBtn = document.getElementById('fixedInstallBtn');
             const fixedBtnText = fixedInstallBtn.querySelector('span:last-child');
             const fixedBtnLangText = fixedBtnText.getAttribute(`data-${lang}`);
@@ -970,24 +988,29 @@
                 fixedBtnText.textContent = fixedBtnLangText;
             }
             
-            // Save language preference
+            // Sauvegarder la préférence de langue
             localStorage.setItem('immoluxe-lang', lang);
+            
+            // Mettre à jour le contenu dynamique
+            updateDynamicContent();
         }
         
-        // Language switcher click event
+        // Événement pour changer de langue
         langSwitch.addEventListener('click', () => {
             const newLang = currentLang === 'fr' ? 'en' : 'fr';
             switchLanguage(newLang);
         });
         
-        // Check saved language preference
+        // Vérifier la langue sauvegardée
         const savedLang = localStorage.getItem('immoluxe-lang');
         if (savedLang && (savedLang === 'fr' || savedLang === 'en')) {
             switchLanguage(savedLang);
         }
         
-        // PWA Installation
-        let deferredPrompt;
+        // ============================================
+        // INSTALLATION PWA
+        // ============================================
+        let deferredPrompt = null;
         const installPrompt = document.getElementById('installPrompt');
         const installBtn = document.getElementById('installBtn');
         const dismissBtn = document.getElementById('dismissBtn');
@@ -995,14 +1018,17 @@
         const installProgress = document.getElementById('installProgress');
         const installSuccess = document.getElementById('installSuccess');
         
-        // Check if app is already installed
+        // Vérifier si l'app est déjà installée
         function isAppInstalled() {
-            return localStorage.getItem('immoluxe-installed') === 'true' ||
-                   window.matchMedia('(display-mode: standalone)').matches ||
-                   window.navigator.standalone === true;
+            // Vérifier plusieurs méthodes
+            const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+            const isIOSStandalone = 'standalone' in window.navigator && window.navigator.standalone;
+            const isLocalStorage = localStorage.getItem('immoluxe-installed') === 'true';
+            
+            return isStandalone || isIOSStandalone || isLocalStorage;
         }
         
-        // Show/hide install button based on installation status
+        // Mettre à jour la visibilité du bouton d'installation
         function updateInstallButtonVisibility() {
             if (isAppInstalled()) {
                 fixedInstallBtn.style.display = 'none';
@@ -1012,89 +1038,72 @@
             }
         }
         
-        // Initialize
-        window.addEventListener('load', () => {
-            updateInstallButtonVisibility();
+        // Événement avant installation
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            console.log('beforeinstallprompt event détecté');
             
-            // Register Service Worker
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('sw.js')
-                    .then(reg => {
-                        console.log('Service Worker enregistré avec succès');
-                    })
-                    .catch(err => {
-                        console.log('Erreur Service Worker:', err);
-                    });
-            }
+            // Afficher le bouton d'installation fixe
+            fixedInstallBtn.style.display = 'flex';
             
-            // Check for beforeinstallprompt event
-            window.addEventListener('beforeinstallprompt', (e) => {
-                e.preventDefault();
-                deferredPrompt = e;
-                console.log('beforeinstallprompt event fired');
-                
-                // Show fixed install button
-                fixedInstallBtn.style.display = 'flex';
-                
-                // Show install prompt after 5 seconds (optional)
-                setTimeout(() => {
-                    if (deferredPrompt && !isAppInstalled()) {
+            // Afficher la bannière d'installation après 5 secondes
+            setTimeout(() => {
+                if (deferredPrompt && !isAppInstalled()) {
+                    // Vérifier si l'utilisateur a déjà refusé récemment
+                    const dismissedTime = localStorage.getItem('immoluxe-prompt-dismissed');
+                    if (!dismissedTime || Date.now() > parseInt(dismissedTime)) {
                         installPrompt.classList.add('show');
                     }
-                }, 5000);
-            });
-            
-            // Listen for app installed event
-            window.addEventListener('appinstalled', (evt) => {
-                console.log('App was installed successfully');
-                installProgress.classList.remove('show');
-                installSuccess.classList.add('show');
-                deferredPrompt = null;
-                
-                // Hide the install prompt and fixed button
-                installPrompt.classList.remove('show');
-                fixedInstallBtn.style.display = 'none';
-                
-                // Save installation status
-                localStorage.setItem('immoluxe-installed', 'true');
-            });
+                }
+            }, 5000);
         });
         
-        // Fixed install button click
-        fixedInstallBtn.addEventListener('click', async (e) => {
-            e.preventDefault();
-            e.stopPropagation();
+        // Événement après installation
+        window.addEventListener('appinstalled', () => {
+            console.log('Application installée avec succès');
+            installProgress.classList.remove('show');
+            installSuccess.classList.add('show');
+            deferredPrompt = null;
             
+            // Cacher les prompts d'installation
+            installPrompt.classList.remove('show');
+            fixedInstallBtn.style.display = 'none';
+            
+            // Sauvegarder le statut d'installation
+            localStorage.setItem('immoluxe-installed', 'true');
+        });
+        
+        // Bouton d'installation fixe
+        fixedInstallBtn.addEventListener('click', async () => {
             if (!deferredPrompt) {
-                // Show message if installation is not available
                 alert(currentLang === 'fr' 
                     ? "L'installation n'est pas disponible sur cet appareil ou votre navigateur ne supporte pas cette fonctionnalité." 
                     : "Installation is not available on this device or your browser doesn't support this feature.");
                 return;
             }
             
-            // Show installation progress
+            // Afficher la progression
             installProgress.classList.add('show');
             
             try {
-                // Show the install prompt
+                // Afficher le prompt d'installation
                 deferredPrompt.prompt();
                 
-                // Wait for the user to respond to the prompt
+                // Attendre la réponse de l'utilisateur
                 const { outcome } = await deferredPrompt.userChoice;
                 
                 if (outcome === 'accepted') {
-                    console.log('User accepted the install prompt');
-                    // The progress modal will stay until appinstalled event fires
+                    console.log('Utilisateur a accepté l\'installation');
                 } else {
-                    console.log('User dismissed the install prompt');
+                    console.log('Utilisateur a refusé l\'installation');
                     installProgress.classList.remove('show');
                 }
                 
-                // Clear the saved prompt
+                // Effacer le prompt
                 deferredPrompt = null;
             } catch (error) {
-                console.error('Error during installation:', error);
+                console.error('Erreur lors de l\'installation:', error);
                 installProgress.classList.remove('show');
                 alert(currentLang === 'fr' 
                     ? "Erreur lors de l'installation. Veuillez réessayer." 
@@ -1102,62 +1111,55 @@
             }
         });
         
-        // Install prompt button click
+        // Bouton installer dans la bannière
         installBtn.addEventListener('click', async () => {
             if (!deferredPrompt) {
-                // Show message if installation is not available
                 alert(currentLang === 'fr' 
                     ? "L'installation n'est pas disponible sur cet appareil ou votre navigateur ne supporte pas cette fonctionnalité." 
                     : "Installation is not available on this device or your browser doesn't support this feature.");
                 return;
             }
             
-            // Show installation progress
+            // Cacher la bannière et afficher la progression
             installPrompt.classList.remove('show');
             installProgress.classList.add('show');
             
             try {
-                // Show the install prompt
                 deferredPrompt.prompt();
-                
-                // Wait for the user to respond to the prompt
                 const { outcome } = await deferredPrompt.userChoice;
                 
                 if (outcome === 'accepted') {
-                    console.log('User accepted the install prompt');
+                    console.log('Installation acceptée via la bannière');
                 } else {
-                    console.log('User dismissed the install prompt');
+                    console.log('Installation refusée via la bannière');
                     installProgress.classList.remove('show');
                 }
                 
-                // Clear the saved prompt
                 deferredPrompt = null;
             } catch (error) {
-                console.error('Error during installation:', error);
+                console.error('Erreur:', error);
                 installProgress.classList.remove('show');
-                alert(currentLang === 'fr' 
-                    ? "Erreur lors de l'installation. Veuillez réessayer." 
-                    : "Installation error. Please try again.");
             }
         });
         
-        // Dismiss button click event
+        // Bouton "Plus tard"
         dismissBtn.addEventListener('click', () => {
             installPrompt.classList.remove('show');
-            // Hide for 7 days
+            // Ne pas montrer pendant 7 jours
             const expiry = new Date();
             expiry.setDate(expiry.getDate() + 7);
             localStorage.setItem('immoluxe-prompt-dismissed', expiry.getTime());
         });
         
-        // Check if prompt was recently dismissed
+        // Vérifier si le prompt a été récemment refusé
         const dismissedTime = localStorage.getItem('immoluxe-prompt-dismissed');
         if (dismissedTime && Date.now() < parseInt(dismissedTime)) {
-            // Don't show prompt if dismissed recently
             installPrompt.style.display = 'none';
         }
         
-        // Navigation Menu
+        // ============================================
+        // MENU DE NAVIGATION
+        // ============================================
         const menuBtn = document.getElementById('menuBtn');
         const navDrawer = document.getElementById('navDrawer');
         const drawerClose = document.getElementById('drawerClose');
@@ -1186,13 +1188,14 @@
             });
         });
         
-        // WhatsApp Form Submission
+        // ============================================
+        // FORMULAIRE WHATSAPP
+        // ============================================
         const clientForm = document.getElementById('clientForm');
         const loading = document.getElementById('loading');
         const whatsappRedirect = document.getElementById('whatsappRedirect');
         const whatsappLink = document.getElementById('whatsappLink');
         
-        // Function to get label for region
         function getRegionLabel(value) {
             const regions = {
                 'dakar': 'Dakar',
@@ -1208,7 +1211,6 @@
             return regions[value] || value;
         }
         
-        // Function to get label for besoin
         function getBesoinLabel(value) {
             const besoins = {
                 'location': currentLang === 'fr' ? 'Location d\'appartement' : 'Apartment rental',
@@ -1226,11 +1228,11 @@
         clientForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Show loading
+            // Afficher le chargement
             loading.style.display = 'block';
             whatsappRedirect.classList.remove('show');
             
-            // Get form values
+            // Récupérer les valeurs
             const nom = document.getElementById('nom').value;
             const prenom = document.getElementById('prenom').value;
             const email = document.getElementById('email').value;
@@ -1239,11 +1241,11 @@
             const besoin = document.getElementById('besoin').value;
             const message = document.getElementById('message').value;
             
-            // Get labels
+            // Obtenir les labels
             const regionLabel = getRegionLabel(region);
             const besoinLabel = getBesoinLabel(besoin);
             
-            // Prepare WhatsApp message based on language
+            // Préparer le message WhatsApp
             let whatsappMessage;
             if (currentLang === 'fr') {
                 whatsappMessage = `*NOUVELLE DEMANDE IMMOLUXE.SN*%0A%0A` +
@@ -1267,29 +1269,30 @@
                                  `*⏰ Time:* ${new Date().toLocaleTimeString('en-US')}`;
             }
             
-            // WhatsApp URL
+            // URL WhatsApp
             const whatsappNumber = '221778982925';
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
             
-            // Hide loading after a short delay
+            // Après un délai
             setTimeout(() => {
                 loading.style.display = 'none';
                 
-                // Set WhatsApp link and show redirect message
+                // Mettre à jour le lien et afficher le message
                 whatsappLink.href = whatsappUrl;
                 whatsappRedirect.classList.add('show');
                 
-                // Scroll to the redirect message
+                // Défiler vers le message
                 whatsappRedirect.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 
-                // Auto-open WhatsApp after 2 seconds
+                // Ouvrir WhatsApp automatiquement après 2 secondes
                 setTimeout(() => {
                     window.open(whatsappUrl, '_blank');
                 }, 2000);
                 
-                // Reset form
+                // Réinitialiser le formulaire
                 clientForm.reset();
-                // Reset placeholders
+                
+                // Réinitialiser le placeholder
                 const textarea = document.getElementById('message');
                 textarea.setAttribute('placeholder', currentLang === 'fr' ? 
                     'Décrivez vos besoins au Sénégal...' : 
@@ -1297,14 +1300,10 @@
             }, 1500);
         });
         
-        // Set initial placeholders
-        window.addEventListener('DOMContentLoaded', () => {
-            const textarea = document.getElementById('message');
-            textarea.setAttribute('placeholder', currentLang === 'fr' ? 
-                'Décrivez vos besoins au Sénégal...' : 
-                'Describe your needs in Senegal...');
-            
-            // Add dynamic content for services and products
+        // ============================================
+        // CONTENU DYNAMIQUE
+        // ============================================
+        function updateDynamicContent() {
             const servicesGrid = document.getElementById('servicesGrid');
             const productsGrid = document.getElementById('productsGrid');
             
@@ -1374,46 +1373,50 @@
                 }
             ];
             
-            // Function to populate content
-            function populateContent() {
-                // Clear existing content
-                servicesGrid.innerHTML = '';
-                productsGrid.innerHTML = '';
-                
-                // Populate services
-                services.forEach(service => {
-                    const serviceCard = document.createElement('div');
-                    serviceCard.className = 'service-card';
-                    serviceCard.innerHTML = `
-                        <div class="service-icon">${service.icon}</div>
-                        <h3>${service[currentLang].title}</h3>
-                        <p>${service[currentLang].desc}</p>
-                    `;
-                    servicesGrid.appendChild(serviceCard);
-                });
-                
-                // Populate products
-                products.forEach(product => {
-                    const productCard = document.createElement('div');
-                    productCard.className = 'product-card';
-                    productCard.innerHTML = `
-                        <div class="product-icon">${product.icon}</div>
-                        <h3>${product[currentLang].title}</h3>
-                        <p>${product[currentLang].desc}</p>
-                    `;
-                    productsGrid.appendChild(productCard);
-                });
-            }
+            // Vider le contenu existant
+            servicesGrid.innerHTML = '';
+            productsGrid.innerHTML = '';
             
-            // Initial population
-            populateContent();
+            // Remplir les services
+            services.forEach(service => {
+                const serviceCard = document.createElement('div');
+                serviceCard.className = 'service-card';
+                serviceCard.innerHTML = `
+                    <div class="service-icon">${service.icon}</div>
+                    <h3>${service[currentLang].title}</h3>
+                    <p>${service[currentLang].desc}</p>
+                `;
+                servicesGrid.appendChild(serviceCard);
+            });
             
-            // Update content when language changes
-            const originalSwitchLanguage = switchLanguage;
-            window.switchLanguage = function(lang) {
-                originalSwitchLanguage(lang);
-                populateContent();
-            };
+            // Remplir les produits
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-icon">${product.icon}</div>
+                    <h3>${product[currentLang].title}</h3>
+                    <p>${product[currentLang].desc}</p>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+        }
+        
+        // Initialisation
+        window.addEventListener('DOMContentLoaded', () => {
+            // Mettre à jour les placeholders
+            const textarea = document.getElementById('message');
+            textarea.setAttribute('placeholder', currentLang === 'fr' ? 
+                'Décrivez vos besoins au Sénégal...' : 
+                'Describe your needs in Senegal...');
+            
+            // Charger le contenu dynamique
+            updateDynamicContent();
+            
+            // Vérifier la visibilité du bouton d'installation
+            updateInstallButtonVisibility();
+            
+            // Initialiser le Service Worker (déjà fait au début)
         });
     </script>
 </body>
