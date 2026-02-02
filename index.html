@@ -8,7 +8,7 @@
     
     <!-- PWA Meta Tags -->
     <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="icon-192x192.png">
     
     <!-- iOS PWA Support -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -175,7 +175,7 @@
             max-width: 1200px;
             margin: 0 auto;
             width: 100%;
-            padding-bottom: 100px; /* Espace pour le bouton d'installation */
+            padding-bottom: 100px;
         }
         
         /* Hero Section */
@@ -337,10 +337,10 @@
             padding: 30px 20px;
             text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 80px; /* Espace pour le bouton d'installation */
+            margin-bottom: 80px;
         }
         
-        /* Install Button - STYLE CORRIGÉ */
+        /* Install Button */
         .install-fixed-btn {
             position: fixed;
             bottom: 20px;
@@ -449,6 +449,62 @@
         
         .install-btn-no:hover {
             transform: scale(1.05);
+        }
+        
+        /* iOS Modal */
+        .ios-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 26, 46, 0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .ios-modal.show {
+            display: flex;
+        }
+        
+        .ios-modal-content {
+            background: white;
+            color: #1a1a2e;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .ios-modal h3 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        
+        .ios-steps {
+            text-align: left;
+            margin: 20px 0;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        
+        .ios-steps ol {
+            padding-left: 20px;
+        }
+        
+        .ios-steps li {
+            margin-bottom: 10px;
+        }
+        
+        .ios-icons {
+            font-size: 40px;
+            margin: 20px 0;
+            color: #1a1a2e;
         }
         
         /* Installation Progress */
@@ -671,30 +727,42 @@
             .app-footer {
                 margin-bottom: 100px;
             }
-        }
-        
-        @media (max-height: 600px) {
-            .install-prompt {
-                padding: 15px;
+            
+            .ios-modal-content {
+                padding: 20px;
             }
             
-            .install-text h3 {
-                font-size: 16px;
-            }
-            
-            .install-text p {
-                font-size: 13px;
-            }
-            
-            .install-fixed-btn {
-                bottom: 10px;
-                padding: 10px 20px;
+            .ios-icons {
+                font-size: 30px;
             }
         }
     </style>
 </head>
 <body>
     <div class="app-container" data-lang="fr">
+        <!-- iOS Installation Modal -->
+        <div class="ios-modal" id="iosModal">
+            <div class="ios-modal-content">
+                <h3 id="iosModalTitle">📱 Installation iPhone/iPad</h3>
+                <div class="ios-steps" id="iosSteps">
+                    <ol>
+                        <li>Ouvrez Safari (pas Chrome)</li>
+                        <li>Allez sur cette page</li>
+                        <li>Appuyez sur <strong>Partager (📤)</strong></li>
+                        <li>Faites défiler vers le bas</li>
+                        <li>Sélectionnez <strong>"Sur l'écran d'accueil"</strong></li>
+                        <li>Appuyez sur <strong>"Ajouter"</strong></li>
+                    </ol>
+                </div>
+                <div class="ios-icons">
+                    📱 → 🌐 → 📤 → 🏠
+                </div>
+                <button class="cta-btn" onclick="document.getElementById('iosModal').classList.remove('show')">
+                    J'ai compris
+                </button>
+            </div>
+        </div>
+        
         <!-- Installation Progress Modal -->
         <div class="install-progress" id="installProgress">
             <div class="progress-spinner"></div>
@@ -926,17 +994,48 @@
     </div>
     
     <script>
-        // Language Management
+        // ============================================
+        // SERVICE WORKER (CRITIQUE)
+        // ============================================
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => {
+                        console.log('✅ Service Worker enregistré');
+                    })
+                    .catch(error => {
+                        console.log('❌ Erreur Service Worker:', error);
+                    });
+            });
+        }
+        
+        // ============================================
+        // DÉTECTION PLATEFORME
+        // ============================================
+        function isIOS() {
+            return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        }
+        
+        function isSafari() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+        }
+        
+        function isIOSDevice() {
+            return isIOS() && isSafari();
+        }
+        
+        // ============================================
+        // GESTION DES LANGUES (EXISTANT)
+        // ============================================
         let currentLang = 'fr';
         const langSwitch = document.getElementById('langSwitch');
         const langText = document.querySelector('.lang-text');
         
-        // Function to switch language
         function switchLanguage(lang) {
             currentLang = lang;
             document.querySelector('.app-container').setAttribute('data-lang', lang);
             
-            // Update all elements with data attributes
             document.querySelectorAll('[data-fr], [data-en]').forEach(element => {
                 const text = element.getAttribute(`data-${lang}`);
                 if (text) {
@@ -951,7 +1050,6 @@
                 }
             });
             
-            // Update select options text
             document.querySelectorAll('select option').forEach(option => {
                 const text = option.getAttribute(`data-${lang}`);
                 if (text) {
@@ -959,266 +1057,262 @@
                 }
             });
             
-            // Update button text
             langText.textContent = lang === 'fr' ? 'FR' : 'EN';
             
-            // Update fixed install button
-            const fixedInstallBtn = document.getElementById('fixedInstallBtn');
-            const fixedBtnText = fixedInstallBtn.querySelector('span:last-child');
-            const fixedBtnLangText = fixedBtnText.getAttribute(`data-${lang}`);
-            if (fixedBtnLangText) {
-                fixedBtnText.textContent = fixedBtnLangText;
-            }
+            // Mettre à jour le bouton d'installation
+            updateInstallButtonText();
             
-            // Save language preference
+            // Mettre à jour la modal iOS
+            updateIOSModalText(lang);
+            
             localStorage.setItem('immoluxe-lang', lang);
         }
         
-        // Language switcher click event
+        function updateInstallButtonText() {
+            const fixedInstallBtn = document.getElementById('fixedInstallBtn');
+            const fixedBtnText = fixedInstallBtn.querySelector('span:last-child');
+            
+            if (isIOSDevice()) {
+                fixedBtnText.textContent = currentLang === 'fr' 
+                    ? "📱 Ajouter à l'écran d'accueil" 
+                    : "📱 Add to Home Screen";
+            } else {
+                fixedBtnText.textContent = currentLang === 'fr' 
+                    ? "📱 Installer l'application" 
+                    : "📱 Install App";
+            }
+        }
+        
+        function updateIOSModalText(lang) {
+            const iosModalTitle = document.getElementById('iosModalTitle');
+            const iosSteps = document.getElementById('iosSteps');
+            
+            if (lang === 'fr') {
+                iosModalTitle.textContent = '📱 Installation iPhone/iPad';
+                iosSteps.innerHTML = `
+                    <ol>
+                        <li>Ouvrez <strong>Safari</strong> (pas Chrome)</li>
+                        <li>Allez sur cette page</li>
+                        <li>Appuyez sur <strong>Partager (📤)</strong> en bas</li>
+                        <li>Faites défiler vers le bas</li>
+                        <li>Sélectionnez <strong>"Sur l'écran d'accueil"</strong></li>
+                        <li>Appuyez sur <strong>"Ajouter"</strong></li>
+                    </ol>
+                `;
+            } else {
+                iosModalTitle.textContent = '📱 iPhone/iPad Installation';
+                iosSteps.innerHTML = `
+                    <ol>
+                        <li>Open <strong>Safari</strong> (not Chrome)</li>
+                        <li>Go to this page</li>
+                        <li>Tap <strong>Share (📤)</strong> at the bottom</li>
+                        <li>Scroll down</li>
+                        <li>Select <strong>"Add to Home Screen"</strong></li>
+                        <li>Tap <strong>"Add"</strong></li>
+                    </ol>
+                `;
+            }
+        }
+        
         langSwitch.addEventListener('click', () => {
             const newLang = currentLang === 'fr' ? 'en' : 'fr';
             switchLanguage(newLang);
         });
         
-        // Check saved language preference
         const savedLang = localStorage.getItem('immoluxe-lang');
         if (savedLang && (savedLang === 'fr' || savedLang === 'en')) {
             switchLanguage(savedLang);
         }
         
         // ============================================
-        // CORRECTIONS POUR INSTALLATION MULTI-PLATEFORME
+        // INSTALLATION PWA - SOLUTION FINALE
         // ============================================
-        
-        // Détection de l'appareil
-        function isIOS() {
-            return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        }
-        
-        function isSafari() {
-            return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-        }
-        
-        function isIOSDevice() {
-            return isIOS() && isSafari();
-        }
-        
-        // PWA Installation
-        let deferredPrompt;
+        let deferredPrompt = null;
         const installPrompt = document.getElementById('installPrompt');
         const installBtn = document.getElementById('installBtn');
         const dismissBtn = document.getElementById('dismissBtn');
         const fixedInstallBtn = document.getElementById('fixedInstallBtn');
         const installProgress = document.getElementById('installProgress');
         const installSuccess = document.getElementById('installSuccess');
+        const iosModal = document.getElementById('iosModal');
         
-        // Check if app is already installed
         function isAppInstalled() {
-            return localStorage.getItem('immoluxe-installed') === 'true' ||
-                   window.matchMedia('(display-mode: standalone)').matches ||
-                   window.navigator.standalone === true;
+            return window.matchMedia('(display-mode: standalone)').matches ||
+                   window.navigator.standalone === true ||
+                   localStorage.getItem('immoluxe-installed') === 'true';
         }
         
-        // Show/hide install button based on installation status
-        function updateInstallButtonVisibility() {
+        function updateInstallButton() {
             if (isAppInstalled()) {
                 fixedInstallBtn.style.display = 'none';
                 installPrompt.style.display = 'none';
-            } else {
-                fixedInstallBtn.style.display = 'flex';
+                return;
+            }
+            
+            fixedInstallBtn.style.display = 'flex';
+            updateInstallButtonText();
+        }
+        
+        // FONCTION PRINCIPALE D'INSTALLATION
+        async function handleInstallation() {
+            console.log('🔄 Début installation...');
+            
+            // 1. iOS Safari
+            if (isIOSDevice()) {
+                console.log('📱 iOS Safari détecté');
+                iosModal.classList.add('show');
+                return;
+            }
+            
+            // 2. iOS autre navigateur (Chrome sur iOS)
+            if (isIOS()) {
+                console.log('📱 iOS autre navigateur');
+                const message = currentLang === 'fr'
+                    ? "📱 Sur iPhone/iPad :\n\n1. Ouvrez Safari (pas Chrome)\n2. Visitez cette page\n3. Utilisez l'option 'Partager' > 'Sur l'écran d'accueil'"
+                    : "📱 On iPhone/iPad:\n\n1. Open Safari (not Chrome)\n2. Visit this page\n3. Use 'Share' > 'Add to Home Screen'";
+                alert(message);
+                return;
+            }
+            
+            // 3. Android/Desktop avec installation automatique
+            if (deferredPrompt) {
+                console.log('✅ Installation automatique disponible');
+                installProgress.classList.add('show');
                 
-                // Changer le texte pour iOS
-                if (isIOSDevice()) {
-                    const fixedBtnText = fixedInstallBtn.querySelector('span:last-child');
-                    if (currentLang === 'fr') {
-                        fixedBtnText.textContent = "Ajouter à l'écran d'accueil";
+                try {
+                    deferredPrompt.prompt();
+                    const { outcome } = await deferredPrompt.userChoice;
+                    
+                    if (outcome === 'accepted') {
+                        console.log('✅ Installation acceptée');
                     } else {
-                        fixedBtnText.textContent = "Add to Home Screen";
+                        console.log('❌ Installation refusée');
+                        installProgress.classList.remove('show');
+                    }
+                    
+                    deferredPrompt = null;
+                } catch (error) {
+                    console.error('❌ Erreur:', error);
+                    installProgress.classList.remove('show');
+                    alert(currentLang === 'fr' 
+                        ? "Erreur d'installation. Réessayez." 
+                        : "Installation error. Try again.");
+                }
+            } else {
+                // 4. Pas de support
+                console.log('❌ Installation non supportée');
+                if (isIOS()) {
+                    alert(currentLang === 'fr'
+                        ? "📱 Sur iPhone/iPad :\n1. Ouvrez Safari\n2. Partager (📤) → Sur l'écran d'accueil"
+                        : "📱 On iPhone/iPad:\n1. Open Safari\n2. Share (📤) → Add to Home Screen");
+                } else {
+                    alert(currentLang === 'fr'
+                        ? "❌ Votre navigateur ne supporte pas l'installation."
+                        : "❌ Your browser doesn't support installation.");
+                }
+            }
+        }
+        
+        // Événement pour Android/Desktop
+        window.addEventListener('beforeinstallprompt', (e) => {
+            console.log('🎯 beforeinstallprompt détecté');
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            updateInstallButton();
+            
+            // Afficher bannière après 3 secondes
+            setTimeout(() => {
+                if (deferredPrompt && !isAppInstalled()) {
+                    const dismissed = localStorage.getItem('immoluxe-prompt-dismissed');
+                    if (!dismissed || Date.now() > parseInt(dismissed)) {
+                        installPrompt.classList.add('show');
                     }
                 }
-            }
-        }
-        
-        // Fonction pour afficher les instructions iOS
-        function showIOSInstructions() {
-            const message = currentLang === 'fr' 
-                ? "📱 POUR INSTALLER SUR IPHONE/iPAD :\n\n" +
-                  "1. Appuyez sur le bouton 'Partager' (📤) en bas de Safari\n" +
-                  "2. Faites défiler vers le bas\n" +
-                  "3. Sélectionnez 'Sur l'écran d'accueil'\n" +
-                  "4. Appuyez sur 'Ajouter'\n\n" +
-                  "✅ L'application apparaîtra sur votre écran d'accueil !"
-                : "📱 TO INSTALL ON IPHONE/iPAD:\n\n" +
-                  "1. Tap the 'Share' button (📤) at the bottom of Safari\n" +
-                  "2. Scroll down\n" +
-                  "3. Select 'Add to Home Screen'\n" +
-                  "4. Tap 'Add'\n\n" +
-                  "✅ The app will appear on your home screen!";
-            
-            alert(message);
-        }
-        
-        // Gestion du clic sur le bouton d'installation
-        async function handleInstallClick() {
-            // Pour iOS Safari
-            if (isIOSDevice()) {
-                showIOSInstructions();
-                return;
-            }
-            
-            // Pour Android/Desktop
-            if (!deferredPrompt) {
-                // Pour iOS avec d'autres navigateurs (Chrome sur iOS)
-                if (isIOS()) {
-                    showIOSInstructions();
-                } else {
-                    alert(currentLang === 'fr' 
-                        ? "L'installation n'est pas disponible sur cet appareil." 
-                        : "Installation is not available on this device.");
-                }
-                return;
-            }
-            
-            // Show installation progress
-            installProgress.classList.add('show');
-            
-            try {
-                // Show the install prompt
-                deferredPrompt.prompt();
-                
-                // Wait for the user to respond to the prompt
-                const { outcome } = await deferredPrompt.userChoice;
-                
-                if (outcome === 'accepted') {
-                    console.log('User accepted the install prompt');
-                } else {
-                    console.log('User dismissed the install prompt');
-                    installProgress.classList.remove('show');
-                }
-                
-                // Clear the saved prompt
-                deferredPrompt = null;
-            } catch (error) {
-                console.error('Error during installation:', error);
-                installProgress.classList.remove('show');
-                alert(currentLang === 'fr' 
-                    ? "Erreur lors de l'installation. Veuillez réessayer." 
-                    : "Installation error. Please try again.");
-            }
-        }
-        
-        // Initialize
-        window.addEventListener('load', () => {
-            updateInstallButtonVisibility();
-            
-            // Register Service Worker
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('sw.js')
-                    .then(reg => {
-                        console.log('Service Worker enregistré avec succès');
-                    })
-                    .catch(err => {
-                        console.log('Erreur Service Worker:', err);
-                    });
-            }
-            
-            // Check for beforeinstallprompt event (Android/Desktop)
-            window.addEventListener('beforeinstallprompt', (e) => {
-                e.preventDefault();
-                deferredPrompt = e;
-                console.log('beforeinstallprompt event fired');
-                
-                // Show fixed install button
-                fixedInstallBtn.style.display = 'flex';
-                
-                // Show install prompt after 5 seconds (Android/Desktop seulement)
-                if (!isIOSDevice()) {
-                    setTimeout(() => {
-                        if (deferredPrompt && !isAppInstalled()) {
-                            installPrompt.classList.add('show');
-                        }
-                    }, 5000);
-                }
-            });
-            
-            // Listen for app installed event
-            window.addEventListener('appinstalled', (evt) => {
-                console.log('App was installed successfully');
-                installProgress.classList.remove('show');
-                installSuccess.classList.add('show');
-                deferredPrompt = null;
-                
-                // Hide the install prompt and fixed button
-                installPrompt.classList.remove('show');
-                fixedInstallBtn.style.display = 'none';
-                
-                // Save installation status
-                localStorage.setItem('immoluxe-installed', 'true');
-            });
+            }, 3000);
         });
         
-        // Fixed install button click
-        fixedInstallBtn.addEventListener('click', handleInstallClick);
+        // Après installation réussie
+        window.addEventListener('appinstalled', () => {
+            console.log('🎉 Application installée !');
+            installProgress.classList.remove('show');
+            installSuccess.classList.add('show');
+            deferredPrompt = null;
+            
+            installPrompt.classList.remove('show');
+            fixedInstallBtn.style.display = 'none';
+            
+            localStorage.setItem('immoluxe-installed', 'true');
+        });
         
-        // Install prompt button click
+        // Attacher les événements
+        fixedInstallBtn.addEventListener('click', handleInstallation);
+        
         installBtn.addEventListener('click', async () => {
             if (!deferredPrompt) {
-                if (isIOSDevice()) {
-                    showIOSInstructions();
-                } else {
-                    alert(currentLang === 'fr' 
-                        ? "L'installation n'est pas disponible sur cet appareil." 
-                        : "Installation is not available on this device.");
-                }
+                handleInstallation();
                 return;
             }
             
-            // Show installation progress
             installPrompt.classList.remove('show');
             installProgress.classList.add('show');
             
             try {
-                // Show the install prompt
                 deferredPrompt.prompt();
-                
-                // Wait for the user to respond to the prompt
                 const { outcome } = await deferredPrompt.userChoice;
                 
                 if (outcome === 'accepted') {
-                    console.log('User accepted the install prompt');
+                    console.log('✅ Installation via bannière');
                 } else {
-                    console.log('User dismissed the install prompt');
+                    console.log('❌ Refus via bannière');
                     installProgress.classList.remove('show');
                 }
                 
-                // Clear the saved prompt
                 deferredPrompt = null;
             } catch (error) {
-                console.error('Error during installation:', error);
+                console.error('❌ Erreur:', error);
                 installProgress.classList.remove('show');
-                alert(currentLang === 'fr' 
-                    ? "Erreur lors de l'installation. Veuillez réessayer." 
-                    : "Installation error. Please try again.");
             }
         });
         
-        // Dismiss button click event
         dismissBtn.addEventListener('click', () => {
             installPrompt.classList.remove('show');
-            // Hide for 7 days
             const expiry = new Date();
             expiry.setDate(expiry.getDate() + 7);
             localStorage.setItem('immoluxe-prompt-dismissed', expiry.getTime());
         });
         
-        // Check if prompt was recently dismissed
         const dismissedTime = localStorage.getItem('immoluxe-prompt-dismissed');
         if (dismissedTime && Date.now() < parseInt(dismissedTime)) {
-            // Don't show prompt if dismissed recently
             installPrompt.style.display = 'none';
         }
         
-        // Navigation Menu
+        // ============================================
+        // INITIALISATION
+        // ============================================
+        window.addEventListener('DOMContentLoaded', () => {
+            updateInstallButtonText();
+            updateIOSModalText(currentLang);
+            
+            const textarea = document.getElementById('message');
+            textarea.setAttribute('placeholder', currentLang === 'fr' 
+                ? 'Décrivez vos besoins au Sénégal...' 
+                : 'Describe your needs in Senegal...');
+            
+            updateInstallButton();
+            
+            // Aide iOS au premier chargement
+            if (isIOSDevice() && !localStorage.getItem('immoluxe-ios-help-shown')) {
+                setTimeout(() => {
+                    iosModal.classList.add('show');
+                    localStorage.setItem('immoluxe-ios-help-shown', 'true');
+                }, 2000);
+            }
+        });
+        
+        // ============================================
+        // NAVIGATION MENU
+        // ============================================
         const menuBtn = document.getElementById('menuBtn');
         const navDrawer = document.getElementById('navDrawer');
         const drawerClose = document.getElementById('drawerClose');
@@ -1247,13 +1341,14 @@
             });
         });
         
-        // WhatsApp Form Submission
+        // ============================================
+        // FORMULAIRE WHATSAPP
+        // ============================================
         const clientForm = document.getElementById('clientForm');
         const loading = document.getElementById('loading');
         const whatsappRedirect = document.getElementById('whatsappRedirect');
         const whatsappLink = document.getElementById('whatsappLink');
         
-        // Function to get label for region
         function getRegionLabel(value) {
             const regions = {
                 'dakar': 'Dakar',
@@ -1269,7 +1364,6 @@
             return regions[value] || value;
         }
         
-        // Function to get label for besoin
         function getBesoinLabel(value) {
             const besoins = {
                 'location': currentLang === 'fr' ? 'Location d\'appartement' : 'Apartment rental',
@@ -1287,11 +1381,9 @@
         clientForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Show loading
             loading.style.display = 'block';
             whatsappRedirect.classList.remove('show');
             
-            // Get form values
             const nom = document.getElementById('nom').value;
             const prenom = document.getElementById('prenom').value;
             const email = document.getElementById('email').value;
@@ -1300,11 +1392,9 @@
             const besoin = document.getElementById('besoin').value;
             const message = document.getElementById('message').value;
             
-            // Get labels
             const regionLabel = getRegionLabel(region);
             const besoinLabel = getBesoinLabel(besoin);
             
-            // Prepare WhatsApp message based on language
             let whatsappMessage;
             if (currentLang === 'fr') {
                 whatsappMessage = `*NOUVELLE DEMANDE IMMOLUXE.SN*%0A%0A` +
@@ -1328,154 +1418,87 @@
                                  `*⏰ Time:* ${new Date().toLocaleTimeString('en-US')}`;
             }
             
-            // WhatsApp URL
             const whatsappNumber = '221778982925';
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
             
-            // Hide loading after a short delay
             setTimeout(() => {
                 loading.style.display = 'none';
-                
-                // Set WhatsApp link and show redirect message
                 whatsappLink.href = whatsappUrl;
                 whatsappRedirect.classList.add('show');
-                
-                // Scroll to the redirect message
                 whatsappRedirect.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 
-                // Auto-open WhatsApp after 2 seconds
                 setTimeout(() => {
                     window.open(whatsappUrl, '_blank');
                 }, 2000);
                 
-                // Reset form
                 clientForm.reset();
-                // Reset placeholders
                 const textarea = document.getElementById('message');
-                textarea.setAttribute('placeholder', currentLang === 'fr' ? 
-                    'Décrivez vos besoins au Sénégal...' : 
-                    'Describe your needs in Senegal...');
+                textarea.setAttribute('placeholder', currentLang === 'fr' 
+                    ? 'Décrivez vos besoins au Sénégal...' 
+                    : 'Describe your needs in Senegal...');
             }, 1500);
         });
         
-        // Set initial placeholders
-        window.addEventListener('DOMContentLoaded', () => {
-            const textarea = document.getElementById('message');
-            textarea.setAttribute('placeholder', currentLang === 'fr' ? 
-                'Décrivez vos besoins au Sénégal...' : 
-                'Describe your needs in Senegal...');
-            
-            // Add dynamic content for services and products
+        // ============================================
+        // CONTENU DYNAMIQUE
+        // ============================================
+        function updateDynamicContent() {
             const servicesGrid = document.getElementById('servicesGrid');
             const productsGrid = document.getElementById('productsGrid');
             
             const services = [
-                { 
-                    icon: '🏢', 
-                    fr: { title: 'Vente Immobilière', desc: 'Transaction de propriétés résidentielles et commerciales' },
-                    en: { title: 'Real Estate Sales', desc: 'Residential and commercial property transactions' }
-                },
-                { 
-                    icon: '🔑', 
-                    fr: { title: 'Location de Prestige', desc: 'Gestion locative haut de gamme' },
-                    en: { title: 'Prestige Rentals', desc: 'High-end rental management' }
-                },
-                { 
-                    icon: '📐', 
-                    fr: { title: 'Conseil Architecture', desc: 'Design et planification de projets' },
-                    en: { title: 'Architecture Consulting', desc: 'Project design and planning' }
-                },
-                { 
-                    icon: '⚖️', 
-                    fr: { title: 'Négociation Expert', desc: 'Optimisation de vos transactions' },
-                    en: { title: 'Expert Negotiation', desc: 'Optimization of your transactions' }
-                },
-                { 
-                    icon: '📊', 
-                    fr: { title: 'Évaluation de Biens', desc: 'Expertise et estimation de valeur' },
-                    en: { title: 'Property Valuation', desc: 'Expert appraisal and value estimation' }
-                },
-                { 
-                    icon: '🤝', 
-                    fr: { title: 'Accompagnement', desc: 'Suivi personnalisé de A à Z' },
-                    en: { title: 'Personalized Support', desc: 'Personalized follow-up from A to Z' }
-                }
+                { icon: '🏢', fr: { title: 'Vente Immobilière', desc: 'Transaction de propriétés résidentielles et commerciales' }, en: { title: 'Real Estate Sales', desc: 'Residential and commercial property transactions' } },
+                { icon: '🔑', fr: { title: 'Location de Prestige', desc: 'Gestion locative haut de gamme' }, en: { title: 'Prestige Rentals', desc: 'High-end rental management' } },
+                { icon: '📐', fr: { title: 'Conseil Architecture', desc: 'Design et planification de projets' }, en: { title: 'Architecture Consulting', desc: 'Project design and planning' } },
+                { icon: '⚖️', fr: { title: 'Négociation Expert', desc: 'Optimisation de vos transactions' }, en: { title: 'Expert Negotiation', desc: 'Optimization of your transactions' } },
+                { icon: '📊', fr: { title: 'Évaluation de Biens', desc: 'Expertise et estimation de valeur' }, en: { title: 'Property Valuation', desc: 'Expert appraisal and value estimation' } },
+                { icon: '🤝', fr: { title: 'Accompagnement', desc: 'Suivi personnalisé de A à Z' }, en: { title: 'Personalized Support', desc: 'Personalized follow-up from A to Z' } }
             ];
             
             const products = [
-                { 
-                    icon: '🏰', 
-                    fr: { title: 'Villas de Luxe', desc: 'Propriétés exclusives avec toutes commodités' },
-                    en: { title: 'Luxury Villas', desc: 'Exclusive properties with all amenities' }
-                },
-                { 
-                    icon: '🏬', 
-                    fr: { title: 'Appartements Premium', desc: 'Résidences sécurisées et modernes' },
-                    en: { title: 'Premium Apartments', desc: 'Secure and modern residences' }
-                },
-                { 
-                    icon: '🏡', 
-                    fr: { title: 'Maisons de Charme', desc: 'Habitations traditionnelles rénovées' },
-                    en: { title: 'Charming Houses', desc: 'Renovated traditional homes' }
-                },
-                { 
-                    icon: '🌳', 
-                    fr: { title: 'Terrains Viabilisés', desc: 'Parcelles prêtes à construire' },
-                    en: { title: 'Developed Land', desc: 'Ready-to-build plots' }
-                },
-                { 
-                    icon: '🏢', 
-                    fr: { title: 'Bureaux & Commerces', desc: 'Espaces professionnels de qualité' },
-                    en: { title: 'Offices & Commercial', desc: 'Quality professional spaces' }
-                },
-                { 
-                    icon: '🌴', 
-                    fr: { title: 'Résidences Secondaires', desc: 'Maisons de vacances au Sénégal' },
-                    en: { title: 'Second Homes', desc: 'Vacation homes in Senegal' }
-                }
+                { icon: '🏰', fr: { title: 'Villas de Luxe', desc: 'Propriétés exclusives avec toutes commodités' }, en: { title: 'Luxury Villas', desc: 'Exclusive properties with all amenities' } },
+                { icon: '🏬', fr: { title: 'Appartements Premium', desc: 'Résidences sécurisées et modernes' }, en: { title: 'Premium Apartments', desc: 'Secure and modern residences' } },
+                { icon: '🏡', fr: { title: 'Maisons de Charme', desc: 'Habitations traditionnelles rénovées' }, en: { title: 'Charming Houses', desc: 'Renovated traditional homes' } },
+                { icon: '🌳', fr: { title: 'Terrains Viabilisés', desc: 'Parcelles prêtes à construire' }, en: { title: 'Developed Land', desc: 'Ready-to-build plots' } },
+                { icon: '🏢', fr: { title: 'Bureaux & Commerces', desc: 'Espaces professionnels de qualité' }, en: { title: 'Offices & Commercial', desc: 'Quality professional spaces' } },
+                { icon: '🌴', fr: { title: 'Résidences Secondaires', desc: 'Maisons de vacances au Sénégal' }, en: { title: 'Second Homes', desc: 'Vacation homes in Senegal' } }
             ];
             
-            // Function to populate content
-            function populateContent() {
-                // Clear existing content
-                servicesGrid.innerHTML = '';
-                productsGrid.innerHTML = '';
-                
-                // Populate services
-                services.forEach(service => {
-                    const serviceCard = document.createElement('div');
-                    serviceCard.className = 'service-card';
-                    serviceCard.innerHTML = `
-                        <div class="service-icon">${service.icon}</div>
-                        <h3>${service[currentLang].title}</h3>
-                        <p>${service[currentLang].desc}</p>
-                    `;
-                    servicesGrid.appendChild(serviceCard);
-                });
-                
-                // Populate products
-                products.forEach(product => {
-                    const productCard = document.createElement('div');
-                    productCard.className = 'product-card';
-                    productCard.innerHTML = `
-                        <div class="product-icon">${product.icon}</div>
-                        <h3>${product[currentLang].title}</h3>
-                        <p>${product[currentLang].desc}</p>
-                    `;
-                    productsGrid.appendChild(productCard);
-                });
-            }
+            servicesGrid.innerHTML = '';
+            productsGrid.innerHTML = '';
             
-            // Initial population
-            populateContent();
+            services.forEach(service => {
+                const serviceCard = document.createElement('div');
+                serviceCard.className = 'service-card';
+                serviceCard.innerHTML = `
+                    <div class="service-icon">${service.icon}</div>
+                    <h3>${service[currentLang].title}</h3>
+                    <p>${service[currentLang].desc}</p>
+                `;
+                servicesGrid.appendChild(serviceCard);
+            });
             
-            // Update content when language changes
-            const originalSwitchLanguage = switchLanguage;
-            window.switchLanguage = function(lang) {
-                originalSwitchLanguage(lang);
-                populateContent();
-            };
-        });
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-icon">${product.icon}</div>
+                    <h3>${product[currentLang].title}</h3>
+                    <p>${product[currentLang].desc}</p>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+        }
+        
+        // Initialiser
+        updateDynamicContent();
+        
+        // Mettre à jour quand la langue change
+        const originalSwitchLanguage = switchLanguage;
+        window.switchLanguage = function(lang) {
+            originalSwitchLanguage(lang);
+            updateDynamicContent();
+        };
     </script>
 </body>
 </html>
