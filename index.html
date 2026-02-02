@@ -16,7 +16,7 @@
     <meta name="apple-mobile-web-app-title" content="IMMOLUXE.SN">
     <link rel="apple-touch-icon" href="icon-192x192.png">
     
-    <!-- Empêcher la détection automatique de numéros -->
+    <!-- Empêcher la détection automatique -->
     <meta name="format-detection" content="telephone=no">
     
     <title>IMMOLUXE.SN - Mobile Application</title>
@@ -80,8 +80,6 @@
             font-weight: bold;
             color: #ffd700;
             text-decoration: none;
-            
-            /* Empêcher la sélection */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -107,8 +105,6 @@
             align-items: center;
             gap: 8px;
             transition: all 0.3s;
-            
-            /* Empêcher la sélection */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -128,8 +124,6 @@
             font-size: 24px;
             cursor: pointer;
             padding: 8px;
-            
-            /* Empêcher la sélection */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -169,8 +163,6 @@
             cursor: pointer;
             float: right;
             color: #1a1a2e;
-            
-            /* Empêcher la sélection */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -193,8 +185,6 @@
             color: #fff;
             text-decoration: none;
             transition: background 0.3s;
-            
-            /* Empêcher la sélection */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -229,7 +219,7 @@
             max-width: 1200px;
             margin: 0 auto;
             width: 100%;
-            padding-bottom: 100px; /* Espace pour le bouton d'installation */
+            padding-bottom: 100px;
         }
         
         /* Hero Section */
@@ -245,8 +235,6 @@
             font-size: 28px;
             margin-bottom: 15px;
             color: #ffd700;
-            
-            /* Empêcher la sélection */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -259,8 +247,6 @@
             line-height: 1.6;
             margin-bottom: 25px;
             opacity: 0.9;
-            
-            /* Empêcher la sélection */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -280,8 +266,6 @@
             text-decoration: none;
             display: inline-block;
             transition: transform 0.3s;
-            
-            /* Empêcher la sélection */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -304,8 +288,6 @@
             margin-bottom: 20px;
             color: #ffd700;
             text-align: center;
-            
-            /* Empêcher la sélection */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -342,8 +324,6 @@
             color: #ffd700;
             margin-bottom: 10px;
             font-size: 18px;
-            
-            /* Empêcher la sélection */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -354,8 +334,6 @@
         .service-card p, .product-card p {
             opacity: 0.8;
             line-height: 1.6;
-            
-            /* Empêcher la sélection */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -391,8 +369,6 @@
         .contact-details h4 {
             color: #ffd700;
             margin-bottom: 5px;
-            
-            /* Empêcher la sélection */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -402,8 +378,6 @@
         
         .contact-details p {
             opacity: 0.8;
-            
-            /* Empêcher la sélection */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -436,8 +410,6 @@
             gap: 10px;
             margin-top: 10px;
             transition: transform 0.3s;
-            
-            /* Empêcher la sélection */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -456,10 +428,10 @@
             padding: 30px 20px;
             text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 80px; /* Espace pour le bouton d'installation */
+            margin-bottom: 80px;
         }
         
-        /* Install Button - CORRECTIONS APPLIQUÉES */
+        /* Install Button - CORRECTIONS POUR TOUS APPAREILS */
         .install-fixed-btn {
             position: fixed;
             bottom: 20px;
@@ -482,15 +454,13 @@
             transition: all 0.3s;
             white-space: nowrap;
             max-width: 90%;
-            
-            /* PROPRIÉTÉS AJOUTÉES POUR EMPÊCHER LA SÉLECTION */
-            -webkit-user-select: none; /* Safari */
-            -moz-user-select: none;    /* Firefox */
-            -ms-user-select: none;     /* Internet Explorer/Edge */
-            user-select: none;         /* Standard */
-            -webkit-touch-callout: none; /* iOS Safari - empêche le menu contextuel */
-            -webkit-tap-highlight-color: transparent; /* Retirer le surlignage au clic */
-            touch-action: manipulation; /* Optimise pour le touch */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
         }
         
         .install-fixed-btn:hover {
@@ -502,7 +472,6 @@
             transform: translateX(-50%) scale(0.98);
         }
         
-        /* S'assurer que les spans à l'intérieur ne sont pas sélectionnables */
         .install-fixed-btn span {
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -543,8 +512,6 @@
         .install-text h3 {
             margin-bottom: 5px;
             font-size: 18px;
-            
-            /* Empêcher la sélection */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -555,8 +522,6 @@
         .install-text p {
             margin-bottom: 5px;
             font-size: 14px;
-            
-            /* Empêcher la sélection */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -567,8 +532,6 @@
         .install-text small {
             font-size: 12px;
             opacity: 0.8;
-            
-            /* Empêcher la sélection */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -588,8 +551,6 @@
             cursor: pointer;
             font-weight: bold;
             transition: transform 0.2s;
-            
-            /* Empêcher la sélection */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -671,6 +632,55 @@
             margin-bottom: 20px;
         }
         
+        /* iOS Instructions Modal */
+        .ios-instructions-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 26, 46, 0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .ios-instructions-modal.show {
+            display: flex;
+        }
+        
+        .ios-modal-content {
+            background: white;
+            color: #1a1a2e;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .ios-modal-title {
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .ios-steps {
+            text-align: left;
+            margin: 20px 0;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        
+        .ios-icons {
+            margin: 25px 0;
+            font-size: 60px;
+            color: #1a1a2e;
+        }
+        
         /* Form Styles */
         .form-container {
             background: rgba(255, 255, 255, 0.05);
@@ -688,8 +698,6 @@
             margin-bottom: 8px;
             color: #ffd700;
             font-weight: 500;
-            
-            /* Empêcher la sélection */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -748,8 +756,6 @@
             cursor: pointer;
             width: 100%;
             transition: transform 0.3s;
-            
-            /* Empêcher la sélection */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -851,6 +857,14 @@
             .app-footer {
                 margin-bottom: 100px;
             }
+            
+            .ios-modal-content {
+                padding: 20px;
+            }
+            
+            .ios-icons {
+                font-size: 40px;
+            }
         }
         
         @media (max-height: 600px) {
@@ -875,6 +889,27 @@
 </head>
 <body>
     <div class="app-container" data-lang="fr">
+        <!-- iOS Instructions Modal -->
+        <div class="ios-instructions-modal" id="iosInstructionsModal">
+            <div class="ios-modal-content">
+                <h3 class="ios-modal-title" id="iosModalTitle">📱 Installation iPhone/iPad</h3>
+                <div class="ios-steps" id="iosSteps">
+                    <strong>POUR INSTALLER SUR IPHONE/iPAD :</strong><br><br>
+                    1. Cliquez sur le bouton <strong>'Partager' (📤)</strong> en bas de Safari<br>
+                    2. Faites défiler vers le bas dans le menu<br>
+                    3. Sélectionnez <strong>'Sur l'écran d'accueil'</strong><br>
+                    4. Cliquez sur <strong>'Ajouter'</strong> en haut à droite<br><br>
+                    ✅ L'application apparaîtra sur votre écran d'accueil !
+                </div>
+                <div class="ios-icons">
+                    📤 → 🔍 → 🏠 → ➕
+                </div>
+                <button class="cta-btn" onclick="document.getElementById('iosInstructionsModal').classList.remove('show')">
+                    J'ai compris
+                </button>
+            </div>
+        </div>
+        
         <!-- Installation Progress Modal -->
         <div class="install-progress" id="installProgress">
             <div class="progress-spinner"></div>
@@ -1122,6 +1157,40 @@
         }
         
         // ============================================
+        // DÉTECTION iOS/SAFARI
+        // ============================================
+        
+        // Fonction pour détecter iOS
+        function isIOS() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            
+            // Vérifier iPhone, iPad, iPod
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                return true;
+            }
+            
+            // Vérifier iPad sur iOS 13+
+            if (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) {
+                return true;
+            }
+            
+            return false;
+        }
+        
+        // Fonction pour détecter Safari
+        function isSafari() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            const isSafari = userAgent.includes('safari') && !userAgent.includes('chrome');
+            const isMobileSafari = userAgent.includes('applewebkit') && userAgent.includes('mobile');
+            return isSafari || isMobileSafari;
+        }
+        
+        // Fonction pour détecter si c'est iOS Safari
+        function isIOSDevice() {
+            return isIOS() && isSafari();
+        }
+        
+        // ============================================
         // GESTION DES LANGUES
         // ============================================
         let currentLang = 'fr';
@@ -1147,7 +1216,7 @@
                 }
             });
             
-            // Mettre à jour le texte des options select
+            // Mettre à jour les options select
             document.querySelectorAll('select option').forEach(option => {
                 const text = option.getAttribute(`data-${lang}`);
                 if (text) {
@@ -1158,19 +1227,45 @@
             // Mettre à jour le texte du bouton de langue
             langText.textContent = lang === 'fr' ? 'FR' : 'EN';
             
-            // Mettre à jour le bouton d'installation fixe
-            const fixedInstallBtn = document.getElementById('fixedInstallBtn');
-            const fixedBtnText = fixedInstallBtn.querySelector('span:last-child');
-            const fixedBtnLangText = fixedBtnText.getAttribute(`data-${lang}`);
-            if (fixedBtnLangText) {
-                fixedBtnText.textContent = fixedBtnLangText;
-            }
+            // Mettre à jour le bouton d'installation
+            updateInstallButton();
+            
+            // Mettre à jour les instructions iOS
+            updateIOSInstructions(lang);
             
             // Sauvegarder la préférence de langue
             localStorage.setItem('immoluxe-lang', lang);
             
             // Mettre à jour le contenu dynamique
             updateDynamicContent();
+        }
+        
+        // Mettre à jour les instructions iOS selon la langue
+        function updateIOSInstructions(lang) {
+            const iosModalTitle = document.getElementById('iosModalTitle');
+            const iosSteps = document.getElementById('iosSteps');
+            
+            if (lang === 'fr') {
+                iosModalTitle.textContent = '📱 Installation iPhone/iPad';
+                iosSteps.innerHTML = `
+                    <strong>POUR INSTALLER SUR IPHONE/iPAD :</strong><br><br>
+                    1. Cliquez sur le bouton <strong>'Partager' (📤)</strong> en bas de Safari<br>
+                    2. Faites défiler vers le bas dans le menu<br>
+                    3. Sélectionnez <strong>'Sur l'écran d'accueil'</strong><br>
+                    4. Cliquez sur <strong>'Ajouter'</strong> en haut à droite<br><br>
+                    ✅ L'application apparaîtra sur votre écran d'accueil !
+                `;
+            } else {
+                iosModalTitle.textContent = '📱 iPhone/iPad Installation';
+                iosSteps.innerHTML = `
+                    <strong>TO INSTALL ON IPHONE/iPAD:</strong><br><br>
+                    1. Tap the <strong>'Share' button (📤)</strong> at the bottom of Safari<br>
+                    2. Scroll down in the menu that appears<br>
+                    3. Select <strong>'Add to Home Screen'</strong><br>
+                    4. Tap <strong>'Add'</strong> in the top right corner<br><br>
+                    ✅ The app will appear on your home screen!
+                `;
+            }
         }
         
         // Événement pour changer de langue
@@ -1186,7 +1281,7 @@
         }
         
         // ============================================
-        // INSTALLATION PWA
+        // INSTALLATION PWA - GESTION MULTI-PLATEFORME
         // ============================================
         let deferredPrompt = null;
         const installPrompt = document.getElementById('installPrompt');
@@ -1195,10 +1290,10 @@
         const fixedInstallBtn = document.getElementById('fixedInstallBtn');
         const installProgress = document.getElementById('installProgress');
         const installSuccess = document.getElementById('installSuccess');
+        const iosInstructionsModal = document.getElementById('iosInstructionsModal');
         
         // Vérifier si l'app est déjà installée
         function isAppInstalled() {
-            // Vérifier plusieurs méthodes
             const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
             const isIOSStandalone = 'standalone' in window.navigator && window.navigator.standalone;
             const isLocalStorage = localStorage.getItem('immoluxe-installed') === 'true';
@@ -1206,35 +1301,110 @@
             return isStandalone || isIOSStandalone || isLocalStorage;
         }
         
-        // Mettre à jour la visibilité du bouton d'installation
-        function updateInstallButtonVisibility() {
-            if (isAppInstalled()) {
-                fixedInstallBtn.style.display = 'none';
-                installPrompt.style.display = 'none';
+        // Mettre à jour le texte du bouton d'installation
+        function updateInstallButton() {
+            const fixedBtnText = fixedInstallBtn.querySelector('span:last-child');
+            
+            if (isIOSDevice()) {
+                // Texte spécifique pour iOS
+                if (currentLang === 'fr') {
+                    fixedBtnText.textContent = "Ajouter à l'écran d'accueil";
+                    fixedBtnText.setAttribute('data-fr', "Ajouter à l'écran d'accueil");
+                    fixedBtnText.setAttribute('data-en', "Add to Home Screen");
+                } else {
+                    fixedBtnText.textContent = "Add to Home Screen";
+                    fixedBtnText.setAttribute('data-fr', "Ajouter à l'écran d'accueil");
+                    fixedBtnText.setAttribute('data-en', "Add to Home Screen");
+                }
             } else {
-                fixedInstallBtn.style.display = 'flex';
+                // Texte normal pour Android/Desktop
+                const fixedBtnLangText = fixedBtnText.getAttribute(`data-${currentLang}`);
+                if (fixedBtnLangText) {
+                    fixedBtnText.textContent = fixedBtnLangText;
+                }
             }
         }
         
-        // Événement avant installation
+        // Afficher les instructions iOS
+        function showIOSInstructions() {
+            iosInstructionsModal.classList.add('show');
+        }
+        
+        // Gestion du clic sur le bouton d'installation
+        async function handleInstallClick() {
+            // Vérifier iOS/Safari
+            if (isIOSDevice()) {
+                showIOSInstructions();
+                return;
+            }
+            
+            // Pour Android/Desktop
+            if (!deferredPrompt) {
+                if (isIOS()) {
+                    // Chrome sur iOS
+                    showIOSInstructions();
+                } else {
+                    alert(currentLang === 'fr' 
+                        ? "L'installation n'est pas disponible sur cet appareil." 
+                        : "Installation is not available on this device.");
+                }
+                return;
+            }
+            
+            // Afficher la progression
+            installProgress.classList.add('show');
+            
+            try {
+                // Afficher le prompt d'installation
+                deferredPrompt.prompt();
+                
+                // Attendre la réponse de l'utilisateur
+                const { outcome } = await deferredPrompt.userChoice;
+                
+                if (outcome === 'accepted') {
+                    console.log('Installation acceptée');
+                } else {
+                    console.log('Installation refusée');
+                    installProgress.classList.remove('show');
+                }
+                
+                // Effacer le prompt
+                deferredPrompt = null;
+            } catch (error) {
+                console.error('Erreur lors de l\'installation:', error);
+                installProgress.classList.remove('show');
+                
+                // En cas d'erreur sur iOS
+                if (isIOS()) {
+                    showIOSInstructions();
+                } else {
+                    alert(currentLang === 'fr' 
+                        ? "Erreur lors de l'installation. Veuillez réessayer." 
+                        : "Installation error. Please try again.");
+                }
+            }
+        }
+        
+        // Événement beforeinstallprompt (Android/Desktop uniquement)
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            console.log('beforeinstallprompt event détecté');
+            console.log('beforeinstallprompt event détecté (Android/Desktop)');
             
-            // Afficher le bouton d'installation fixe
-            fixedInstallBtn.style.display = 'flex';
+            // Mettre à jour le bouton
+            updateInstallButton();
             
-            // Afficher la bannière d'installation après 5 secondes
-            setTimeout(() => {
-                if (deferredPrompt && !isAppInstalled()) {
-                    // Vérifier si l'utilisateur a déjà refusé récemment
-                    const dismissedTime = localStorage.getItem('immoluxe-prompt-dismissed');
-                    if (!dismissedTime || Date.now() > parseInt(dismissedTime)) {
-                        installPrompt.classList.add('show');
+            // Afficher la bannière d'installation après 5 secondes (Android/Desktop seulement)
+            if (!isIOSDevice()) {
+                setTimeout(() => {
+                    if (deferredPrompt && !isAppInstalled()) {
+                        const dismissedTime = localStorage.getItem('immoluxe-prompt-dismissed');
+                        if (!dismissedTime || Date.now() > parseInt(dismissedTime)) {
+                            installPrompt.classList.add('show');
+                        }
                     }
-                }
-            }, 5000);
+                }, 5000);
+            }
         });
         
         // Événement après installation
@@ -1252,49 +1422,19 @@
             localStorage.setItem('immoluxe-installed', 'true');
         });
         
-        // Bouton d'installation fixe
-        fixedInstallBtn.addEventListener('click', async () => {
-            if (!deferredPrompt) {
-                alert(currentLang === 'fr' 
-                    ? "L'installation n'est pas disponible sur cet appareil ou votre navigateur ne supporte pas cette fonctionnalité." 
-                    : "Installation is not available on this device or your browser doesn't support this feature.");
-                return;
-            }
-            
-            // Afficher la progression
-            installProgress.classList.add('show');
-            
-            try {
-                // Afficher le prompt d'installation
-                deferredPrompt.prompt();
-                
-                // Attendre la réponse de l'utilisateur
-                const { outcome } = await deferredPrompt.userChoice;
-                
-                if (outcome === 'accepted') {
-                    console.log('Utilisateur a accepté l\'installation');
-                } else {
-                    console.log('Utilisateur a refusé l\'installation');
-                    installProgress.classList.remove('show');
-                }
-                
-                // Effacer le prompt
-                deferredPrompt = null;
-            } catch (error) {
-                console.error('Erreur lors de l\'installation:', error);
-                installProgress.classList.remove('show');
-                alert(currentLang === 'fr' 
-                    ? "Erreur lors de l'installation. Veuillez réessayer." 
-                    : "Installation error. Please try again.");
-            }
-        });
+        // Attacher l'événement au bouton fixe
+        fixedInstallBtn.addEventListener('click', handleInstallClick);
         
-        // Bouton installer dans la bannière
+        // Bouton installer dans la bannière (Android/Desktop)
         installBtn.addEventListener('click', async () => {
             if (!deferredPrompt) {
-                alert(currentLang === 'fr' 
-                    ? "L'installation n'est pas disponible sur cet appareil ou votre navigateur ne supporte pas cette fonctionnalité." 
-                    : "Installation is not available on this device or your browser doesn't support this feature.");
+                if (isIOSDevice()) {
+                    showIOSInstructions();
+                } else {
+                    alert(currentLang === 'fr' 
+                        ? "L'installation n'est pas disponible." 
+                        : "Installation is not available.");
+                }
                 return;
             }
             
@@ -1580,19 +1720,38 @@
             });
         }
         
-        // Initialisation
+        // ============================================
+        // INITIALISATION
+        // ============================================
         window.addEventListener('DOMContentLoaded', () => {
             // Mettre à jour les placeholders
             const textarea = document.getElementById('message');
-            textarea.setAttribute('placeholder', currentLang === 'fr' ? 
-                'Décrivez vos besoins au Sénégal...' : 
-                'Describe your needs in Senegal...');
+            textarea.setAttribute('placeholder', currentLang === 'fr' 
+                ? 'Décrivez vos besoins au Sénégal...' 
+                : 'Describe your needs in Senegal...');
+            
+            // Mettre à jour le bouton d'installation
+            updateInstallButton();
+            
+            // Mettre à jour les instructions iOS
+            updateIOSInstructions(currentLang);
             
             // Charger le contenu dynamique
             updateDynamicContent();
             
-            // Vérifier la visibilité du bouton d'installation
-            updateInstallButtonVisibility();
+            // Cacher le bouton si déjà installé
+            if (isAppInstalled()) {
+                fixedInstallBtn.style.display = 'none';
+                installPrompt.style.display = 'none';
+            }
+            
+            // Afficher un message d'aide pour iOS au premier chargement
+            if (isIOSDevice() && !localStorage.getItem('immoluxe-ios-help-shown')) {
+                setTimeout(() => {
+                    showIOSInstructions();
+                    localStorage.setItem('immoluxe-ios-help-shown', 'true');
+                }, 3000);
+            }
         });
     </script>
 </body>
