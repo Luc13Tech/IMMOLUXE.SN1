@@ -8,16 +8,12 @@
     
     <!-- PWA Meta Tags -->
     <link rel="manifest" href="manifest.json">
-    <link rel="icon" href="icon-192x192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
     
     <!-- iOS PWA Support -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="IMMOLUXE.SN">
-    <link rel="apple-touch-icon" href="icon-192x192.png">
-    
-    <!-- Empêcher la détection automatique -->
-    <meta name="format-detection" content="telephone=no">
     
     <title>IMMOLUXE.SN - Mobile Application</title>
     
@@ -33,21 +29,6 @@
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             color: #fff;
             overflow-x: hidden;
-            min-height: 100vh;
-            
-            /* Empêcher la sélection de texte partout */
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-        
-        /* Autoriser la sélection uniquement dans les champs de formulaire */
-        input, textarea, select {
-            -webkit-user-select: text;
-            -moz-user-select: text;
-            -ms-user-select: text;
-            user-select: text;
         }
         
         .app-container {
@@ -80,11 +61,6 @@
             font-weight: bold;
             color: #ffd700;
             text-decoration: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
         }
         
         .header-right {
@@ -105,11 +81,6 @@
             align-items: center;
             gap: 8px;
             transition: all 0.3s;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
         }
         
         .lang-switcher:hover {
@@ -124,11 +95,6 @@
             font-size: 24px;
             cursor: pointer;
             padding: 8px;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
         }
         
         /* Navigation Drawer */
@@ -163,11 +129,6 @@
             cursor: pointer;
             float: right;
             color: #1a1a2e;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
         }
         
         .nav-menu {
@@ -185,11 +146,6 @@
             color: #fff;
             text-decoration: none;
             transition: background 0.3s;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
         }
         
         .nav-menu a:hover {
@@ -219,7 +175,7 @@
             max-width: 1200px;
             margin: 0 auto;
             width: 100%;
-            padding-bottom: 100px;
+            padding-bottom: 100px; /* Espace pour le bouton d'installation */
         }
         
         /* Hero Section */
@@ -235,11 +191,6 @@
             font-size: 28px;
             margin-bottom: 15px;
             color: #ffd700;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
         }
         
         .hero p {
@@ -247,11 +198,6 @@
             line-height: 1.6;
             margin-bottom: 25px;
             opacity: 0.9;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
         }
         
         .cta-btn {
@@ -266,12 +212,6 @@
             text-decoration: none;
             display: inline-block;
             transition: transform 0.3s;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
-            -webkit-tap-highlight-color: transparent;
         }
         
         .cta-btn:hover {
@@ -288,11 +228,6 @@
             margin-bottom: 20px;
             color: #ffd700;
             text-align: center;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
         }
         
         .services-grid, .products-grid {
@@ -324,21 +259,11 @@
             color: #ffd700;
             margin-bottom: 10px;
             font-size: 18px;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
         }
         
         .service-card p, .product-card p {
             opacity: 0.8;
             line-height: 1.6;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
         }
         
         /* Contact Info */
@@ -369,20 +294,10 @@
         .contact-details h4 {
             color: #ffd700;
             margin-bottom: 5px;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
         }
         
         .contact-details p {
             opacity: 0.8;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
         }
         
         /* WhatsApp Contact */
@@ -410,12 +325,6 @@
             gap: 10px;
             margin-top: 10px;
             transition: transform 0.3s;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
-            -webkit-tap-highlight-color: transparent;
         }
         
         .whatsapp-btn:hover {
@@ -428,10 +337,10 @@
             padding: 30px 20px;
             text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 80px;
+            margin-bottom: 80px; /* Espace pour le bouton d'installation */
         }
         
-        /* Install Button - CORRECTIONS POUR TOUS APPAREILS */
+        /* Install Button - STYLE CORRIGÉ */
         .install-fixed-btn {
             position: fixed;
             bottom: 20px;
@@ -454,13 +363,6 @@
             transition: all 0.3s;
             white-space: nowrap;
             max-width: 90%;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
         }
         
         .install-fixed-btn:hover {
@@ -470,13 +372,6 @@
         
         .install-fixed-btn:active {
             transform: translateX(-50%) scale(0.98);
-        }
-        
-        .install-fixed-btn span {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
         }
         
         /* Install Prompt */
@@ -512,31 +407,16 @@
         .install-text h3 {
             margin-bottom: 5px;
             font-size: 18px;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
         }
         
         .install-text p {
             margin-bottom: 5px;
             font-size: 14px;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
         }
         
         .install-text small {
             font-size: 12px;
             opacity: 0.8;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
         }
         
         .install-buttons {
@@ -551,12 +431,6 @@
             cursor: pointer;
             font-weight: bold;
             transition: transform 0.2s;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
-            -webkit-tap-highlight-color: transparent;
         }
         
         .install-btn-yes {
@@ -632,55 +506,6 @@
             margin-bottom: 20px;
         }
         
-        /* iOS Instructions Modal */
-        .ios-instructions-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(26, 26, 46, 0.95);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        .ios-instructions-modal.show {
-            display: flex;
-        }
-        
-        .ios-modal-content {
-            background: white;
-            color: #1a1a2e;
-            padding: 30px;
-            border-radius: 20px;
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        
-        .ios-modal-title {
-            color: #ffd700;
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-        
-        .ios-steps {
-            text-align: left;
-            margin: 20px 0;
-            line-height: 1.8;
-            font-size: 16px;
-        }
-        
-        .ios-icons {
-            margin: 25px 0;
-            font-size: 60px;
-            color: #1a1a2e;
-        }
-        
         /* Form Styles */
         .form-container {
             background: rgba(255, 255, 255, 0.05);
@@ -698,11 +523,6 @@
             margin-bottom: 8px;
             color: #ffd700;
             font-weight: 500;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
         }
         
         .form-group input,
@@ -756,12 +576,6 @@
             cursor: pointer;
             width: 100%;
             transition: transform 0.3s;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
-            -webkit-tap-highlight-color: transparent;
         }
         
         .submit-btn:hover {
@@ -857,14 +671,6 @@
             .app-footer {
                 margin-bottom: 100px;
             }
-            
-            .ios-modal-content {
-                padding: 20px;
-            }
-            
-            .ios-icons {
-                font-size: 40px;
-            }
         }
         
         @media (max-height: 600px) {
@@ -889,27 +695,6 @@
 </head>
 <body>
     <div class="app-container" data-lang="fr">
-        <!-- iOS Instructions Modal -->
-        <div class="ios-instructions-modal" id="iosInstructionsModal">
-            <div class="ios-modal-content">
-                <h3 class="ios-modal-title" id="iosModalTitle">📱 Installation iPhone/iPad</h3>
-                <div class="ios-steps" id="iosSteps">
-                    <strong>POUR INSTALLER SUR IPHONE/iPAD :</strong><br><br>
-                    1. Cliquez sur le bouton <strong>'Partager' (📤)</strong> en bas de Safari<br>
-                    2. Faites défiler vers le bas dans le menu<br>
-                    3. Sélectionnez <strong>'Sur l'écran d'accueil'</strong><br>
-                    4. Cliquez sur <strong>'Ajouter'</strong> en haut à droite<br><br>
-                    ✅ L'application apparaîtra sur votre écran d'accueil !
-                </div>
-                <div class="ios-icons">
-                    📤 → 🔍 → 🏠 → ➕
-                </div>
-                <button class="cta-btn" onclick="document.getElementById('iosInstructionsModal').classList.remove('show')">
-                    J'ai compris
-                </button>
-            </div>
-        </div>
-        
         <!-- Installation Progress Modal -->
         <div class="install-progress" id="installProgress">
             <div class="progress-spinner"></div>
@@ -1141,67 +926,17 @@
     </div>
     
     <script>
-        // ============================================
-        // SERVICE WORKER ENREGISTREMENT
-        // ============================================
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('sw.js')
-                    .then(function(registration) {
-                        console.log('Service Worker enregistré avec succès:', registration.scope);
-                    })
-                    .catch(function(error) {
-                        console.log('Erreur Service Worker:', error);
-                    });
-            });
-        }
-        
-        // ============================================
-        // DÉTECTION iOS/SAFARI
-        // ============================================
-        
-        // Fonction pour détecter iOS
-        function isIOS() {
-            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            
-            // Vérifier iPhone, iPad, iPod
-            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                return true;
-            }
-            
-            // Vérifier iPad sur iOS 13+
-            if (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) {
-                return true;
-            }
-            
-            return false;
-        }
-        
-        // Fonction pour détecter Safari
-        function isSafari() {
-            const userAgent = navigator.userAgent.toLowerCase();
-            const isSafari = userAgent.includes('safari') && !userAgent.includes('chrome');
-            const isMobileSafari = userAgent.includes('applewebkit') && userAgent.includes('mobile');
-            return isSafari || isMobileSafari;
-        }
-        
-        // Fonction pour détecter si c'est iOS Safari
-        function isIOSDevice() {
-            return isIOS() && isSafari();
-        }
-        
-        // ============================================
-        // GESTION DES LANGUES
-        // ============================================
+        // Language Management
         let currentLang = 'fr';
         const langSwitch = document.getElementById('langSwitch');
         const langText = document.querySelector('.lang-text');
         
+        // Function to switch language
         function switchLanguage(lang) {
             currentLang = lang;
             document.querySelector('.app-container').setAttribute('data-lang', lang);
             
-            // Mettre à jour tous les éléments avec data attributes
+            // Update all elements with data attributes
             document.querySelectorAll('[data-fr], [data-en]').forEach(element => {
                 const text = element.getAttribute(`data-${lang}`);
                 if (text) {
@@ -1216,7 +951,7 @@
                 }
             });
             
-            // Mettre à jour les options select
+            // Update select options text
             document.querySelectorAll('select option').forEach(option => {
                 const text = option.getAttribute(`data-${lang}`);
                 if (text) {
@@ -1224,115 +959,108 @@
                 }
             });
             
-            // Mettre à jour le texte du bouton de langue
+            // Update button text
             langText.textContent = lang === 'fr' ? 'FR' : 'EN';
             
-            // Mettre à jour le bouton d'installation
-            updateInstallButton();
-            
-            // Mettre à jour les instructions iOS
-            updateIOSInstructions(lang);
-            
-            // Sauvegarder la préférence de langue
-            localStorage.setItem('immoluxe-lang', lang);
-            
-            // Mettre à jour le contenu dynamique
-            updateDynamicContent();
-        }
-        
-        // Mettre à jour les instructions iOS selon la langue
-        function updateIOSInstructions(lang) {
-            const iosModalTitle = document.getElementById('iosModalTitle');
-            const iosSteps = document.getElementById('iosSteps');
-            
-            if (lang === 'fr') {
-                iosModalTitle.textContent = '📱 Installation iPhone/iPad';
-                iosSteps.innerHTML = `
-                    <strong>POUR INSTALLER SUR IPHONE/iPAD :</strong><br><br>
-                    1. Cliquez sur le bouton <strong>'Partager' (📤)</strong> en bas de Safari<br>
-                    2. Faites défiler vers le bas dans le menu<br>
-                    3. Sélectionnez <strong>'Sur l'écran d'accueil'</strong><br>
-                    4. Cliquez sur <strong>'Ajouter'</strong> en haut à droite<br><br>
-                    ✅ L'application apparaîtra sur votre écran d'accueil !
-                `;
-            } else {
-                iosModalTitle.textContent = '📱 iPhone/iPad Installation';
-                iosSteps.innerHTML = `
-                    <strong>TO INSTALL ON IPHONE/iPAD:</strong><br><br>
-                    1. Tap the <strong>'Share' button (📤)</strong> at the bottom of Safari<br>
-                    2. Scroll down in the menu that appears<br>
-                    3. Select <strong>'Add to Home Screen'</strong><br>
-                    4. Tap <strong>'Add'</strong> in the top right corner<br><br>
-                    ✅ The app will appear on your home screen!
-                `;
+            // Update fixed install button
+            const fixedInstallBtn = document.getElementById('fixedInstallBtn');
+            const fixedBtnText = fixedInstallBtn.querySelector('span:last-child');
+            const fixedBtnLangText = fixedBtnText.getAttribute(`data-${lang}`);
+            if (fixedBtnLangText) {
+                fixedBtnText.textContent = fixedBtnLangText;
             }
+            
+            // Save language preference
+            localStorage.setItem('immoluxe-lang', lang);
         }
         
-        // Événement pour changer de langue
+        // Language switcher click event
         langSwitch.addEventListener('click', () => {
             const newLang = currentLang === 'fr' ? 'en' : 'fr';
             switchLanguage(newLang);
         });
         
-        // Vérifier la langue sauvegardée
+        // Check saved language preference
         const savedLang = localStorage.getItem('immoluxe-lang');
         if (savedLang && (savedLang === 'fr' || savedLang === 'en')) {
             switchLanguage(savedLang);
         }
         
         // ============================================
-        // INSTALLATION PWA - GESTION MULTI-PLATEFORME
+        // CORRECTIONS POUR INSTALLATION MULTI-PLATEFORME
         // ============================================
-        let deferredPrompt = null;
+        
+        // Détection de l'appareil
+        function isIOS() {
+            return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        }
+        
+        function isSafari() {
+            return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+        }
+        
+        function isIOSDevice() {
+            return isIOS() && isSafari();
+        }
+        
+        // PWA Installation
+        let deferredPrompt;
         const installPrompt = document.getElementById('installPrompt');
         const installBtn = document.getElementById('installBtn');
         const dismissBtn = document.getElementById('dismissBtn');
         const fixedInstallBtn = document.getElementById('fixedInstallBtn');
         const installProgress = document.getElementById('installProgress');
         const installSuccess = document.getElementById('installSuccess');
-        const iosInstructionsModal = document.getElementById('iosInstructionsModal');
         
-        // Vérifier si l'app est déjà installée
+        // Check if app is already installed
         function isAppInstalled() {
-            const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
-            const isIOSStandalone = 'standalone' in window.navigator && window.navigator.standalone;
-            const isLocalStorage = localStorage.getItem('immoluxe-installed') === 'true';
-            
-            return isStandalone || isIOSStandalone || isLocalStorage;
+            return localStorage.getItem('immoluxe-installed') === 'true' ||
+                   window.matchMedia('(display-mode: standalone)').matches ||
+                   window.navigator.standalone === true;
         }
         
-        // Mettre à jour le texte du bouton d'installation
-        function updateInstallButton() {
-            const fixedBtnText = fixedInstallBtn.querySelector('span:last-child');
-            
-            if (isIOSDevice()) {
-                // Texte spécifique pour iOS
-                if (currentLang === 'fr') {
-                    fixedBtnText.textContent = "Ajouter à l'écran d'accueil";
-                    fixedBtnText.setAttribute('data-fr', "Ajouter à l'écran d'accueil");
-                    fixedBtnText.setAttribute('data-en', "Add to Home Screen");
-                } else {
-                    fixedBtnText.textContent = "Add to Home Screen";
-                    fixedBtnText.setAttribute('data-fr', "Ajouter à l'écran d'accueil");
-                    fixedBtnText.setAttribute('data-en', "Add to Home Screen");
-                }
+        // Show/hide install button based on installation status
+        function updateInstallButtonVisibility() {
+            if (isAppInstalled()) {
+                fixedInstallBtn.style.display = 'none';
+                installPrompt.style.display = 'none';
             } else {
-                // Texte normal pour Android/Desktop
-                const fixedBtnLangText = fixedBtnText.getAttribute(`data-${currentLang}`);
-                if (fixedBtnLangText) {
-                    fixedBtnText.textContent = fixedBtnLangText;
+                fixedInstallBtn.style.display = 'flex';
+                
+                // Changer le texte pour iOS
+                if (isIOSDevice()) {
+                    const fixedBtnText = fixedInstallBtn.querySelector('span:last-child');
+                    if (currentLang === 'fr') {
+                        fixedBtnText.textContent = "Ajouter à l'écran d'accueil";
+                    } else {
+                        fixedBtnText.textContent = "Add to Home Screen";
+                    }
                 }
             }
         }
         
-        // Afficher les instructions iOS
+        // Fonction pour afficher les instructions iOS
         function showIOSInstructions() {
-            iosInstructionsModal.classList.add('show');
+            const message = currentLang === 'fr' 
+                ? "📱 POUR INSTALLER SUR IPHONE/iPAD :\n\n" +
+                  "1. Appuyez sur le bouton 'Partager' (📤) en bas de Safari\n" +
+                  "2. Faites défiler vers le bas\n" +
+                  "3. Sélectionnez 'Sur l'écran d'accueil'\n" +
+                  "4. Appuyez sur 'Ajouter'\n\n" +
+                  "✅ L'application apparaîtra sur votre écran d'accueil !"
+                : "📱 TO INSTALL ON IPHONE/iPAD:\n\n" +
+                  "1. Tap the 'Share' button (📤) at the bottom of Safari\n" +
+                  "2. Scroll down\n" +
+                  "3. Select 'Add to Home Screen'\n" +
+                  "4. Tap 'Add'\n\n" +
+                  "✅ The app will appear on your home screen!";
+            
+            alert(message);
         }
         
         // Gestion du clic sur le bouton d'installation
         async function handleInstallClick() {
-            // Vérifier iOS/Safari
+            // Pour iOS Safari
             if (isIOSDevice()) {
                 showIOSInstructions();
                 return;
@@ -1340,8 +1068,8 @@
             
             // Pour Android/Desktop
             if (!deferredPrompt) {
+                // Pour iOS avec d'autres navigateurs (Chrome sur iOS)
                 if (isIOS()) {
-                    // Chrome sur iOS
                     showIOSInstructions();
                 } else {
                     alert(currentLang === 'fr' 
@@ -1351,133 +1079,146 @@
                 return;
             }
             
-            // Afficher la progression
+            // Show installation progress
             installProgress.classList.add('show');
             
             try {
-                // Afficher le prompt d'installation
+                // Show the install prompt
                 deferredPrompt.prompt();
                 
-                // Attendre la réponse de l'utilisateur
+                // Wait for the user to respond to the prompt
                 const { outcome } = await deferredPrompt.userChoice;
                 
                 if (outcome === 'accepted') {
-                    console.log('Installation acceptée');
+                    console.log('User accepted the install prompt');
                 } else {
-                    console.log('Installation refusée');
+                    console.log('User dismissed the install prompt');
                     installProgress.classList.remove('show');
                 }
                 
-                // Effacer le prompt
+                // Clear the saved prompt
                 deferredPrompt = null;
             } catch (error) {
-                console.error('Erreur lors de l\'installation:', error);
+                console.error('Error during installation:', error);
                 installProgress.classList.remove('show');
-                
-                // En cas d'erreur sur iOS
-                if (isIOS()) {
-                    showIOSInstructions();
-                } else {
-                    alert(currentLang === 'fr' 
-                        ? "Erreur lors de l'installation. Veuillez réessayer." 
-                        : "Installation error. Please try again.");
-                }
+                alert(currentLang === 'fr' 
+                    ? "Erreur lors de l'installation. Veuillez réessayer." 
+                    : "Installation error. Please try again.");
             }
         }
         
-        // Événement beforeinstallprompt (Android/Desktop uniquement)
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            console.log('beforeinstallprompt event détecté (Android/Desktop)');
+        // Initialize
+        window.addEventListener('load', () => {
+            updateInstallButtonVisibility();
             
-            // Mettre à jour le bouton
-            updateInstallButton();
+            // Register Service Worker
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => {
+                        console.log('Service Worker enregistré avec succès');
+                    })
+                    .catch(err => {
+                        console.log('Erreur Service Worker:', err);
+                    });
+            }
             
-            // Afficher la bannière d'installation après 5 secondes (Android/Desktop seulement)
-            if (!isIOSDevice()) {
-                setTimeout(() => {
-                    if (deferredPrompt && !isAppInstalled()) {
-                        const dismissedTime = localStorage.getItem('immoluxe-prompt-dismissed');
-                        if (!dismissedTime || Date.now() > parseInt(dismissedTime)) {
+            // Check for beforeinstallprompt event (Android/Desktop)
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                console.log('beforeinstallprompt event fired');
+                
+                // Show fixed install button
+                fixedInstallBtn.style.display = 'flex';
+                
+                // Show install prompt after 5 seconds (Android/Desktop seulement)
+                if (!isIOSDevice()) {
+                    setTimeout(() => {
+                        if (deferredPrompt && !isAppInstalled()) {
                             installPrompt.classList.add('show');
                         }
-                    }
-                }, 5000);
-            }
+                    }, 5000);
+                }
+            });
+            
+            // Listen for app installed event
+            window.addEventListener('appinstalled', (evt) => {
+                console.log('App was installed successfully');
+                installProgress.classList.remove('show');
+                installSuccess.classList.add('show');
+                deferredPrompt = null;
+                
+                // Hide the install prompt and fixed button
+                installPrompt.classList.remove('show');
+                fixedInstallBtn.style.display = 'none';
+                
+                // Save installation status
+                localStorage.setItem('immoluxe-installed', 'true');
+            });
         });
         
-        // Événement après installation
-        window.addEventListener('appinstalled', () => {
-            console.log('Application installée avec succès');
-            installProgress.classList.remove('show');
-            installSuccess.classList.add('show');
-            deferredPrompt = null;
-            
-            // Cacher les prompts d'installation
-            installPrompt.classList.remove('show');
-            fixedInstallBtn.style.display = 'none';
-            
-            // Sauvegarder le statut d'installation
-            localStorage.setItem('immoluxe-installed', 'true');
-        });
-        
-        // Attacher l'événement au bouton fixe
+        // Fixed install button click
         fixedInstallBtn.addEventListener('click', handleInstallClick);
         
-        // Bouton installer dans la bannière (Android/Desktop)
+        // Install prompt button click
         installBtn.addEventListener('click', async () => {
             if (!deferredPrompt) {
                 if (isIOSDevice()) {
                     showIOSInstructions();
                 } else {
                     alert(currentLang === 'fr' 
-                        ? "L'installation n'est pas disponible." 
-                        : "Installation is not available.");
+                        ? "L'installation n'est pas disponible sur cet appareil." 
+                        : "Installation is not available on this device.");
                 }
                 return;
             }
             
-            // Cacher la bannière et afficher la progression
+            // Show installation progress
             installPrompt.classList.remove('show');
             installProgress.classList.add('show');
             
             try {
+                // Show the install prompt
                 deferredPrompt.prompt();
+                
+                // Wait for the user to respond to the prompt
                 const { outcome } = await deferredPrompt.userChoice;
                 
                 if (outcome === 'accepted') {
-                    console.log('Installation acceptée via la bannière');
+                    console.log('User accepted the install prompt');
                 } else {
-                    console.log('Installation refusée via la bannière');
+                    console.log('User dismissed the install prompt');
                     installProgress.classList.remove('show');
                 }
                 
+                // Clear the saved prompt
                 deferredPrompt = null;
             } catch (error) {
-                console.error('Erreur:', error);
+                console.error('Error during installation:', error);
                 installProgress.classList.remove('show');
+                alert(currentLang === 'fr' 
+                    ? "Erreur lors de l'installation. Veuillez réessayer." 
+                    : "Installation error. Please try again.");
             }
         });
         
-        // Bouton "Plus tard"
+        // Dismiss button click event
         dismissBtn.addEventListener('click', () => {
             installPrompt.classList.remove('show');
-            // Ne pas montrer pendant 7 jours
+            // Hide for 7 days
             const expiry = new Date();
             expiry.setDate(expiry.getDate() + 7);
             localStorage.setItem('immoluxe-prompt-dismissed', expiry.getTime());
         });
         
-        // Vérifier si le prompt a été récemment refusé
+        // Check if prompt was recently dismissed
         const dismissedTime = localStorage.getItem('immoluxe-prompt-dismissed');
         if (dismissedTime && Date.now() < parseInt(dismissedTime)) {
+            // Don't show prompt if dismissed recently
             installPrompt.style.display = 'none';
         }
         
-        // ============================================
-        // MENU DE NAVIGATION
-        // ============================================
+        // Navigation Menu
         const menuBtn = document.getElementById('menuBtn');
         const navDrawer = document.getElementById('navDrawer');
         const drawerClose = document.getElementById('drawerClose');
@@ -1506,14 +1247,13 @@
             });
         });
         
-        // ============================================
-        // FORMULAIRE WHATSAPP
-        // ============================================
+        // WhatsApp Form Submission
         const clientForm = document.getElementById('clientForm');
         const loading = document.getElementById('loading');
         const whatsappRedirect = document.getElementById('whatsappRedirect');
         const whatsappLink = document.getElementById('whatsappLink');
         
+        // Function to get label for region
         function getRegionLabel(value) {
             const regions = {
                 'dakar': 'Dakar',
@@ -1529,6 +1269,7 @@
             return regions[value] || value;
         }
         
+        // Function to get label for besoin
         function getBesoinLabel(value) {
             const besoins = {
                 'location': currentLang === 'fr' ? 'Location d\'appartement' : 'Apartment rental',
@@ -1546,11 +1287,11 @@
         clientForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Afficher le chargement
+            // Show loading
             loading.style.display = 'block';
             whatsappRedirect.classList.remove('show');
             
-            // Récupérer les valeurs
+            // Get form values
             const nom = document.getElementById('nom').value;
             const prenom = document.getElementById('prenom').value;
             const email = document.getElementById('email').value;
@@ -1559,11 +1300,11 @@
             const besoin = document.getElementById('besoin').value;
             const message = document.getElementById('message').value;
             
-            // Obtenir les labels
+            // Get labels
             const regionLabel = getRegionLabel(region);
             const besoinLabel = getBesoinLabel(besoin);
             
-            // Préparer le message WhatsApp
+            // Prepare WhatsApp message based on language
             let whatsappMessage;
             if (currentLang === 'fr') {
                 whatsappMessage = `*NOUVELLE DEMANDE IMMOLUXE.SN*%0A%0A` +
@@ -1587,30 +1328,29 @@
                                  `*⏰ Time:* ${new Date().toLocaleTimeString('en-US')}`;
             }
             
-            // URL WhatsApp
+            // WhatsApp URL
             const whatsappNumber = '221778982925';
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
             
-            // Après un délai
+            // Hide loading after a short delay
             setTimeout(() => {
                 loading.style.display = 'none';
                 
-                // Mettre à jour le lien et afficher le message
+                // Set WhatsApp link and show redirect message
                 whatsappLink.href = whatsappUrl;
                 whatsappRedirect.classList.add('show');
                 
-                // Défiler vers le message
+                // Scroll to the redirect message
                 whatsappRedirect.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 
-                // Ouvrir WhatsApp automatiquement après 2 secondes
+                // Auto-open WhatsApp after 2 seconds
                 setTimeout(() => {
                     window.open(whatsappUrl, '_blank');
                 }, 2000);
                 
-                // Réinitialiser le formulaire
+                // Reset form
                 clientForm.reset();
-                
-                // Réinitialiser le placeholder
+                // Reset placeholders
                 const textarea = document.getElementById('message');
                 textarea.setAttribute('placeholder', currentLang === 'fr' ? 
                     'Décrivez vos besoins au Sénégal...' : 
@@ -1618,10 +1358,14 @@
             }, 1500);
         });
         
-        // ============================================
-        // CONTENU DYNAMIQUE
-        // ============================================
-        function updateDynamicContent() {
+        // Set initial placeholders
+        window.addEventListener('DOMContentLoaded', () => {
+            const textarea = document.getElementById('message');
+            textarea.setAttribute('placeholder', currentLang === 'fr' ? 
+                'Décrivez vos besoins au Sénégal...' : 
+                'Describe your needs in Senegal...');
+            
+            // Add dynamic content for services and products
             const servicesGrid = document.getElementById('servicesGrid');
             const productsGrid = document.getElementById('productsGrid');
             
@@ -1691,67 +1435,46 @@
                 }
             ];
             
-            // Vider le contenu existant
-            servicesGrid.innerHTML = '';
-            productsGrid.innerHTML = '';
-            
-            // Remplir les services
-            services.forEach(service => {
-                const serviceCard = document.createElement('div');
-                serviceCard.className = 'service-card';
-                serviceCard.innerHTML = `
-                    <div class="service-icon">${service.icon}</div>
-                    <h3>${service[currentLang].title}</h3>
-                    <p>${service[currentLang].desc}</p>
-                `;
-                servicesGrid.appendChild(serviceCard);
-            });
-            
-            // Remplir les produits
-            products.forEach(product => {
-                const productCard = document.createElement('div');
-                productCard.className = 'product-card';
-                productCard.innerHTML = `
-                    <div class="product-icon">${product.icon}</div>
-                    <h3>${product[currentLang].title}</h3>
-                    <p>${product[currentLang].desc}</p>
-                `;
-                productsGrid.appendChild(productCard);
-            });
-        }
-        
-        // ============================================
-        // INITIALISATION
-        // ============================================
-        window.addEventListener('DOMContentLoaded', () => {
-            // Mettre à jour les placeholders
-            const textarea = document.getElementById('message');
-            textarea.setAttribute('placeholder', currentLang === 'fr' 
-                ? 'Décrivez vos besoins au Sénégal...' 
-                : 'Describe your needs in Senegal...');
-            
-            // Mettre à jour le bouton d'installation
-            updateInstallButton();
-            
-            // Mettre à jour les instructions iOS
-            updateIOSInstructions(currentLang);
-            
-            // Charger le contenu dynamique
-            updateDynamicContent();
-            
-            // Cacher le bouton si déjà installé
-            if (isAppInstalled()) {
-                fixedInstallBtn.style.display = 'none';
-                installPrompt.style.display = 'none';
+            // Function to populate content
+            function populateContent() {
+                // Clear existing content
+                servicesGrid.innerHTML = '';
+                productsGrid.innerHTML = '';
+                
+                // Populate services
+                services.forEach(service => {
+                    const serviceCard = document.createElement('div');
+                    serviceCard.className = 'service-card';
+                    serviceCard.innerHTML = `
+                        <div class="service-icon">${service.icon}</div>
+                        <h3>${service[currentLang].title}</h3>
+                        <p>${service[currentLang].desc}</p>
+                    `;
+                    servicesGrid.appendChild(serviceCard);
+                });
+                
+                // Populate products
+                products.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card';
+                    productCard.innerHTML = `
+                        <div class="product-icon">${product.icon}</div>
+                        <h3>${product[currentLang].title}</h3>
+                        <p>${product[currentLang].desc}</p>
+                    `;
+                    productsGrid.appendChild(productCard);
+                });
             }
             
-            // Afficher un message d'aide pour iOS au premier chargement
-            if (isIOSDevice() && !localStorage.getItem('immoluxe-ios-help-shown')) {
-                setTimeout(() => {
-                    showIOSInstructions();
-                    localStorage.setItem('immoluxe-ios-help-shown', 'true');
-                }, 3000);
-            }
+            // Initial population
+            populateContent();
+            
+            // Update content when language changes
+            const originalSwitchLanguage = switchLanguage;
+            window.switchLanguage = function(lang) {
+                originalSwitchLanguage(lang);
+                populateContent();
+            };
         });
     </script>
 </body>
