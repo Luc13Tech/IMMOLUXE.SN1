@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#1a1a2e">
-    <meta name="description" content="IMMOLUXE.SN - Agence Immobilière de Prestige à Dakar">
+    <meta name="description" content="IMMOLUXE.SN - Agence Immobilière de Prestige à Sénégal">
     
     <!-- PWA Meta Tags -->
     <link rel="manifest" href="manifest.json">
@@ -622,10 +622,715 @@
             <div class="install-content">
                 <div class="install-text">
                     <h3>Installer l'application</h3>
-                    <p>Accédez rapidement à IMMOLUXE.SN</p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="description" content="IMMOLUXE.SN - Agence Immobilière de Prestige au Sénégal">
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    
+    <title>IMMOLUXE.SN - Application Mobile</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .app-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header */
+        .app-header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffd700;
+            text-decoration: none;
+        }
+        
+        .menu-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+        }
+        
+        /* Navigation Drawer */
+        .nav-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: #1a1a2e;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+            transition: right 0.3s ease;
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        
+        .nav-drawer.open {
+            right: 0;
+        }
+        
+        .drawer-header {
+            padding: 20px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a2e;
+        }
+        
+        .drawer-close {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            float: right;
+            color: #1a1a2e;
+        }
+        
+        .nav-menu {
+            list-style: none;
+            padding: 20px 0;
+        }
+        
+        .nav-menu li {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-menu a {
+            display: block;
+            padding: 15px 20px;
+            color: #fff;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            background: rgba(255, 215, 0, 0.1);
+        }
+        
+        /* Overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1500;
+        }
+        
+        .overlay.active {
+            display: block;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 237, 78, 0.05) 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .hero h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+        
+        .hero p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        .cta-btn {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a2e;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+        
+        .cta-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Services Grid */
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #ffd700;
+            text-align: center;
+        }
+        
+        .services-grid, .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .service-card, .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover, .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+        
+        .service-icon, .product-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .service-card h3, .product-card h3 {
+            color: #ffd700;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .service-card p, .product-card p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        /* Contact Info */
+        .contact-info {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+        
+        .contact-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            color: #ffd700;
+        }
+        
+        .contact-details h4 {
+            color: #ffd700;
+            margin-bottom: 5px;
+        }
+        
+        .contact-details p {
+            opacity: 0.8;
+        }
+        
+        /* WhatsApp Contact */
+        .whatsapp-contact {
+            background: rgba(37, 211, 102, 0.1);
+            border: 1px solid rgba(37, 211, 102, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Footer */
+        .app-footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Install Prompt */
+        .install-prompt {
+            position: fixed;
+            bottom: -100px;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a2e;
+            padding: 15px 20px;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+            transition: bottom 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .install-prompt.show {
+            bottom: 0;
+        }
+        
+        .install-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .install-text {
+            flex: 1;
+        }
+        
+        .install-text h3 {
+            margin-bottom: 5px;
+        }
+        
+        .install-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .install-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .install-btn-yes {
+            background: #1a1a2e;
+            color: #ffd700;
+        }
+        
+        .install-btn-no {
+            background: rgba(255, 255, 255, 0.2);
+            color: #1a1a2e;
+        }
+        
+        /* Form Styles */
+        .form-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ffd700;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a2e;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.3s;
+        }
+        
+        .submit-btn:hover {
+            transform: scale(1.02);
+        }
+        
+        /* Loading Spinner */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid #ffd700;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid #4caf50;
+            color: #4caf50;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        
+        /* WhatsApp Redirect Message */
+        .whatsapp-redirect {
+            display: none;
+            background: rgba(37, 211, 102, 0.1);
+            border: 1px solid #25D366;
+            color: #25D366;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .whatsapp-redirect.show {
+            display: block;
+        }
+        
+        .whatsapp-redirect a {
+            color: #25D366;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 24px;
+            }
+            
+            .services-grid, .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .install-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .install-buttons {
+                width: 100%;
+            }
+            
+            .install-buttons button {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <a href="#" class="logo">IMMOLUXE.SN</a>
+                <button class="menu-btn" id="menuBtn">☰</button>
+            </div>
+        </header>
+        
+        <!-- Navigation Drawer -->
+        <nav class="nav-drawer" id="navDrawer">
+            <div class="drawer-header">
+                <button class="drawer-close" id="drawerClose">×</button>
+                <h3>Menu</h3>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#accueil" class="nav-link">🏠 Accueil</a></li>
+                <li><a href="#services" class="nav-link">🔧 Services</a></li>
+                <li><a href="#produits" class="nav-link">🏘️ Nos Produits</a></li>
+                <li><a href="#about" class="nav-link">ℹ️ À propos</a></li>
+                <li><a href="#contact" class="nav-link">📞 Contact</a></li>
+                <li><a href="#formulaire" class="nav-link">📝 Formulaire Client</a></li>
+                <li><a href="https://sunrise-groupe.com" target="_blank">🌅 Sunrise Groupe</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Overlay -->
+        <div class="overlay" id="overlay"></div>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section class="hero" id="accueil">
+                <h1>IMMOLUXE.SN - Excellence Immobilière au Sénégal</h1>
+                <p>Votre agence immobilière de confiance pour la vente, l'achat et la location de propriétés de prestige au Sénégal. Découvrez notre sélection exclusive de villas, appartements et terrains dans tout le pays.</p>
+                <a href="#formulaire" class="cta-btn">Prendre Rendez-vous</a>
+            </section>
+            
+            <!-- Services Section -->
+            <section class="section" id="services">
+                <h2 class="section-title">Nos Services au Sénégal</h2>
+                <div class="services-grid" id="servicesGrid">
+                    <!-- Services will be loaded dynamically -->
+                </div>
+            </section>
+            
+            <!-- Products Section -->
+            <section class="section" id="produits">
+                <h2 class="section-title">Nos Produits au Sénégal</h2>
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be loaded dynamically -->
+                </div>
+            </section>
+            
+            <!-- About Section -->
+            <section class="section" id="about">
+                <h2 class="section-title">À propos d'IMMOLUXE.SN</h2>
+                <div class="service-card">
+                    <h3>Notre Vision</h3>
+                    <p>Devenir la référence absolue et l'acteur le plus respecté dans le domaine de l'immobilier de prestige au Sénégal. Nous aspirons à redéfinir l'expérience immobilière en élevant les standards du marché sur l'ensemble du territoire.</p>
+                </div>
+                <div class="service-card" style="margin-top: 20px;">
+                    <h3>Notre Mission</h3>
+                    <p>Accompagner nos clients avec un niveau de professionnalisme, de discrétion et de rigueur inégalé au Sénégal. Nous garantissons la meilleure valeur, une parfaite transparence et une sérénité totale dans chaque transaction.</p>
+                </div>
+                <div class="service-card" style="margin-top: 20px;">
+                    <h3>Équipe de Direction</h3>
+                    <p><strong>PDG:</strong> Moctar Sylla<br>
+                    <strong>Architecte Senior:</strong> Mamadou Seck<br>
+                    <strong>Développeur web:</strong> DEGUENON Luc<br>
+                    <strong>DRH:</strong> Dieynaba DOUMBOUYA<br>
+                    <strong>Présence nationale avec plus de 16 ans d'expérience au Sénégal</strong></p>
+                </div>
+            </section>
+            
+            <!-- Contact Section -->
+            <section class="section" id="contact">
+                <h2 class="section-title">Contactez-nous au Sénégal</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h4>Siège Social</h4>
+                            <p>Liberté 6 Extension, en face de cimetière St Lazare de Béthanie, Dakar - Sénégal</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <h4>Téléphone</h4>
+                            <p>+221 77 898 29 25 (Sénégal)</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>smoctar729@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- WhatsApp Contact -->
+                <div class="whatsapp-contact">
+                    <h3>📱 Contact WhatsApp Direct</h3>
+                    <p>Cliquez ci-dessous pour nous contacter directement sur WhatsApp</p>
+                    <a href="https://wa.me/221778982925?text=Bonjour%20IMMOLUXE.SN,%20je%20suis%20intéressé(e)%20par%20vos%20services%20immobiliers%20au%20Sénégal" 
+                       target="_blank" class="whatsapp-btn">
+                        <span>💬</span> Contacter sur WhatsApp
+                    </a>
+                </div>
+            </section>
+            
+            <!-- Form Section -->
+            <section class="section" id="formulaire">
+                <h2 class="section-title">Formulaire Client - Sénégal</h2>
+                <div class="form-container">
+                    <form id="clientForm">
+                        <div class="form-group">
+                            <label for="nom">Nom *</label>
+                            <input type="text" id="nom" name="nom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prenom">Prénom *</label>
+                            <input type="text" id="prenom" name="prenom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telephone">Téléphone *</label>
+                            <input type="tel" id="telephone" name="telephone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="region">Région au Sénégal *</label>
+                            <select id="region" name="region" required>
+                                <option value="">Sélectionnez votre région</option>
+                                <option value="dakar">Dakar</option>
+                                <option value="thies">Thiès</option>
+                                <option value="saint-louis">Saint-Louis</option>
+                                <option value="ziguinchor">Ziguinchor</option>
+                                <option value="diourbel">Diourbel</option>
+                                <option value="touba">Touba</option>
+                                <option value="kaolack">Kaolack</option>
+                                <option value="tamba">Tambacounda</option>
+                                <option value="autre">Autre région</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="besoin">Besoin *</label>
+                            <select id="besoin" name="besoin" required>
+                                <option value="">Sélectionnez votre besoin</option>
+                                <option value="location">Location d'appartement</option>
+                                <option value="achat-maison">Achat d'une maison</option>
+                                <option value="achat-terrain">Achat d'un terrain</option>
+                                <option value="achat-villa">Achat d'une villa</option>
+                                <option value="conseil">Conseil en immobilier</option>
+                                <option value="architecture">Conception architecturale</option>
+                                <option value="negociation">Service de négociation</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message additionnel</label>
+                            <textarea id="message" name="message" placeholder="Décrivez vos besoins au Sénégal..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Soumettre la Demande</button>
+                    </form>
+                    <div class="loading" id="loading">
+                        <div class="spinner"></div>
+                        <p>Envoi en cours...</p>
+                    </div>
+                    <div class="whatsapp-redirect" id="whatsappRedirect">
+                        <p>✅ Votre demande a été préparée ! Cliquez sur le lien ci-dessous pour nous contacter directement sur WhatsApp :</p>
+                        <a href="#" id="whatsappLink" target="_blank">💬 Ouvrir WhatsApp pour envoyer votre demande</a>
+                        <p style="margin-top: 10px; font-size: 14px;">Si la redirection ne fonctionne pas, copiez le message et envoyez-le manuellement au <strong>+221 77 898 29 25</strong></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>© 2026 IMMOLUXE.SN. Tous droits réservés.</p>
+            <p>Plus de 16 ans d'expérience en immobilier de prestige au Sénégal</p>
+        </footer>
+        
+        <!-- Install Prompt -->
+        <div class="install-prompt" id="installPrompt">
+            <div class="install-content">
+                <div class="install-text">
+                    <h3>Installer l'application IMMOLUXE.SN</h3>
+                    <p>Accédez rapidement à notre agence immobilière au Sénégal</p>
+                    <small>Installez notre PWA pour une expérience optimale sur mobile</small>
                 </div>
                 <div class="install-buttons">
-                    <button class="install-btn-yes" id="installBtn">Installer</button>
+                    <button class="install-btn-yes" id="installBtn">Installer l'App</button>
                     <button class="install-btn-no" id="dismissBtn">Plus tard</button>
                 </div>
             </div>
@@ -642,6 +1347,210 @@
                     .catch(err => console.log('Erreur Service Worker:', err));
             });
         }
+        
+        // PWA Installation
+        let deferredPrompt;
+        const installPrompt = document.getElementById('installPrompt');
+        const installBtn = document.getElementById('installBtn');
+        const dismissBtn = document.getElementById('dismissBtn');
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // Show install prompt after 5 seconds
+            setTimeout(() => {
+                if (deferredPrompt) {
+                    installPrompt.classList.add('show');
+                }
+            }, 5000);
+            
+            installBtn.addEventListener('click', () => {
+                installPrompt.classList.remove('show');
+                deferredPrompt.prompt();
+                
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('Application installée avec succès');
+                    }
+                    deferredPrompt = null;
+                });
+            });
+            
+            dismissBtn.addEventListener('click', () => {
+                installPrompt.classList.remove('show');
+            });
+        });
+        
+        // Navigation Menu
+        const menuBtn = document.getElementById('menuBtn');
+        const navDrawer = document.getElementById('navDrawer');
+        const drawerClose = document.getElementById('drawerClose');
+        const overlay = document.getElementById('overlay');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        menuBtn.addEventListener('click', () => {
+            navDrawer.classList.add('open');
+            overlay.classList.add('active');
+        });
+        
+        drawerClose.addEventListener('click', () => {
+            navDrawer.classList.remove('open');
+            overlay.classList.remove('active');
+        });
+        
+        overlay.addEventListener('click', () => {
+            navDrawer.classList.remove('open');
+            overlay.classList.remove('active');
+        });
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navDrawer.classList.remove('open');
+                overlay.classList.remove('active');
+            });
+        });
+        
+        // WhatsApp Form Submission
+        const clientForm = document.getElementById('clientForm');
+        const loading = document.getElementById('loading');
+        const whatsappRedirect = document.getElementById('whatsappRedirect');
+        const whatsappLink = document.getElementById('whatsappLink');
+        
+        // Function to get label for region
+        function getRegionLabel(value) {
+            const regions = {
+                'dakar': 'Dakar',
+                'thies': 'Thiès',
+                'saint-louis': 'Saint-Louis',
+                'ziguinchor': 'Ziguinchor',
+                'diourbel': 'Diourbel',
+                'touba': 'Touba',
+                'kaolack': 'Kaolack',
+                'tamba': 'Tambacounda',
+                'autre': 'Autre région'
+            };
+            return regions[value] || value;
+        }
+        
+        // Function to get label for besoin
+        function getBesoinLabel(value) {
+            const besoins = {
+                'location': 'Location d\'appartement',
+                'achat-maison': 'Achat d\'une maison',
+                'achat-terrain': 'Achat d\'un terrain',
+                'achat-villa': 'Achat d\'une villa',
+                'conseil': 'Conseil en immobilier',
+                'architecture': 'Conception architecturale',
+                'negociation': 'Service de négociation',
+                'autre': 'Autre'
+            };
+            return besoins[value] || value;
+        }
+        
+        clientForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading
+            loading.style.display = 'block';
+            whatsappRedirect.classList.remove('show');
+            
+            // Get form values
+            const nom = document.getElementById('nom').value;
+            const prenom = document.getElementById('prenom').value;
+            const email = document.getElementById('email').value;
+            const telephone = document.getElementById('telephone').value;
+            const region = document.getElementById('region').value;
+            const besoin = document.getElementById('besoin').value;
+            const message = document.getElementById('message').value;
+            
+            // Get labels
+            const regionLabel = getRegionLabel(region);
+            const besoinLabel = getBesoinLabel(besoin);
+            
+            // Prepare WhatsApp message
+            const whatsappMessage = `*NOUVELLE DEMANDE IMMOLUXE.SN*%0A%0A` +
+                                   `*👤 Client:* ${prenom} ${nom}%0A` +
+                                   `*📧 Email:* ${email}%0A` +
+                                   `*📱 Téléphone:* ${telephone}%0A` +
+                                   `*📍 Région Sénégal:* ${regionLabel}%0A` +
+                                   `*🎯 Besoin:* ${besoinLabel}%0A` +
+                                   `*💬 Message:* ${message || 'Non spécifié'}%0A%0A` +
+                                   `*📅 Date:* ${new Date().toLocaleDateString('fr-FR')}%0A` +
+                                   `*⏰ Heure:* ${new Date().toLocaleTimeString('fr-FR')}`;
+            
+            // WhatsApp URL
+            const whatsappNumber = '221778982925'; // Your WhatsApp number without +
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+            
+            // Hide loading after a short delay
+            setTimeout(() => {
+                loading.style.display = 'none';
+                
+                // Set WhatsApp link and show redirect message
+                whatsappLink.href = whatsappUrl;
+                whatsappRedirect.classList.add('show');
+                
+                // Scroll to the redirect message
+                whatsappRedirect.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Optional: Auto-open WhatsApp after 2 seconds
+                setTimeout(() => {
+                    window.open(whatsappUrl, '_blank');
+                }, 2000);
+                
+                // Reset form
+                clientForm.reset();
+            }, 1500);
+        });
+        
+        // Add some dynamic content for services and products
+        window.addEventListener('DOMContentLoaded', () => {
+            const servicesGrid = document.getElementById('servicesGrid');
+            const productsGrid = document.getElementById('productsGrid');
+            
+            const services = [
+                { icon: '🏢', title: 'Vente Immobilière', desc: 'Transaction de propriétés résidentielles et commerciales' },
+                { icon: '🔑', title: 'Location de Prestige', desc: 'Gestion locative haut de gamme' },
+                { icon: '📐', title: 'Conseil Architecture', desc: 'Design et planification de projets' },
+                { icon: '⚖️', title: 'Négociation Expert', desc: 'Optimisation de vos transactions' },
+                { icon: '📊', title: 'Évaluation de Biens', desc: 'Expertise et estimation de valeur' },
+                { icon: '🤝', title: 'Accompagnement', desc: 'Suivi personnalisé de A à Z' }
+            ];
+            
+            const products = [
+                { icon: '🏰', title: 'Villas de Luxe', desc: 'Propriétés exclusives avec toutes commodités' },
+                { icon: '🏬', title: 'Appartements Premium', desc: 'Résidences sécurisées et modernes' },
+                { icon: '🏡', title: 'Maisons de Charme', desc: 'Habitations traditionnelles rénovées' },
+                { icon: '🌳', title: 'Terrains Viabilisés', desc: 'Parcelles prêtes à construire' },
+                { icon: '🏢', title: 'Bureaux & Commerces', desc: 'Espaces professionnels de qualité' },
+                { icon: '🌴', title: 'Résidences Secondaires', desc: 'Maisons de vacances au Sénégal' }
+            ];
+            
+            // Populate services
+            services.forEach(service => {
+                const serviceCard = document.createElement('div');
+                serviceCard.className = 'service-card';
+                serviceCard.innerHTML = `
+                    <div class="service-icon">${service.icon}</div>
+                    <h3>${service.title}</h3>
+                    <p>${service.desc}</p>
+                `;
+                servicesGrid.appendChild(serviceCard);
+            });
+            
+            // Populate products
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-icon">${product.icon}</div>
+                    <h3>${product.title}</h3>
+                    <p>${product.desc}</p>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+        });
     </script>
 </body>
 </html>
