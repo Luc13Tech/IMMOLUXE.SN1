@@ -6,15 +6,18 @@
     <meta name="theme-color" content="#1a1a2e">
     <meta name="description" content="IMMOLUXE.SN - Prestige Real Estate Agency in Senegal">
     
-    <!-- PWA Meta Tags CORRIGÉS -->
+    <!-- PWA Meta Tags -->
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="icon-192x192.png">
     
-    <!-- iOS PWA Support CORRIGÉ -->
+    <!-- iOS PWA Support -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="IMMOLUXE.SN">
     <link rel="apple-touch-icon" href="icon-192x192.png">
+    
+    <!-- Empêcher la détection automatique de numéros -->
+    <meta name="format-detection" content="telephone=no">
     
     <title>IMMOLUXE.SN - Mobile Application</title>
     
@@ -31,6 +34,20 @@
             color: #fff;
             overflow-x: hidden;
             min-height: 100vh;
+            
+            /* Empêcher la sélection de texte partout */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        /* Autoriser la sélection uniquement dans les champs de formulaire */
+        input, textarea, select {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
         }
         
         .app-container {
@@ -63,6 +80,13 @@
             font-weight: bold;
             color: #ffd700;
             text-decoration: none;
+            
+            /* Empêcher la sélection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
         }
         
         .header-right {
@@ -83,6 +107,13 @@
             align-items: center;
             gap: 8px;
             transition: all 0.3s;
+            
+            /* Empêcher la sélection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
         }
         
         .lang-switcher:hover {
@@ -97,6 +128,13 @@
             font-size: 24px;
             cursor: pointer;
             padding: 8px;
+            
+            /* Empêcher la sélection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
         }
         
         /* Navigation Drawer */
@@ -131,6 +169,13 @@
             cursor: pointer;
             float: right;
             color: #1a1a2e;
+            
+            /* Empêcher la sélection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
         }
         
         .nav-menu {
@@ -148,6 +193,13 @@
             color: #fff;
             text-decoration: none;
             transition: background 0.3s;
+            
+            /* Empêcher la sélection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
         }
         
         .nav-menu a:hover {
@@ -193,6 +245,13 @@
             font-size: 28px;
             margin-bottom: 15px;
             color: #ffd700;
+            
+            /* Empêcher la sélection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
         }
         
         .hero p {
@@ -200,6 +259,13 @@
             line-height: 1.6;
             margin-bottom: 25px;
             opacity: 0.9;
+            
+            /* Empêcher la sélection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
         }
         
         .cta-btn {
@@ -214,6 +280,14 @@
             text-decoration: none;
             display: inline-block;
             transition: transform 0.3s;
+            
+            /* Empêcher la sélection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .cta-btn:hover {
@@ -230,6 +304,13 @@
             margin-bottom: 20px;
             color: #ffd700;
             text-align: center;
+            
+            /* Empêcher la sélection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
         }
         
         .services-grid, .products-grid {
@@ -261,11 +342,25 @@
             color: #ffd700;
             margin-bottom: 10px;
             font-size: 18px;
+            
+            /* Empêcher la sélection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
         }
         
         .service-card p, .product-card p {
             opacity: 0.8;
             line-height: 1.6;
+            
+            /* Empêcher la sélection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
         }
         
         /* Contact Info */
@@ -296,10 +391,24 @@
         .contact-details h4 {
             color: #ffd700;
             margin-bottom: 5px;
+            
+            /* Empêcher la sélection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
         }
         
         .contact-details p {
             opacity: 0.8;
+            
+            /* Empêcher la sélection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
         }
         
         /* WhatsApp Contact */
@@ -327,6 +436,14 @@
             gap: 10px;
             margin-top: 10px;
             transition: transform 0.3s;
+            
+            /* Empêcher la sélection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .whatsapp-btn:hover {
@@ -342,7 +459,7 @@
             margin-bottom: 80px; /* Espace pour le bouton d'installation */
         }
         
-        /* Install Button - STYLE CORRIGÉ */
+        /* Install Button - CORRECTIONS APPLIQUÉES */
         .install-fixed-btn {
             position: fixed;
             bottom: 20px;
@@ -365,6 +482,15 @@
             transition: all 0.3s;
             white-space: nowrap;
             max-width: 90%;
+            
+            /* PROPRIÉTÉS AJOUTÉES POUR EMPÊCHER LA SÉLECTION */
+            -webkit-user-select: none; /* Safari */
+            -moz-user-select: none;    /* Firefox */
+            -ms-user-select: none;     /* Internet Explorer/Edge */
+            user-select: none;         /* Standard */
+            -webkit-touch-callout: none; /* iOS Safari - empêche le menu contextuel */
+            -webkit-tap-highlight-color: transparent; /* Retirer le surlignage au clic */
+            touch-action: manipulation; /* Optimise pour le touch */
         }
         
         .install-fixed-btn:hover {
@@ -374,6 +500,14 @@
         
         .install-fixed-btn:active {
             transform: translateX(-50%) scale(0.98);
+        }
+        
+        /* S'assurer que les spans à l'intérieur ne sont pas sélectionnables */
+        .install-fixed-btn span {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
         
         /* Install Prompt */
@@ -409,16 +543,37 @@
         .install-text h3 {
             margin-bottom: 5px;
             font-size: 18px;
+            
+            /* Empêcher la sélection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
         }
         
         .install-text p {
             margin-bottom: 5px;
             font-size: 14px;
+            
+            /* Empêcher la sélection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
         }
         
         .install-text small {
             font-size: 12px;
             opacity: 0.8;
+            
+            /* Empêcher la sélection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
         }
         
         .install-buttons {
@@ -433,6 +588,14 @@
             cursor: pointer;
             font-weight: bold;
             transition: transform 0.2s;
+            
+            /* Empêcher la sélection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .install-btn-yes {
@@ -525,6 +688,13 @@
             margin-bottom: 8px;
             color: #ffd700;
             font-weight: 500;
+            
+            /* Empêcher la sélection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
         }
         
         .form-group input,
@@ -578,6 +748,14 @@
             cursor: pointer;
             width: 100%;
             transition: transform 0.3s;
+            
+            /* Empêcher la sélection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .submit-btn:hover {
@@ -929,7 +1107,7 @@
     
     <script>
         // ============================================
-        // SERVICE WORKER ENREGISTREMENT (CRITIQUE POUR PWA)
+        // SERVICE WORKER ENREGISTREMENT
         // ============================================
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
@@ -1415,8 +1593,6 @@
             
             // Vérifier la visibilité du bouton d'installation
             updateInstallButtonVisibility();
-            
-            // Initialiser le Service Worker (déjà fait au début)
         });
     </script>
 </body>
