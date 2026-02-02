@@ -40,7 +40,7 @@
         
         /* HEADER */
         .app-header {
-            background: rgba(26, 26, 46, 0.9);
+            background: rgba(26, 26, 46, 0.95);
             backdrop-filter: blur(10px);
             padding: 15px 20px;
             position: sticky;
@@ -52,7 +52,7 @@
         
         .header-content {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
@@ -63,7 +63,169 @@
             font-weight: bold;
             color: #ffd700;
             text-decoration: none;
-            text-align: center;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        /* SELECTEUR DE LANGUE */
+        .lang-selector {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            color: #ffd700;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .lang-selector:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: scale(1.05);
+        }
+        
+        .lang-icon {
+            font-size: 18px;
+        }
+        
+        .lang-text {
+            font-weight: bold;
+        }
+        
+        /* BOUTON MENU */
+        .menu-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            color: #fff;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: all 0.3s;
+        }
+        
+        .menu-toggle:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: scale(1.05);
+        }
+        
+        /* MENU LATERAL */
+        .sidebar-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: rgba(26, 26, 46, 0.98);
+            backdrop-filter: blur(15px);
+            z-index: 9999;
+            transition: right 0.3s ease;
+            padding: 30px;
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+            border-left: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .sidebar-menu.open {
+            right: 0;
+        }
+        
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .menu-title {
+            color: #ffd700;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .close-menu {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+            padding: 5px;
+            transition: transform 0.3s;
+        }
+        
+        .close-menu:hover {
+            transform: scale(1.1);
+            color: #ffd700;
+        }
+        
+        .menu-items {
+            list-style: none;
+        }
+        
+        .menu-items li {
+            margin-bottom: 15px;
+        }
+        
+        .menu-items a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #fff;
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 10px;
+            transition: all 0.3s;
+            font-size: 17px;
+        }
+        
+        .menu-items a:hover {
+            background: rgba(255, 215, 0, 0.1);
+            color: #ffd700;
+            transform: translateX(5px);
+        }
+        
+        .menu-icon {
+            font-size: 20px;
+            width: 30px;
+        }
+        
+        .sunrise-link {
+            background: rgba(255, 215, 0, 0.1) !important;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            margin-top: 20px;
+        }
+        
+        .sunrise-link:hover {
+            background: rgba(255, 215, 0, 0.2) !important;
+        }
+        
+        /* OVERLAY */
+        .menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9998;
+            backdrop-filter: blur(3px);
+        }
+        
+        .menu-overlay.active {
+            display: block;
         }
         
         /* CONTENU PRINCIPAL */
@@ -517,6 +679,11 @@
                 padding: 25px 20px;
             }
             
+            .sidebar-menu {
+                width: 280px;
+                right: -280px;
+            }
+            
             body {
                 padding-bottom: 160px;
             }
@@ -544,6 +711,15 @@
             .step {
                 padding: 12px;
             }
+            
+            .header-right {
+                gap: 10px;
+            }
+            
+            .lang-selector {
+                padding: 6px 12px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -552,78 +728,149 @@
     <header class="app-header">
         <div class="header-content">
             <h1 class="logo">IMMOLUXE.SN</h1>
+            <div class="header-right">
+                <!-- SELECTEUR DE LANGUE -->
+                <button class="lang-selector" id="langSelector">
+                    <span class="lang-icon">🌐</span>
+                    <span class="lang-text" data-fr="FR" data-en="EN">FR</span>
+                </button>
+                
+                <!-- BOUTON MENU -->
+                <button class="menu-toggle" id="menuToggle">
+                    ☰
+                </button>
+            </div>
         </div>
     </header>
+    
+    <!-- MENU LATERAL -->
+    <div class="sidebar-menu" id="sidebarMenu">
+        <div class="menu-header">
+            <h2 class="menu-title" data-fr="Menu" data-en="Menu">Menu</h2>
+            <button class="close-menu" id="closeMenu">×</button>
+        </div>
+        <ul class="menu-items">
+            <li><a href="#accueil" class="menu-link">
+                <span class="menu-icon">🏠</span>
+                <span data-fr="Accueil" data-en="Home">Accueil</span>
+            </a></li>
+            <li><a href="#whatsapp" class="menu-link">
+                <span class="menu-icon">💬</span>
+                <span data-fr="Contact WhatsApp" data-en="WhatsApp Contact">Contact WhatsApp</span>
+            </a></li>
+            <li><a href="#formulaire" class="menu-link">
+                <span class="menu-icon">📝</span>
+                <span data-fr="Formulaire Client" data-en="Client Form">Formulaire Client</span>
+            </a></li>
+            <li><a href="#installation" class="menu-link">
+                <span class="menu-icon">📱</span>
+                <span data-fr="Installer l'App" data-en="Install App">Installer l'App</span>
+            </a></li>
+            <li><a href="https://sunrise-groupe.com" target="_blank" class="menu-link sunrise-link">
+                <span class="menu-icon">🌅</span>
+                <span data-fr="Sunrise Groupe" data-en="Sunrise Group">Sunrise Groupe</span>
+            </a></li>
+        </ul>
+    </div>
+    
+    <!-- OVERLAY POUR LE MENU -->
+    <div class="menu-overlay" id="menuOverlay"></div>
     
     <!-- CONTENU PRINCIPAL -->
     <main class="main-content">
         <!-- SECTION HERO -->
-        <section class="hero">
-            <h1>IMMOLUXE.SN - Excellence Immobilière au Sénégal</h1>
-            <p>Votre agence immobilière de confiance pour la vente, l'achat et la location de propriétés de prestige au Sénégal. Découvrez notre sélection exclusive de villas, appartements et terrains dans tout le pays.</p>
+        <section class="hero" id="accueil">
+            <h1 data-fr="IMMOLUXE.SN - Excellence Immobilière au Sénégal" data-en="IMMOLUXE.SN - Real Estate Excellence in Senegal">
+                IMMOLUXE.SN - Excellence Immobilière au Sénégal
+            </h1>
+            <p data-fr="Votre agence immobilière de confiance pour la vente, l'achat et la location de propriétés de prestige au Sénégal. Découvrez notre sélection exclusive de villas, appartements et terrains dans tout le pays."
+               data-en="Your trusted real estate agency for buying, selling, and renting prestige properties in Senegal. Discover our exclusive selection of villas, apartments, and land across the country.">
+                Votre agence immobilière de confiance pour la vente, l'achat et la location de propriétés de prestige au Sénégal. Découvrez notre sélection exclusive de villas, appartements et terrains dans tout le pays.
+            </p>
         </section>
         
         <!-- SECTION WHATSAPP -->
-        <section class="whatsapp-section">
-            <h2>📱 Contact WhatsApp Direct</h2>
-            <p>Cliquez ci-dessous pour nous contacter directement sur WhatsApp</p>
+        <section class="whatsapp-section" id="whatsapp">
+            <h2 data-fr="📱 Contact WhatsApp Direct" data-en="📱 Direct WhatsApp Contact">
+                📱 Contact WhatsApp Direct
+            </h2>
+            <p data-fr="Cliquez ci-dessous pour nous contacter directement sur WhatsApp"
+               data-en="Click below to contact us directly on WhatsApp">
+                Cliquez ci-dessous pour nous contacter directement sur WhatsApp
+            </p>
             <a href="https://wa.me/221778982925?text=Bonjour%20IMMOLUXE.SN,%20je%20suis%20intéressé(e)%20par%20vos%20services%20immobiliers%20au%20Sénégal" 
                target="_blank" class="whatsapp-btn">
-                <span>💬</span> Contacter sur WhatsApp
+                <span>💬</span> 
+                <span data-fr="Contacter sur WhatsApp" data-en="Contact on WhatsApp">Contacter sur WhatsApp</span>
             </a>
         </section>
         
         <!-- FOOTER -->
         <footer class="app-footer">
             <div class="footer-content">
-                <p class="copyright">© 2026 IMMOLUXE.SN. Tous droits réservés.</p>
-                <p class="experience">Plus de 16 ans d'expérience en immobilier de prestige au Sénégal</p>
+                <p class="copyright" data-fr="© 2026 IMMOLUXE.SN. Tous droits réservés."
+                   data-en="© 2026 IMMOLUXE.SN. All rights reserved.">
+                    © 2026 IMMOLUXE.SN. Tous droits réservés.
+                </p>
+                <p class="experience" data-fr="Plus de 16 ans d'expérience en immobilier de prestige au Sénégal"
+                   data-en="Over 16 years of experience in prestige real estate in Senegal">
+                    Plus de 16 ans d'expérience en immobilier de prestige au Sénégal
+                </p>
             </div>
         </footer>
         
         <!-- FORMULAIRE -->
-        <section class="form-section">
-            <h2>Formulaire Client - Sénégal</h2>
+        <section class="form-section" id="formulaire">
+            <h2 data-fr="Formulaire Client - Sénégal" data-en="Client Form - Senegal">
+                Formulaire Client - Sénégal
+            </h2>
             
             <div class="form-group">
-                <label for="nom">Nom *</label>
-                <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+                <label for="nom" data-fr="Nom *" data-en="Last Name *">Nom *</label>
+                <input type="text" id="nom" name="nom" placeholder="" data-fr-placeholder="Votre nom" data-en-placeholder="Your last name" required>
             </div>
             
             <div class="form-group">
-                <label for="prenom">Prénom *</label>
-                <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required>
+                <label for="prenom" data-fr="Prénom *" data-en="First Name *">Prénom *</label>
+                <input type="text" id="prenom" name="prenom" placeholder="" data-fr-placeholder="Votre prénom" data-en-placeholder="Your first name" required>
             </div>
             
             <div class="form-group">
-                <label for="email">Email *</label>
-                <input type="email" id="email" name="email" placeholder="Votre email" required>
+                <label for="email" data-fr="Email *" data-en="Email *">Email *</label>
+                <input type="email" id="email" name="email" placeholder="" data-fr-placeholder="Votre email" data-en-placeholder="Your email" required>
             </div>
             
             <div class="form-group">
-                <label for="telephone">Téléphone *</label>
-                <input type="tel" id="telephone" name="telephone" placeholder="Votre téléphone" required>
+                <label for="telephone" data-fr="Téléphone *" data-en="Phone *">Téléphone *</label>
+                <input type="tel" id="telephone" name="telephone" placeholder="" data-fr-placeholder="Votre téléphone" data-en-placeholder="Your phone number" required>
             </div>
             
-            <button type="submit" class="submit-btn">
+            <button type="submit" class="submit-btn" data-fr="Soumettre la Demande" data-en="Submit Request">
                 Soumettre la Demande
             </button>
         </section>
     </main>
     
     <!-- SECTION INSTALLATION FIXE EN BAS - TRANSPARENT -->
-    <div class="install-section" id="installSection">
+    <div class="install-section" id="installation">
         <div class="install-container">
             <div class="install-info">
-                <h3>Installer l'application IMMOLUXE.SN</h3>
-                <p>Accédez rapidement à notre agence immobilière au Sénégal</p>
+                <h3 data-fr="Installer l'application IMMOLUXE.SN" data-en="Install IMMOLUXE.SN App">
+                    Installer l'application IMMOLUXE.SN
+                </h3>
+                <p data-fr="Accédez rapidement à notre agence immobilière au Sénégal"
+                   data-en="Quick access to our real estate agency in Senegal">
+                    Accédez rapidement à notre agence immobilière au Sénégal
+                </p>
             </div>
             <button class="install-btn" id="installBtn">
-                <span>📱</span> Installer l'application
+                <span>📱</span> 
+                <span data-fr="Installer l'application" data-en="Install App">Installer l'application</span>
             </button>
             <!-- Ceci s'affichera quand l'app sera installée -->
             <div class="installed-badge" id="installedBadge" style="display: none;">
-                <span>✅</span> Application installée
+                <span>✅</span> 
+                <span data-fr="Application installée" data-en="App installed">Application installée</span>
             </div>
         </div>
     </div>
@@ -631,16 +878,21 @@
     <!-- MODAL D'INSTALLATION -->
     <div class="install-modal" id="installModal">
         <div class="modal-content">
-            <h3><span>📱</span> Installer l'application</h3>
-            <p>Choisissez votre appareil pour voir les instructions d'installation :</p>
+            <h3><span>📱</span> 
+                <span data-fr="Installer l'application" data-en="Install App">Installer l'application</span>
+            </h3>
+            <p data-fr="Choisissez votre appareil pour voir les instructions d'installation :"
+               data-en="Choose your device to see installation instructions:">
+                Choisissez votre appareil pour voir les instructions d'installation :
+            </p>
             
             <div class="platform-options">
                 <!-- ANDROID -->
                 <button class="platform-btn" id="androidBtn">
                     <div class="platform-icon">🤖</div>
                     <div class="platform-text">
-                        <h4>Android</h4>
-                        <p>Téléphone & Tablette Android</p>
+                        <h4 data-fr="Android" data-en="Android">Android</h4>
+                        <p data-fr="Téléphone & Tablette Android" data-en="Android Phone & Tablet">Téléphone & Tablette Android</p>
                     </div>
                 </button>
                 
@@ -648,8 +900,8 @@
                 <button class="platform-btn" id="iosBtn">
                     <div class="platform-icon">🍎</div>
                     <div class="platform-text">
-                        <h4>iPhone & iPad</h4>
-                        <p>iOS (Safari)</p>
+                        <h4 data-fr="iPhone & iPad" data-en="iPhone & iPad">iPhone & iPad</h4>
+                        <p data-fr="iOS (Safari)" data-en="iOS (Safari)">iOS (Safari)</p>
                     </div>
                 </button>
                 
@@ -657,8 +909,8 @@
                 <button class="platform-btn" id="desktopBtn">
                     <div class="platform-icon">💻</div>
                     <div class="platform-text">
-                        <h4>Ordinateur</h4>
-                        <p>Windows / Mac / Linux</p>
+                        <h4 data-fr="Ordinateur" data-en="Computer">Ordinateur</h4>
+                        <p data-fr="Windows / Mac / Linux" data-en="Windows / Mac / Linux">Windows / Mac / Linux</p>
                     </div>
                 </button>
             </div>
@@ -668,37 +920,43 @@
                 <div class="step">
                     <div class="step-number">1</div>
                     <div class="step-text">
-                        <strong>Ouvrez Safari</strong> (important : pas Chrome ni Firefox)
+                        <strong data-fr="Ouvrez Safari" data-en="Open Safari">Ouvrez Safari</strong> 
+                        <span data-fr="(important : pas Chrome ni Firefox)" data-en="(important: not Chrome or Firefox)">(important : pas Chrome ni Firefox)</span>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
                     <div class="step-text">
-                        <strong>Visitez cette page</strong> dans Safari
+                        <strong data-fr="Visitez cette page" data-en="Visit this page">Visitez cette page</strong> 
+                        <span data-fr="dans Safari" data-en="in Safari">dans Safari</span>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
                     <div class="step-text">
-                        <strong>Appuyez sur l'icône 📤</strong> Partager (en bas de l'écran)
+                        <strong data-fr="Appuyez sur l'icône 📤" data-en="Tap the 📤 icon">Appuyez sur l'icône 📤</strong> 
+                        <span data-fr="Partager (en bas de l'écran)" data-en="Share (at the bottom)">Partager (en bas de l'écran)</span>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">4</div>
                     <div class="step-text">
-                        <strong>Faites défiler</strong> vers le bas dans le menu Partager
+                        <strong data-fr="Faites défiler" data-en="Scroll down">Faites défiler</strong> 
+                        <span data-fr="vers le bas dans le menu Partager" data-en="in the Share menu">vers le bas dans le menu Partager</span>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">5</div>
                     <div class="step-text">
-                        <strong>Sélectionnez</strong> "Sur l'écran d'accueil"
+                        <strong data-fr="Sélectionnez" data-en="Select">Sélectionnez</strong> 
+                        <span data-fr=""Sur l'écran d'accueil"" data-en=""Add to Home Screen"">"Sur l'écran d'accueil"</span>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">6</div>
                     <div class="step-text">
-                        <strong>Appuyez sur "Ajouter"</strong> en haut à droite
+                        <strong data-fr="Appuyez sur "Ajouter"" data-en="Tap "Add"">Appuyez sur "Ajouter"</strong> 
+                        <span data-fr="en haut à droite" data-en="at the top right">en haut à droite</span>
                     </div>
                 </div>
             </div>
@@ -708,31 +966,36 @@
                 <div class="step">
                     <div class="step-number">1</div>
                     <div class="step-text">
-                        <strong>Ouvrez Chrome</strong> (ou votre navigateur)
+                        <strong data-fr="Ouvrez Chrome" data-en="Open Chrome">Ouvrez Chrome</strong> 
+                        <span data-fr="(ou votre navigateur)" data-en="(or your browser)">(ou votre navigateur)</span>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
                     <div class="step-text">
-                        <strong>Visitez cette page</strong> web
+                        <strong data-fr="Visitez cette page" data-en="Visit this page">Visitez cette page</strong> 
+                        <span data-fr="web" data-en="web">web</span>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
                     <div class="step-text">
-                        <strong>Appuyez sur ⋮</strong> les trois points en haut à droite
+                        <strong data-fr="Appuyez sur ⋮" data-en="Tap ⋮">Appuyez sur ⋮</strong> 
+                        <span data-fr="les trois points en haut à droite" data-en="the three dots at top right">les trois points en haut à droite</span>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">4</div>
                     <div class="step-text">
-                        <strong>Sélectionnez</strong> "Ajouter à l'écran d'accueil"
+                        <strong data-fr="Sélectionnez" data-en="Select">Sélectionnez</strong> 
+                        <span data-fr=""Ajouter à l'écran d'accueil"" data-en=""Add to Home Screen"">"Ajouter à l'écran d'accueil"</span>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">5</div>
                     <div class="step-text">
-                        <strong>Confirmez</strong> en appuyant sur "Ajouter"
+                        <strong data-fr="Confirmez" data-en="Confirm">Confirmez</strong> 
+                        <span data-fr="en appuyant sur "Ajouter"" data-en="by tapping "Add"">en appuyant sur "Ajouter"</span>
                     </div>
                 </div>
             </div>
@@ -742,28 +1005,104 @@
                 <div class="step">
                     <div class="step-number">🔍</div>
                     <div class="step-text">
-                        <strong>Chrome / Edge :</strong> Cherchez l'icône d'installation dans la barre d'adresse (⏬)
+                        <strong data-fr="Chrome / Edge :" data-en="Chrome / Edge:">Chrome / Edge :</strong> 
+                        <span data-fr="Cherchez l'icône d'installation dans la barre d'adresse (⏬)" data-en="Look for install icon in address bar (⏬)">Cherchez l'icône d'installation dans la barre d'adresse (⏬)</span>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">🍎</div>
                     <div class="step-text">
-                        <strong>Safari (Mac) :</strong> Fichier > Ajouter à l'écran d'accueil
+                        <strong data-fr="Safari (Mac) :" data-en="Safari (Mac):">Safari (Mac) :</strong> 
+                        <span data-fr="Fichier > Ajouter à l'écran d'accueil" data-en="File > Add to Home Screen">Fichier > Ajouter à l'écran d'accueil</span>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">🦊</div>
                     <div class="step-text">
-                        <strong>Firefox :</strong> Menu (≡) > Installer
+                        <strong data-fr="Firefox :" data-en="Firefox:">Firefox :</strong> 
+                        <span data-fr="Menu (≡) > Installer" data-en="Menu (≡) > Install">Menu (≡) > Installer</span>
                     </div>
                 </div>
             </div>
             
-            <button class="close-btn" id="closeModal">Fermer</button>
+            <button class="close-btn" id="closeModal" data-fr="Fermer" data-en="Close">Fermer</button>
         </div>
     </div>
 
     <script>
+        // ============================================
+        // GESTION DES LANGUES
+        // ============================================
+        let currentLang = 'fr';
+        
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            // Mettre à jour tous les textes avec data-fr/data-en
+            document.querySelectorAll('[data-fr], [data-en]').forEach(element => {
+                const text = element.getAttribute(`data-${lang}`);
+                if (text) {
+                    if (element.tagName === 'INPUT') {
+                        const placeholder = element.getAttribute(`data-${lang}-placeholder`) || text;
+                        element.setAttribute('placeholder', placeholder);
+                    } else {
+                        element.textContent = text;
+                    }
+                }
+            });
+            
+            // Mettre à jour le bouton de langue
+            const langText = document.querySelector('.lang-text');
+            if (langText) {
+                langText.textContent = lang === 'fr' ? 'FR' : 'EN';
+            }
+            
+            // Sauvegarder la préférence
+            localStorage.setItem('immoluxe-lang', lang);
+        }
+        
+        // Charger la langue sauvegardée
+        const savedLang = localStorage.getItem('immoluxe-lang');
+        if (savedLang && (savedLang === 'fr' || savedLang === 'en')) {
+            switchLanguage(savedLang);
+        }
+        
+        // Changer la langue
+        document.getElementById('langSelector').addEventListener('click', () => {
+            const newLang = currentLang === 'fr' ? 'en' : 'fr';
+            switchLanguage(newLang);
+        });
+        
+        // ============================================
+        // GESTION DU MENU
+        // ============================================
+        const menuToggle = document.getElementById('menuToggle');
+        const closeMenu = document.getElementById('closeMenu');
+        const sidebarMenu = document.getElementById('sidebarMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        
+        // Ouvrir le menu
+        menuToggle.addEventListener('click', () => {
+            sidebarMenu.classList.add('open');
+            menuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Empêcher le scroll
+        });
+        
+        // Fermer le menu
+        function closeSidebarMenu() {
+            sidebarMenu.classList.remove('open');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = ''; // Rétablir le scroll
+        }
+        
+        closeMenu.addEventListener('click', closeSidebarMenu);
+        menuOverlay.addEventListener('click', closeSidebarMenu);
+        
+        // Fermer le menu quand on clique sur un lien
+        document.querySelectorAll('.menu-link').forEach(link => {
+            link.addEventListener('click', closeSidebarMenu);
+        });
+        
         // ============================================
         // DÉTECTION DE PLATEFORME
         // ============================================
@@ -928,12 +1267,18 @@
             // Mettre à jour le texte
             const installInfo = document.querySelector('.install-info h3');
             if (installInfo) {
-                installInfo.textContent = '✅ Application installée';
+                installInfo.setAttribute('data-fr', '✅ Application installée');
+                installInfo.setAttribute('data-en', '✅ App installed');
+                installInfo.textContent = currentLang === 'fr' ? '✅ Application installée' : '✅ App installed';
             }
             
             const installDesc = document.querySelector('.install-info p');
             if (installDesc) {
-                installDesc.textContent = 'L\'application est maintenant disponible sur votre écran d\'accueil';
+                installDesc.setAttribute('data-fr', 'L\'application est maintenant disponible sur votre écran d\'accueil');
+                installDesc.setAttribute('data-en', 'The app is now available on your home screen');
+                installDesc.textContent = currentLang === 'fr' 
+                    ? 'L\'application est maintenant disponible sur votre écran d\'accueil' 
+                    : 'The app is now available on your home screen';
             }
         }
         
@@ -946,7 +1291,14 @@
             // Adapter le texte pour iOS
             const platform = detectPlatform();
             if (platform === 'ios') {
-                installBtn.innerHTML = '<span>📱</span> Ajouter à l\'écran d\'accueil';
+                const installBtnText = installBtn.querySelector('span:last-child');
+                if (installBtnText) {
+                    installBtnText.setAttribute('data-fr', "Ajouter à l'écran d'accueil");
+                    installBtnText.setAttribute('data-en', 'Add to Home Screen');
+                    installBtnText.textContent = currentLang === 'fr' 
+                        ? "Ajouter à l'écran d'accueil" 
+                        : 'Add to Home Screen';
+                }
             }
         });
         
@@ -963,12 +1315,16 @@
             
             // Validation simple
             if (!nom || !prenom || !email || !telephone) {
-                alert('Veuillez remplir tous les champs obligatoires (*)');
+                alert(currentLang === 'fr' 
+                    ? 'Veuillez remplir tous les champs obligatoires (*)' 
+                    : 'Please fill in all required fields (*)');
                 return;
             }
             
             // Préparer message WhatsApp
-            const message = `Bonjour IMMOLUXE.SN,%0A%0AJe suis intéressé(e) par vos services immobiliers au Sénégal.%0A%0A*Informations personnelles:*%0A👤 Nom: ${nom} ${prenom}%0A📧 Email: ${email}%0A📱 Téléphone: ${telephone}%0A%0A*Message:*%0AJ'aimerais obtenir plus d'informations sur vos services.`;
+            const message = currentLang === 'fr'
+                ? `Bonjour IMMOLUXE.SN,%0A%0AJe suis intéressé(e) par vos services immobiliers au Sénégal.%0A%0A*Informations personnelles:*%0A👤 Nom: ${nom} ${prenom}%0A📧 Email: ${email}%0A📱 Téléphone: ${telephone}%0A%0A*Message:*%0AJ'aimerais obtenir plus d'informations sur vos services.`
+                : `Hello IMMOLUXE.SN,%0A%0AI am interested in your real estate services in Senegal.%0A%0A*Personal information:*%0A👤 Name: ${nom} ${prenom}%0A📧 Email: ${email}%0A📱 Phone: ${telephone}%0A%0A*Message:*%0AI would like more information about your services.`;
             
             // Ouvrir WhatsApp
             window.open(`https://wa.me/221778982925?text=${message}`, '_blank');
@@ -979,14 +1335,16 @@
             document.getElementById('email').value = '';
             document.getElementById('telephone').value = '';
             
-            alert('Redirection vers WhatsApp...');
+            alert(currentLang === 'fr' 
+                ? 'Redirection vers WhatsApp...' 
+                : 'Redirecting to WhatsApp...');
         });
         
         // ============================================
         // GESTION DU SCROLL
         // ============================================
         window.addEventListener('scroll', function() {
-            const installSection = document.getElementById('installSection');
+            const installSection = document.getElementById('installation');
             const scrollPosition = window.innerHeight + window.pageYOffset;
             const documentHeight = document.body.offsetHeight;
             
@@ -1003,7 +1361,27 @@
             if (!navigator.onLine) {
                 console.log('⚠️ Mode hors ligne');
             }
+            
+            // Mettre à jour les placeholders
+            updatePlaceholders();
         });
+        
+        // Fonction pour mettre à jour les placeholders
+        function updatePlaceholders() {
+            document.querySelectorAll('input[data-fr-placeholder]').forEach(input => {
+                const placeholder = currentLang === 'fr' 
+                    ? input.getAttribute('data-fr-placeholder') 
+                    : input.getAttribute('data-en-placeholder');
+                input.setAttribute('placeholder', placeholder);
+            });
+        }
+        
+        // Mettre à jour les placeholders quand la langue change
+        const originalSwitchLanguage = switchLanguage;
+        window.switchLanguage = function(lang) {
+            originalSwitchLanguage(lang);
+            updatePlaceholders();
+        };
     </script>
 </body>
 </html>
