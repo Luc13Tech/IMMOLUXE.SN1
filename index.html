@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#1a1a2e">
     <meta name="description" content="IMMOLUXE.SN - Prestige Real Estate Agency in Senegal">
     
@@ -15,9 +15,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="IMMOLUXE.SN">
     
-    <title>IMMOLUXE.SN - Mobile Application</title>
+    <title>IMMOLUXE.SN - Application Immobilière</title>
     
     <style>
+        /* RESET ET BASE */
         * {
             margin: 0;
             padding: 0;
@@ -28,19 +29,11 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             color: #fff;
-            overflow-x: hidden;
             min-height: 100vh;
-            position: relative;
-            padding-bottom: 180px; /* Espace pour le footer et bouton fixe */
+            padding-bottom: 150px; /* Espace pour footer et bouton */
         }
         
-        .app-container {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        /* Header */
+        /* HEADER */
         .app-header {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -57,7 +50,6 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-            width: 100%;
         }
         
         .logo {
@@ -67,122 +59,14 @@
             text-decoration: none;
         }
         
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .lang-switcher {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            color: #ffd700;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
-        }
-        
-        .lang-switcher:hover {
-            background: rgba(255, 215, 0, 0.1);
-            transform: scale(1.05);
-        }
-        
-        .menu-btn {
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 8px;
-        }
-        
-        /* Navigation Drawer */
-        .nav-drawer {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            max-width: 300px;
-            height: 100vh;
-            background: #1a1a2e;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
-            transition: right 0.3s ease;
-            z-index: 2000;
-            overflow-y: auto;
-        }
-        
-        .nav-drawer.open {
-            right: 0;
-        }
-        
-        .drawer-header {
-            padding: 20px;
-            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-            color: #1a1a2e;
-        }
-        
-        .drawer-close {
-            background: none;
-            border: none;
-            font-size: 28px;
-            cursor: pointer;
-            float: right;
-            color: #1a1a2e;
-        }
-        
-        .nav-menu {
-            list-style: none;
-            padding: 20px 0;
-        }
-        
-        .nav-menu li {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .nav-menu a {
-            display: block;
-            padding: 15px 20px;
-            color: #fff;
-            text-decoration: none;
-            transition: background 0.3s;
-        }
-        
-        .nav-menu a:hover {
-            background: rgba(255, 215, 0, 0.1);
-        }
-        
-        /* Overlay */
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1500;
-        }
-        
-        .overlay.active {
-            display: block;
-        }
-        
-        /* Main Content */
+        /* CONTENU PRINCIPAL */
         .main-content {
-            flex: 1;
-            padding: 20px;
             max-width: 1200px;
             margin: 0 auto;
-            width: 100%;
-            padding-bottom: 120px; /* Espace pour le bouton fixe */
+            padding: 20px;
         }
         
-        /* Hero Section */
+        /* SECTION HERO */
         .hero {
             text-align: center;
             padding: 40px 20px;
@@ -204,114 +88,20 @@
             opacity: 0.9;
         }
         
-        .cta-btn {
-            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-            color: #1a1a2e;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: transform 0.3s;
-        }
-        
-        .cta-btn:hover {
-            transform: scale(1.05);
-        }
-        
-        /* Services Grid */
-        .section {
-            margin-bottom: 40px;
-        }
-        
-        .section-title {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #ffd700;
-            text-align: center;
-        }
-        
-        .services-grid, .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        
-        .service-card, .product-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .service-card:hover, .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
-        }
-        
-        .service-icon, .product-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
-        
-        .service-card h3, .product-card h3 {
-            color: #ffd700;
-            margin-bottom: 10px;
-            font-size: 18px;
-        }
-        
-        .service-card p, .product-card p {
-            opacity: 0.8;
-            line-height: 1.6;
-        }
-        
-        /* Contact Info */
-        .contact-info {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 20px;
-            margin-top: 20px;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .contact-item:last-child {
-            border-bottom: none;
-        }
-        
-        .contact-icon {
-            font-size: 24px;
-            margin-right: 15px;
-            color: #ffd700;
-        }
-        
-        .contact-details h4 {
-            color: #ffd700;
-            margin-bottom: 5px;
-        }
-        
-        .contact-details p {
-            opacity: 0.8;
-        }
-        
-        /* WhatsApp Contact */
+        /* SECTION WHATSAPP */
         .whatsapp-contact {
             background: rgba(37, 211, 102, 0.1);
             border: 1px solid rgba(37, 211, 102, 0.3);
             border-radius: 15px;
-            padding: 20px;
-            margin-top: 20px;
+            padding: 25px;
+            margin: 25px 0;
             text-align: center;
+        }
+        
+        .whatsapp-contact h3 {
+            color: #25D366;
+            margin-bottom: 15px;
+            font-size: 20px;
         }
         
         .whatsapp-btn {
@@ -327,7 +117,7 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            margin-top: 10px;
+            margin-top: 15px;
             transition: transform 0.3s;
         }
         
@@ -335,255 +125,19 @@
             transform: scale(1.05);
         }
         
-        /* Footer */
-        .app-footer {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 30px 20px;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            position: fixed;
-            bottom: 80px;
-            left: 0;
-            right: 0;
-            z-index: 10;
-        }
-        
-        .app-footer p {
-            margin: 10px 0;
-            font-size: 14px;
-            opacity: 0.9;
-        }
-        
-        /* Install Button */
-        .install-fixed-btn {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-            color: #1a1a2e;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 999;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s;
-            white-space: nowrap;
-            max-width: calc(100% - 40px);
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-        .install-fixed-btn:hover {
-            transform: translateX(-50%) scale(1.05);
-            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
-        }
-        
-        .install-fixed-btn:active {
-            transform: translateX(-50%) scale(0.98);
-        }
-        
-        /* Install Prompt */
-        .install-prompt {
-            position: fixed;
-            bottom: -100px;
-            left: 0;
-            right: 0;
-            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-            color: #1a1a2e;
-            padding: 20px;
-            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
-            transition: bottom 0.3s ease;
-            z-index: 1000;
-        }
-        
-        .install-prompt.show {
-            bottom: 0;
-        }
-        
-        .install-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .install-text {
-            flex: 1;
-        }
-        
-        .install-text h3 {
-            margin-bottom: 5px;
-            font-size: 18px;
-        }
-        
-        .install-text p {
-            margin-bottom: 5px;
-            font-size: 14px;
-        }
-        
-        .install-text small {
-            font-size: 12px;
-            opacity: 0.8;
-        }
-        
-        .install-buttons {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .install-buttons button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: transform 0.2s;
-        }
-        
-        .install-btn-yes {
-            background: #1a1a2e;
-            color: #ffd700;
-        }
-        
-        .install-btn-yes:hover {
-            transform: scale(1.05);
-        }
-        
-        .install-btn-no {
-            background: rgba(255, 255, 255, 0.2);
-            color: #1a1a2e;
-        }
-        
-        .install-btn-no:hover {
-            transform: scale(1.05);
-        }
-        
-        /* iOS Modal */
-        .ios-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(26, 26, 46, 0.95);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        .ios-modal.show {
-            display: flex;
-        }
-        
-        .ios-modal-content {
-            background: white;
-            color: #1a1a2e;
-            padding: 30px;
-            border-radius: 20px;
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
-        }
-        
-        .ios-modal h3 {
-            color: #ffd700;
-            margin-bottom: 20px;
-            font-size: 22px;
-        }
-        
-        .ios-steps {
-            text-align: left;
-            margin: 20px 0;
-            line-height: 1.8;
-            font-size: 16px;
-        }
-        
-        .ios-steps ol {
-            padding-left: 20px;
-        }
-        
-        .ios-steps li {
-            margin-bottom: 10px;
-        }
-        
-        .ios-icons {
-            font-size: 40px;
-            margin: 20px 0;
-            color: #1a1a2e;
-        }
-        
-        /* Installation Progress */
-        .install-progress {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(26, 26, 46, 0.95);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-        }
-        
-        .install-progress.show {
-            display: flex;
-        }
-        
-        .progress-spinner {
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            border-top: 4px solid #ffd700;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
-        }
-        
-        .install-success {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(26, 26, 46, 0.95);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-        }
-        
-        .install-success.show {
-            display: flex;
-        }
-        
-        .success-icon {
-            font-size: 60px;
-            color: #4CAF50;
-            margin-bottom: 20px;
-        }
-        
-        /* Form Styles */
+        /* FORMULAIRE */
         .form-container {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
             padding: 30px;
-            margin-top: 20px;
+            margin: 25px 0;
+        }
+        
+        .form-container h2 {
+            color: #ffd700;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 24px;
         }
         
         .form-group {
@@ -597,1006 +151,685 @@
             font-weight: 500;
         }
         
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
+        .form-group input {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             border: 1px solid rgba(255, 215, 0, 0.3);
             background: rgba(26, 26, 46, 0.8);
             color: #fff;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 16px;
-            transition: border-color 0.3s;
         }
         
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: #ffd700;
+        .form-group input:focus {
             outline: none;
+            border-color: #ffd700;
             box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
         }
         
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: rgba(255, 255, 255, 0.7);
+        /* FOOTER - CORRIGÉ POUR ÊTRE TOUJOURS VISIBLE */
+        .app-footer {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 25px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed;
+            bottom: 80px;
+            left: 0;
+            right: 0;
+            z-index: 100;
         }
         
-        .form-group select {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23ffd700' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 15px center;
-            background-size: 12px;
-            padding-right: 40px;
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
-        .form-group select option {
-            background: #1a1a2e;
-            color: #fff;
+        .app-footer p {
+            margin: 10px 0;
+            font-size: 15px;
+            line-height: 1.5;
         }
         
-        .submit-btn {
+        .install-info {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* BOUTON D'INSTALLATION FIXE */
+        .install-fixed-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
             color: #1a1a2e;
-            padding: 15px 40px;
+            padding: 16px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            z-index: 1000;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s;
+            min-width: 280px;
+            max-width: 90%;
+            white-space: nowrap;
+        }
+        
+        .install-fixed-btn:hover {
+            transform: translateX(-50%) scale(1.05);
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.5);
+        }
+        
+        /* MODAL D'INSTALLATION */
+        .install-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 26, 46, 0.98);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .install-modal.show {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            color: #1a1a2e;
+            padding: 35px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+        }
+        
+        .modal-content h3 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 26px;
+        }
+        
+        .modal-content p {
+            color: #555;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        /* BOUTONS PLATEFORME */
+        .platform-options {
+            margin: 25px 0;
+        }
+        
+        .platform-btn {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px;
+            margin: 12px 0;
+            background: #f8f8f8;
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+            width: 100%;
+        }
+        
+        .platform-btn:hover {
+            background: #f0f8ff;
+            border-color: #ffd700;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+        }
+        
+        .platform-icon {
+            font-size: 32px;
+            min-width: 40px;
+        }
+        
+        .platform-text h4 {
+            color: #1a1a2e;
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+        
+        .platform-text p {
+            color: #777;
+            font-size: 14px;
+            margin: 0;
+        }
+        
+        /* INSTRUCTIONS */
+        .instructions {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 12px;
+            text-align: left;
+        }
+        
+        .instructions.show {
+            display: block;
+        }
+        
+        .step {
+            margin: 15px 0;
+            padding: 12px 15px;
+            background: white;
+            border-left: 4px solid #ffd700;
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .step-number {
+            background: #ffd700;
+            color: #1a1a2e;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .step-text {
+            flex: 1;
+        }
+        
+        /* BOUTON FERMER */
+        .close-btn {
+            background: #1a1a2e;
+            color: #ffd700;
+            padding: 14px 35px;
             border: none;
             border-radius: 50px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            width: 100%;
-            transition: transform 0.3s;
+            margin-top: 25px;
+            transition: all 0.3s;
+            display: inline-block;
         }
         
-        .submit-btn:hover {
-            transform: scale(1.02);
+        .close-btn:hover {
+            background: #2a2a4e;
+            transform: scale(1.05);
         }
         
-        /* Loading Spinner */
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 40px;
-        }
-        
-        .spinner {
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            border-top: 4px solid #ffd700;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* WhatsApp Redirect Message */
-        .whatsapp-redirect {
-            display: none;
-            background: rgba(37, 211, 102, 0.1);
-            border: 1px solid #25D366;
-            color: #25D366;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            text-align: center;
-        }
-        
-        .whatsapp-redirect.show {
-            display: block;
-        }
-        
-        .whatsapp-redirect a {
-            color: #25D366;
-            font-weight: bold;
-            text-decoration: underline;
-        }
-        
-        /* Media Queries */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 24px;
             }
             
-            .services-grid, .products-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .install-content {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .install-buttons {
-                width: 100%;
-            }
-            
-            .install-buttons button {
-                flex: 1;
-            }
-            
-            .header-right {
-                gap: 10px;
-            }
-            
-            .lang-switcher {
-                padding: 6px 12px;
-                font-size: 14px;
-            }
-            
             .install-fixed-btn {
-                padding: 12px 20px;
-                font-size: 14px;
+                padding: 14px 25px;
+                font-size: 16px;
+                min-width: 250px;
                 bottom: 15px;
             }
             
-            .main-content {
-                padding-bottom: 140px;
-            }
-            
             .app-footer {
+                padding: 20px 15px;
                 bottom: 70px;
-                padding: 20px;
             }
             
-            .ios-modal-content {
-                padding: 20px;
+            .app-footer p {
+                font-size: 14px;
             }
             
-            .ios-icons {
-                font-size: 30px;
+            .modal-content {
+                padding: 25px 20px;
+            }
+            
+            .platform-btn {
+                padding: 15px;
             }
             
             body {
-                padding-bottom: 150px;
+                padding-bottom: 140px;
             }
         }
         
         @media (max-width: 480px) {
             .install-fixed-btn {
-                font-size: 13px;
-                padding: 10px 15px;
+                min-width: 220px;
+                padding: 12px 20px;
+                font-size: 15px;
             }
             
-            .app-footer p {
-                font-size: 13px;
+            .modal-content h3 {
+                font-size: 22px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="app-container" data-lang="fr">
-        <!-- iOS Installation Modal -->
-        <div class="ios-modal" id="iosModal">
-            <div class="ios-modal-content">
-                <h3 id="iosModalTitle">📱 Installation iPhone/iPad</h3>
-                <div class="ios-steps" id="iosSteps">
-                    <ol>
-                        <li>Ouvrez Safari (pas Chrome)</li>
-                        <li>Allez sur cette page</li>
-                        <li>Appuyez sur <strong>Partager (📤)</strong></li>
-                        <li>Faites défiler vers le bas</li>
-                        <li>Sélectionnez <strong>"Sur l'écran d'accueil"</strong></li>
-                        <li>Appuyez sur <strong>"Ajouter"</strong></li>
-                    </ol>
-                </div>
-                <div class="ios-icons">
-                    📱 → 🌐 → 📤 → 🏠
-                </div>
-                <button class="cta-btn" onclick="document.getElementById('iosModal').classList.remove('show')">
-                    J'ai compris
+    <!-- HEADER -->
+    <header class="app-header">
+        <div class="header-content">
+            <a href="#" class="logo">IMMOLUXE.SN</a>
+        </div>
+    </header>
+    
+    <!-- CONTENU PRINCIPAL -->
+    <main class="main-content">
+        <!-- SECTION HERO -->
+        <section class="hero">
+            <h1>IMMOLUXE.SN - Excellence Immobilière au Sénégal</h1>
+            <p>Votre agence immobilière de confiance pour la vente, l'achat et la location de propriétés de prestige au Sénégal. Découvrez notre sélection exclusive de villas, appartements et terrains dans tout le pays.</p>
+        </section>
+        
+        <!-- WHATSAPP -->
+        <section class="whatsapp-contact">
+            <h3>📱 Contact WhatsApp Direct</h3>
+            <p>Cliquez ci-dessous pour nous contacter directement sur WhatsApp</p>
+            <a href="https://wa.me/221778982925?text=Bonjour%20IMMOLUXE.SN,%20je%20suis%20intéressé(e)%20par%20vos%20services%20immobiliers%20au%20Sénégal" 
+               target="_blank" class="whatsapp-btn">
+                <span>💬</span> Contacter sur WhatsApp
+            </a>
+        </section>
+        
+        <!-- FORMULAIRE -->
+        <section class="form-container">
+            <h2>Formulaire Client - Sénégal</h2>
+            
+            <div class="form-group">
+                <label for="nom">Nom *</label>
+                <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="prenom">Prénom *</label>
+                <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" placeholder="Votre email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="telephone">Téléphone *</label>
+                <input type="tel" id="telephone" name="telephone" placeholder="Votre téléphone" required>
+            </div>
+            
+            <button type="submit" class="whatsapp-btn" style="width: 100%; margin-top: 10px;">
+                Soumettre la Demande
+            </button>
+        </section>
+    </main>
+    
+    <!-- FOOTER - TOUJOURS VISIBLE -->
+    <footer class="app-footer">
+        <div class="footer-content">
+            <p>© 2026 IMMOLUXE.SN. Tous droits réservés.</p>
+            <p>Plus de 16 ans d'expérience en immobilier de prestige au Sénégal</p>
+            <div class="install-info">
+                <p><strong>Installer l'application IMMOLUXE.SN</strong></p>
+                <p>Accédez rapidement à notre agence immobilière au Sénégal</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- BOUTON D'INSTALLATION FIXE -->
+    <button class="install-fixed-btn" id="installBtn">
+        <span>📱</span> Installer l'application
+    </button>
+    
+    <!-- MODAL D'INSTALLATION -->
+    <div class="install-modal" id="installModal">
+        <div class="modal-content">
+            <h3>📱 Installer l'application</h3>
+            <p>Choisissez votre appareil pour voir les instructions d'installation :</p>
+            
+            <div class="platform-options">
+                <!-- ANDROID -->
+                <button class="platform-btn" id="androidBtn">
+                    <div class="platform-icon">🤖</div>
+                    <div class="platform-text">
+                        <h4>Android</h4>
+                        <p>Téléphone & Tablette Android</p>
+                    </div>
+                </button>
+                
+                <!-- iPhone/iPad -->
+                <button class="platform-btn" id="iosBtn">
+                    <div class="platform-icon">🍎</div>
+                    <div class="platform-text">
+                        <h4>iPhone & iPad</h4>
+                        <p>iOS (Safari)</p>
+                    </div>
+                </button>
+                
+                <!-- ORDINATEUR -->
+                <button class="platform-btn" id="desktopBtn">
+                    <div class="platform-icon">💻</div>
+                    <div class="platform-text">
+                        <h4>Ordinateur</h4>
+                        <p>Windows / Mac / Linux</p>
+                    </div>
                 </button>
             </div>
-        </div>
-        
-        <!-- Installation Progress Modal -->
-        <div class="install-progress" id="installProgress">
-            <div class="progress-spinner"></div>
-            <h3 data-fr="Installation en cours..." data-en="Installing...">Installation en cours...</h3>
-            <p data-fr="L'application est en cours d'installation sur votre appareil" data-en="The app is being installed on your device">L'application est en cours d'installation sur votre appareil</p>
-        </div>
-        
-        <!-- Installation Success Modal -->
-        <div class="install-success" id="installSuccess">
-            <div class="success-icon">✓</div>
-            <h3 data-fr="Installation réussie !" data-en="Installation successful!">Installation réussie !</h3>
-            <p data-fr="L'application a été installée avec succès sur votre écran d'accueil." data-en="The app has been successfully installed on your home screen.">L'application a été installée avec succès sur votre écran d'accueil.</p>
-            <button class="cta-btn" style="margin-top: 20px;" onclick="document.getElementById('installSuccess').classList.remove('show')" data-fr="Fermer" data-en="Close">Fermer</button>
-        </div>
-        
-        <!-- Header -->
-        <header class="app-header">
-            <div class="header-content">
-                <a href="#" class="logo">IMMOLUXE.SN</a>
-                <div class="header-right">
-                    <button class="lang-switcher" id="langSwitch">
-                        <span class="lang-icon">🌐</span>
-                        <span class="lang-text" data-fr="FR" data-en="EN">FR</span>
-                    </button>
-                    <button class="menu-btn" id="menuBtn">☰</button>
+            
+            <!-- INSTRUCTIONS iOS -->
+            <div class="instructions" id="iosInstructions">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-text">
+                        <strong>Ouvrez Safari</strong> (important : pas Chrome ni Firefox)
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-text">
+                        <strong>Visitez cette page</strong> dans Safari
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-text">
+                        <strong>Appuyez sur l'icône 📤</strong> Partager (en bas de l'écran)
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-text">
+                        <strong>Faites défiler</strong> vers le bas dans le menu Partager
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-text">
+                        <strong>Sélectionnez</strong> "Sur l'écran d'accueil"
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-text">
+                        <strong>Appuyez sur "Ajouter"</strong> en haut à droite
+                    </div>
                 </div>
             </div>
-        </header>
-        
-        <!-- Navigation Drawer -->
-        <nav class="nav-drawer" id="navDrawer">
-            <div class="drawer-header">
-                <button class="drawer-close" id="drawerClose">×</button>
-                <h3 data-fr="Menu" data-en="Menu">Menu</h3>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#accueil" class="nav-link" data-fr="🏠 Accueil" data-en="🏠 Home">🏠 Accueil</a></li>
-                <li><a href="#services" class="nav-link" data-fr="🔧 Services" data-en="🔧 Services">🔧 Services</a></li>
-                <li><a href="#produits" class="nav-link" data-fr="🏘️ Nos Produits" data-en="🏘️ Our Products">🏘️ Nos Produits</a></li>
-                <li><a href="#about" class="nav-link" data-fr="ℹ️ À propos" data-en="ℹ️ About">ℹ️ À propos</a></li>
-                <li><a href="#contact" class="nav-link" data-fr="📞 Contact" data-en="📞 Contact">📞 Contact</a></li>
-                <li><a href="#formulaire" class="nav-link" data-fr="📝 Formulaire Client" data-en="📝 Client Form">📝 Formulaire Client</a></li>
-                <li><a href="https://sunrise-groupe.com" target="_blank" data-fr="🌅 Sunrise Groupe" data-en="🌅 Sunrise Group">🌅 Sunrise Groupe</a></li>
-            </ul>
-        </nav>
-        
-        <!-- Overlay -->
-        <div class="overlay" id="overlay"></div>
-        
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Hero Section -->
-            <section class="hero" id="accueil">
-                <h1 data-fr="IMMOLUXE.SN - Excellence Immobilière au Sénégal" data-en="IMMOLUXE.SN - Real Estate Excellence in Senegal">IMMOLUXE.SN - Excellence Immobilière au Sénégal</h1>
-                <p data-fr="Votre agence immobilière de confiance pour la vente, l'achat et la location de propriétés de prestige au Sénégal. Découvrez notre sélection exclusive de villas, appartements et terrains dans tout le pays." data-en="Your trusted real estate agency for buying, selling, and renting prestige properties in Senegal. Discover our exclusive selection of villas, apartments, and land across the country.">Votre agence immobilière de confiance pour la vente, l'achat et la location de propriétés de prestige au Sénégal. Découvrez notre sélection exclusive de villas, appartements et terrains dans tout le pays.</p>
-                <a href="#formulaire" class="cta-btn" data-fr="Prendre Rendez-vous" data-en="Book an Appointment">Prendre Rendez-vous</a>
-            </section>
             
-            <!-- Services Section -->
-            <section class="section" id="services">
-                <h2 class="section-title" data-fr="Nos Services au Sénégal" data-en="Our Services in Senegal">Nos Services au Sénégal</h2>
-                <div class="services-grid" id="servicesGrid">
-                    <!-- Services will be loaded dynamically -->
-                </div>
-            </section>
-            
-            <!-- Products Section -->
-            <section class="section" id="produits">
-                <h2 class="section-title" data-fr="Nos Produits au Sénégal" data-en="Our Products in Senegal">Nos Produits au Sénégal</h2>
-                <div class="products-grid" id="productsGrid">
-                    <!-- Products will be loaded dynamically -->
-                </div>
-            </section>
-            
-            <!-- About Section -->
-            <section class="section" id="about">
-                <h2 class="section-title" data-fr="À propos d'IMMOLUXE.SN" data-en="About IMMOLUXE.SN">À propos d'IMMOLUXE.SN</h2>
-                <div class="service-card">
-                    <h3 data-fr="Notre Vision" data-en="Our Vision">Notre Vision</h3>
-                    <p data-fr="Devenir la référence absolue et l'acteur le plus respecté dans le domaine de l'immobilier de prestige au Sénégal. Nous aspirons à redéfinir l'expérience immobilière en élevant les standards du marché sur l'ensemble du territoire." data-en="To become the absolute reference and the most respected actor in the prestige real estate sector in Senegal. We aspire to redefine the real estate experience by elevating market standards across the entire territory.">Devenir la référence absolue et l'acteur le plus respecté dans le domaine de l'immobilier de prestige au Sénégal. Nous aspirons à redéfinir l'expérience immobilière en élevant les standards du marché sur l'ensemble du territoire.</p>
-                </div>
-                <div class="service-card" style="margin-top: 20px;">
-                    <h3 data-fr="Notre Mission" data-en="Our Mission">Notre Mission</h3>
-                    <p data-fr="Accompagner nos clients avec un niveau de professionnalisme, de discrétion et de rigueur inégalé au Sénégal. Nous garantissons la meilleure valeur, une parfaite transparence et une sérénité totale dans chaque transaction." data-en="To accompany our clients with an unmatched level of professionalism, discretion, and rigor in Senegal. We guarantee the best value, perfect transparency, and complete serenity in every transaction.">Accompagner nos clients avec un niveau de professionnalisme, de discrétion et de rigueur inégalé au Sénégal. Nous garantissons la meilleure valeur, une parfaite transparence et une sérénité totale dans chaque transaction.</p>
-                </div>
-                <div class="service-card" style="margin-top: 20px;">
-                    <h3 data-fr="Équipe de Direction" data-en="Management Team">Équipe de Direction</h3>
-                    <p><strong data-fr="PDG:" data-en="CEO:">PDG:</strong> Moctar Sylla<br>
-                    <strong data-fr="Architecte Senior:" data-en="Senior Architect:">Architecte Senior:</strong> Mamadou Seck<br>
-                    <strong data-fr="Développeur web:" data-en="Web Developer:">Développeur web:</strong> DEGUENON Luc<br>
-                    <strong data-fr="DRH:" data-en="HR Manager:">DRH:</strong> Dieynaba DOUMBOUYA<br>
-                    <strong data-fr="Présence nationale avec plus de 16 ans d'expérience au Sénégal" data-en="National presence with over 16 years of experience in Senegal">Présence nationale avec plus de 16 ans d'expérience au Sénégal</strong></p>
-                </div>
-            </section>
-            
-            <!-- Contact Section -->
-            <section class="section" id="contact">
-                <h2 class="section-title" data-fr="Contactez-nous au Sénégal" data-en="Contact Us in Senegal">Contactez-nous au Sénégal</h2>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div class="contact-details">
-                            <h4 data-fr="Siège Social" data-en="Headquarters">Siège Social</h4>
-                            <p data-fr="Liberté 6 Extension, en face de cimetière St Lazare de Béthanie, Dakar - Sénégal" data-en="Liberté 6 Extension, opposite St Lazare de Béthanie cemetery, Dakar - Senegal">Liberté 6 Extension, en face de cimetière St Lazare de Béthanie, Dakar - Sénégal</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📞</div>
-                        <div class="contact-details">
-                            <h4 data-fr="Téléphone" data-en="Phone">Téléphone</h4>
-                            <p>+221 77 898 29 25 <span data-fr="(Sénégal)" data-en="(Senegal)">(Sénégal)</span></p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">✉️</div>
-                        <div class="contact-details">
-                            <h4 data-fr="Email" data-en="Email">Email</h4>
-                            <p>smoctar729@gmail.com</p>
-                        </div>
+            <!-- INSTRUCTIONS ANDROID -->
+            <div class="instructions" id="androidInstructions">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-text">
+                        <strong>Ouvrez Chrome</strong> (ou votre navigateur)
                     </div>
                 </div>
-                
-                <!-- WhatsApp Contact -->
-                <div class="whatsapp-contact">
-                    <h3 data-fr="📱 Contact WhatsApp Direct" data-en="📱 Direct WhatsApp Contact">📱 Contact WhatsApp Direct</h3>
-                    <p data-fr="Cliquez ci-dessous pour nous contacter directement sur WhatsApp" data-en="Click below to contact us directly on WhatsApp">Cliquez ci-dessous pour nous contacter directement sur WhatsApp</p>
-                    <a href="https://wa.me/221778982925?text=Bonjour%20IMMOLUXE.SN,%20je%20suis%20intéressé(e)%20par%20vos%20services%20immobiliers%20au%20Sénégal" 
-                       target="_blank" class="whatsapp-btn">
-                        <span>💬</span> <span data-fr="Contacter sur WhatsApp" data-en="Contact on WhatsApp">Contacter sur WhatsApp</span>
-                    </a>
-                </div>
-            </section>
-            
-            <!-- Form Section -->
-            <section class="section" id="formulaire">
-                <h2 class="section-title" data-fr="Formulaire Client - Sénégal" data-en="Client Form - Senegal">Formulaire Client - Sénégal</h2>
-                <div class="form-container">
-                    <form id="clientForm">
-                        <div class="form-group">
-                            <label for="nom" data-fr="Nom *" data-en="Last Name *">Nom *</label>
-                            <input type="text" id="nom" name="nom" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="prenom" data-fr="Prénom *" data-en="First Name *">Prénom *</label>
-                            <input type="text" id="prenom" name="prenom" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" data-fr="Email *" data-en="Email *">Email *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="telephone" data-fr="Téléphone *" data-en="Phone *">Téléphone *</label>
-                            <input type="tel" id="telephone" name="telephone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="region" data-fr="Région au Sénégal *" data-en="Region in Senegal *">Région au Sénégal *</label>
-                            <select id="region" name="region" required>
-                                <option value="" data-fr="Sélectionnez votre région" data-en="Select your region">Sélectionnez votre région</option>
-                                <option value="dakar" data-fr="Dakar" data-en="Dakar">Dakar</option>
-                                <option value="thies" data-fr="Thiès" data-en="Thiès">Thiès</option>
-                                <option value="saint-louis" data-fr="Saint-Louis" data-en="Saint-Louis">Saint-Louis</option>
-                                <option value="ziguinchor" data-fr="Ziguinchor" data-en="Ziguinchor">Ziguinchor</option>
-                                <option value="diourbel" data-fr="Diourbel" data-en="Diourbel">Diourbel</option>
-                                <option value="touba" data-fr="Touba" data-en="Touba">Touba</option>
-                                <option value="kaolack" data-fr="Kaolack" data-en="Kaolack">Kaolack</option>
-                                <option value="tamba" data-fr="Tambacounda" data-en="Tambacounda">Tambacounda</option>
-                                <option value="autre" data-fr="Autre région" data-en="Other region">Autre région</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="besoin" data-fr="Besoin *" data-en="Need *">Besoin *</label>
-                            <select id="besoin" name="besoin" required>
-                                <option value="" data-fr="Sélectionnez votre besoin" data-en="Select your need">Sélectionnez votre besoin</option>
-                                <option value="location" data-fr="Location d'appartement" data-en="Apartment rental">Location d'appartement</option>
-                                <option value="achat-maison" data-fr="Achat d'une maison" data-en="House purchase">Achat d'une maison</option>
-                                <option value="achat-terrain" data-fr="Achat d'un terrain" data-en="Land purchase">Achat d'un terrain</option>
-                                <option value="achat-villa" data-fr="Achat d'une villa" data-en="Villa purchase">Achat d'une villa</option>
-                                <option value="conseil" data-fr="Conseil en immobilier" data-en="Real estate advice">Conseil en immobilier</option>
-                                <option value="architecture" data-fr="Conception architecturale" data-en="Architectural design">Conception architecturale</option>
-                                <option value="negociation" data-fr="Service de négociation" data-en="Negotiation service">Service de négociation</option>
-                                <option value="autre" data-fr="Autre" data-en="Other">Autre</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message" data-fr="Message additionnel" data-en="Additional message">Message additionnel</label>
-                            <textarea id="message" name="message" placeholder="" data-fr-placeholder="Décrivez vos besoins au Sénégal..." data-en-placeholder="Describe your needs in Senegal..."></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn" data-fr="Soumettre la Demande" data-en="Submit Request">Soumettre la Demande</button>
-                    </form>
-                    <div class="loading" id="loading">
-                        <div class="spinner"></div>
-                        <p data-fr="Envoi en cours..." data-en="Sending...">Envoi en cours...</p>
-                    </div>
-                    <div class="whatsapp-redirect" id="whatsappRedirect">
-                        <p data-fr="✅ Votre demande a été préparée ! Cliquez sur le lien ci-dessous pour nous contacter directement sur WhatsApp :" data-en="✅ Your request has been prepared! Click the link below to contact us directly on WhatsApp:">✅ Votre demande a été préparée ! Cliquez sur le lien ci-dessous pour nous contacter directement sur WhatsApp :</p>
-                        <a href="#" id="whatsappLink" target="_blank" data-fr="💬 Ouvrir WhatsApp pour envoyer votre demande" data-en="💬 Open WhatsApp to send your request">💬 Ouvrir WhatsApp pour envoyer votre demande</a>
-                        <p style="margin-top: 10px; font-size: 14px;" data-fr="Si la redirection ne fonctionne pas, copiez le message et envoyez-le manuellement au " data-en="If redirection doesn't work, copy the message and send it manually to ">Si la redirection ne fonctionne pas, copiez le message et envoyez-le manuellement au <strong>+221 77 898 29 25</strong></p>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-text">
+                        <strong>Visitez cette page</strong> web
                     </div>
                 </div>
-            </section>
-        </main>
-        
-        <!-- Footer -->
-        <footer class="app-footer">
-            <p>© 2026 IMMOLUXE.SN. <span data-fr="Tous droits réservés." data-en="All rights reserved.">Tous droits réservés.</span></p>
-            <p data-fr="Plus de 16 ans d'expérience en immobilier de prestige au Sénégal" data-en="Over 16 years of experience in prestige real estate in Senegal">Plus de 16 ans d'expérience en immobilier de prestige au Sénégal</p>
-            <p class="install-info" data-fr="Installer l'application IMMOLUXE.SN<br>Accédez rapidement à notre agence immobilière au Sénégal" 
-               data-en="Install IMMOLUXE.SN App<br>Quick access to our real estate agency in Senegal">
-                Installer l'application IMMOLUXE.SN<br>Accédez rapidement à notre agence immobilière au Sénégal
-            </p>
-        </footer>
-        
-        <!-- Fixed Install Button -->
-        <button class="install-fixed-btn" id="fixedInstallBtn">
-            <span>📱</span>
-            <span data-fr="Installer l'application" data-en="Install App">Installer l'application</span>
-        </button>
-        
-        <!-- Install Prompt -->
-        <div class="install-prompt" id="installPrompt">
-            <div class="install-content">
-                <div class="install-text">
-                    <h3 data-fr="Installer l'application IMMOLUXE.SN" data-en="Install IMMOLUXE.SN App">Installer l'application IMMOLUXE.SN</h3>
-                    <p data-fr="Accédez rapidement à notre agence immobilière au Sénégal" data-en="Quick access to our real estate agency in Senegal">Accédez rapidement à notre agence immobilière au Sénégal</p>
-                    <small data-fr="Installez sur votre écran d'accueil pour une expérience optimale" data-en="Install on your home screen for optimal experience">Installez sur votre écran d'accueil pour une expérience optimale</small>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-text">
+                        <strong>Appuyez sur ⋮</strong> les trois points en haut à droite
+                    </div>
                 </div>
-                <div class="install-buttons">
-                    <button class="install-btn-yes" id="installBtn" data-fr="Installer" data-en="Install">Installer</button>
-                    <button class="install-btn-no" id="dismissBtn" data-fr="Plus tard" data-en="Later">Plus tard</button>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-text">
+                        <strong>Sélectionnez</strong> "Ajouter à l'écran d'accueil"
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-text">
+                        <strong>Confirmez</strong> en appuyant sur "Ajouter"
+                    </div>
                 </div>
             </div>
+            
+            <!-- INSTRUCTIONS DESKTOP -->
+            <div class="instructions" id="desktopInstructions">
+                <div class="step">
+                    <div class="step-number">🔍</div>
+                    <div class="step-text">
+                        <strong>Chrome / Edge :</strong> Cherchez l'icône d'installation dans la barre d'adresse (⏬)
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">🍎</div>
+                    <div class="step-text">
+                        <strong>Safari (Mac) :</strong> Fichier > Ajouter à l'écran d'accueil
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">🦊</div>
+                    <div class="step-text">
+                        <strong>Firefox :</strong> Menu (≡) > Installer
+                    </div>
+                </div>
+            </div>
+            
+            <button class="close-btn" id="closeModal">Fermer</button>
         </div>
     </div>
-    
+
     <script>
         // ============================================
-        // DÉTECTION PLATEFORME ET SUPPORT PWA
+        // DÉTECTION DE PLATEFORME
         // ============================================
-        function isIOS() {
-            return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        }
-        
-        function isAndroid() {
-            return /Android/.test(navigator.userAgent);
+        function detectPlatform() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            
+            if (/android/.test(userAgent)) {
+                return 'android';
+            } else if (/iphone|ipad|ipod/.test(userAgent)) {
+                return 'ios';
+            } else {
+                return 'desktop';
+            }
         }
         
         function isSafari() {
-            const userAgent = navigator.userAgent.toLowerCase();
             return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
         }
         
-        function isIOSDevice() {
-            return isIOS() && isSafari();
+        // ============================================
+        // GESTION MODAL D'INSTALLATION
+        // ============================================
+        const installBtn = document.getElementById('installBtn');
+        const installModal = document.getElementById('installModal');
+        const closeModal = document.getElementById('closeModal');
+        
+        const androidBtn = document.getElementById('androidBtn');
+        const iosBtn = document.getElementById('iosBtn');
+        const desktopBtn = document.getElementById('desktopBtn');
+        
+        const iosInstructions = document.getElementById('iosInstructions');
+        const androidInstructions = document.getElementById('androidInstructions');
+        const desktopInstructions = document.getElementById('desktopInstructions');
+        
+        // OUVRIR MODAL
+        installBtn.addEventListener('click', () => {
+            installModal.classList.add('show');
+            
+            // Détecter automatiquement la plateforme
+            const platform = detectPlatform();
+            showInstructions(platform);
+        });
+        
+        // FERMER MODAL
+        closeModal.addEventListener('click', () => {
+            installModal.classList.remove('show');
+            hideAllInstructions();
+        });
+        
+        // FERMER EN CLIQUANT À L'EXTÉRIEUR
+        installModal.addEventListener('click', (e) => {
+            if (e.target === installModal) {
+                installModal.classList.remove('show');
+                hideAllInstructions();
+            }
+        });
+        
+        // BOUTONS PLATEFORME
+        androidBtn.addEventListener('click', () => showInstructions('android'));
+        iosBtn.addEventListener('click', () => showInstructions('ios'));
+        desktopBtn.addEventListener('click', () => showInstructions('desktop'));
+        
+        // AFFICHER INSTRUCTIONS
+        function showInstructions(platform) {
+            hideAllInstructions();
+            
+            switch(platform) {
+                case 'ios':
+                    iosInstructions.classList.add('show');
+                    break;
+                case 'android':
+                    androidInstructions.classList.add('show');
+                    break;
+                case 'desktop':
+                    desktopInstructions.classList.add('show');
+                    break;
+            }
         }
         
-        function isDesktop() {
-            return !isIOS() && !isAndroid();
-        }
-        
-        function isStandalone() {
-            return (window.matchMedia('(display-mode: standalone)').matches) ||
-                   (window.navigator.standalone) ||
-                   document.referrer.includes('android-app://');
+        // CACHER TOUTES LES INSTRUCTIONS
+        function hideAllInstructions() {
+            iosInstructions.classList.remove('show');
+            androidInstructions.classList.remove('show');
+            desktopInstructions.classList.remove('show');
         }
         
         // ============================================
-        // SERVICE WORKER - CRITIQUE POUR PWA
+        // SERVICE WORKER PWA
         // ============================================
-        function registerServiceWorker() {
-            if ('serviceWorker' in navigator) {
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
                 navigator.serviceWorker.register('sw.js')
                     .then(function(registration) {
                         console.log('✅ Service Worker enregistré avec succès:', registration.scope);
-                        
-                        // Vérifier si c'est une mise à jour
-                        if (registration.waiting) {
-                            console.log('🔄 Nouveau Service Worker en attente');
-                        }
-                        
-                        if (registration.installing) {
-                            console.log('🔧 Service Worker en cours d\'installation');
-                        }
-                        
-                        if (registration.active) {
-                            console.log('🚀 Service Worker actif');
-                        }
                     })
                     .catch(function(error) {
-                        console.log('❌ Erreur d\'enregistrement Service Worker:', error);
+                        console.log('❌ Erreur Service Worker:', error);
                     });
-            }
-        }
-        
-        // Démarrer le Service Worker
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', registerServiceWorker);
-        }
-        
-        // ============================================
-        // GESTION DES LANGUES
-        // ============================================
-        let currentLang = 'fr';
-        const langSwitch = document.getElementById('langSwitch');
-        const langText = document.querySelector('.lang-text');
-        
-        function switchLanguage(lang) {
-            currentLang = lang;
-            document.querySelector('.app-container').setAttribute('data-lang', lang);
-            
-            // Mettre à jour tous les textes avec attributs data-fr/data-en
-            document.querySelectorAll('[data-fr], [data-en]').forEach(element => {
-                const text = element.getAttribute(`data-${lang}`);
-                if (text) {
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        const placeholder = element.getAttribute(`data-${lang}-placeholder`) || text;
-                        element.setAttribute('placeholder', placeholder);
-                    } else if (element.tagName === 'OPTION') {
-                        element.textContent = text;
-                    } else {
-                        element.textContent = text;
-                    }
-                }
             });
-            
-            // Mettre à jour les options des sélecteurs
-            document.querySelectorAll('select option').forEach(option => {
-                const text = option.getAttribute(`data-${lang}`);
-                if (text) {
-                    option.textContent = text;
-                }
-            });
-            
-            // Mettre à jour le texte du bouton de langue
-            langText.textContent = lang === 'fr' ? 'FR' : 'EN';
-            
-            // Mettre à jour le texte du bouton d'installation
-            updateInstallButtonText();
-            
-            // Mettre à jour la modal iOS
-            updateIOSModalText(lang);
-            
-            // Mettre à jour le contenu dynamique
-            updateDynamicContent();
-            
-            // Sauvegarder la préférence
-            localStorage.setItem('immoluxe-lang', lang);
-        }
-        
-        function updateInstallButtonText() {
-            const fixedInstallBtn = document.getElementById('fixedInstallBtn');
-            const fixedBtnText = fixedInstallBtn.querySelector('span:last-child');
-            const installInfo = document.querySelector('.install-info');
-            
-            if (isIOSDevice()) {
-                fixedBtnText.textContent = currentLang === 'fr' 
-                    ? "📱 Ajouter à l'écran d'accueil" 
-                    : "📱 Add to Home Screen";
-            } else {
-                fixedBtnText.textContent = currentLang === 'fr' 
-                    ? "📱 Installer l'application" 
-                    : "📱 Install App";
-            }
-            
-            if (installInfo) {
-                const text = currentLang === 'fr' 
-                    ? "Installer l'application IMMOLUXE.SN<br>Accédez rapidement à notre agence immobilière au Sénégal"
-                    : "Install IMMOLUXE.SN App<br>Quick access to our real estate agency in Senegal";
-                installInfo.innerHTML = text;
-            }
-        }
-        
-        function updateIOSModalText(lang) {
-            const iosModalTitle = document.getElementById('iosModalTitle');
-            const iosSteps = document.getElementById('iosSteps');
-            
-            if (lang === 'fr') {
-                iosModalTitle.textContent = '📱 Installation iPhone/iPad';
-                iosSteps.innerHTML = `
-                    <ol>
-                        <li>Ouvrez <strong>Safari</strong> (pas Chrome)</li>
-                        <li>Allez sur cette page</li>
-                        <li>Appuyez sur <strong>Partager (📤)</strong> en bas</li>
-                        <li>Faites défiler vers le bas</li>
-                        <li>Sélectionnez <strong>"Sur l'écran d'accueil"</strong></li>
-                        <li>Appuyez sur <strong>"Ajouter"</strong></li>
-                    </ol>
-                `;
-            } else {
-                iosModalTitle.textContent = '📱 iPhone/iPad Installation';
-                iosSteps.innerHTML = `
-                    <ol>
-                        <li>Open <strong>Safari</strong> (not Chrome)</li>
-                        <li>Go to this page</li>
-                        <li>Tap <strong>Share (📤)</strong> at the bottom</li>
-                        <li>Scroll down</li>
-                        <li>Select <strong>"Add to Home Screen"</strong></li>
-                        <li>Tap <strong>"Add"</strong></li>
-                    </ol>
-                `;
-            }
-        }
-        
-        // Événement pour changer la langue
-        langSwitch.addEventListener('click', () => {
-            const newLang = currentLang === 'fr' ? 'en' : 'fr';
-            switchLanguage(newLang);
-        });
-        
-        // Restaurer la langue sauvegardée
-        const savedLang = localStorage.getItem('immoluxe-lang');
-        if (savedLang && (savedLang === 'fr' || savedLang === 'en')) {
-            switchLanguage(savedLang);
         }
         
         // ============================================
-        // INSTALLATION PWA - SOLUTION UNIVERSELLE
+        // INSTALLATION NATIVE (ANDROID/DESKTOP)
         // ============================================
-        let deferredPrompt = null;
-        const installPrompt = document.getElementById('installPrompt');
-        const installBtn = document.getElementById('installBtn');
-        const dismissBtn = document.getElementById('dismissBtn');
-        const fixedInstallBtn = document.getElementById('fixedInstallBtn');
-        const installProgress = document.getElementById('installProgress');
-        const installSuccess = document.getElementById('installSuccess');
-        const iosModal = document.getElementById('iosModal');
+        let deferredPrompt;
         
-        function isAppInstalled() {
-            return isStandalone() || localStorage.getItem('immoluxe-installed') === 'true';
-        }
-        
-        function showInstallPrompt() {
-            if (isAppInstalled()) {
-                installPrompt.style.display = 'none';
-                fixedInstallBtn.style.display = 'none';
-                return;
-            }
-            
-            // Ne pas afficher sur iOS Safari (on montre la modal à la place)
-            if (isIOSDevice()) {
-                installPrompt.style.display = 'none';
-                return;
-            }
-            
-            // Afficher la bannière après un délai
-            setTimeout(() => {
-                if (!deferredPrompt || isAppInstalled()) return;
-                
-                const dismissed = localStorage.getItem('immoluxe-prompt-dismissed');
-                if (!dismissed || Date.now() > parseInt(dismissed)) {
-                    installPrompt.classList.add('show');
-                }
-            }, 3000);
-        }
-        
-        // Gestionnaire principal d'installation
-        async function handleInstallation() {
-            console.log('🔄 Début du processus d\'installation...');
-            
-            // Si déjà installé, ne rien faire
-            if (isAppInstalled()) {
-                console.log('✅ Application déjà installée');
-                return;
-            }
-            
-            // 1. iOS Safari
-            if (isIOSDevice()) {
-                console.log('📱 iOS Safari détecté - Affichage modal');
-                iosModal.classList.add('show');
-                return;
-            }
-            
-            // 2. iOS autre navigateur (Chrome sur iOS)
-            if (isIOS()) {
-                console.log('📱 iOS autre navigateur - Instructions');
-                const message = currentLang === 'fr'
-                    ? "📱 Pour installer sur iPhone/iPad :\n\n1. Ouvrez Safari (pas Chrome)\n2. Visitez cette page\n3. Utilisez l'option 'Partager' > 'Sur l'écran d'accueil'"
-                    : "📱 To install on iPhone/iPad:\n\n1. Open Safari (not Chrome)\n2. Visit this page\n3. Use 'Share' > 'Add to Home Screen'";
-                alert(message);
-                return;
-            }
-            
-            // 3. Android/Desktop avec prompt d'installation
-            if (deferredPrompt) {
-                console.log('✅ Installation native disponible');
-                installProgress.classList.add('show');
-                
-                try {
-                    // Afficher le prompt d'installation
-                    deferredPrompt.prompt();
-                    
-                    // Attendre le choix de l'utilisateur
-                    const { outcome } = await deferredPrompt.userChoice;
-                    
-                    // Réinitialiser la variable
-                    deferredPrompt = null;
-                    
-                    // Masquer la progression
-                    installProgress.classList.remove('show');
-                    
-                    if (outcome === 'accepted') {
-                        console.log('🎉 Installation acceptée par l\'utilisateur');
-                        // L'événement 'appinstalled' gérera le reste
-                    } else {
-                        console.log('❌ Installation refusée par l\'utilisateur');
-                    }
-                } catch (error) {
-                    console.error('❌ Erreur lors de l\'installation:', error);
-                    installProgress.classList.remove('show');
-                    alert(currentLang === 'fr' 
-                        ? "Erreur d'installation. Veuillez réessayer." 
-                        : "Installation error. Please try again.");
-                }
-            } else {
-                // 4. Pas de support d'installation native
-                console.log('⚠️ Installation non supportée nativement');
-                showFallbackInstructions();
-            }
-        }
-        
-        function showFallbackInstructions() {
-            let message;
-            
-            if (isIOS()) {
-                message = currentLang === 'fr'
-                    ? "📱 Pour installer sur iPhone/iPad :\n\n1. Ouvrez Safari (pas Chrome)\n2. Visitez cette page\n3. Appuyez sur Partager (📤)\n4. Faites défiler et sélectionnez 'Sur l'écran d'accueil'\n5. Appuyez sur 'Ajouter'"
-                    : "📱 To install on iPhone/iPad:\n\n1. Open Safari (not Chrome)\n2. Visit this page\n3. Tap Share (📤)\n4. Scroll and select 'Add to Home Screen'\n5. Tap 'Add'";
-            } else if (isAndroid()) {
-                message = currentLang === 'fr'
-                    ? "📱 Pour installer sur Android :\n\n1. Ouvrez le menu (trois points)\n2. Sélectionnez 'Ajouter à l'écran d'accueil'\n3. Confirmez l'installation"
-                    : "📱 To install on Android:\n\n1. Open the menu (three dots)\n2. Select 'Add to Home Screen'\n3. Confirm installation";
-            } else {
-                message = currentLang === 'fr'
-                    ? "💻 Pour installer sur ordinateur :\n\n1. Chrome/Edge : Cliquez sur l'icône d'installation dans la barre d'adresse\n2. Safari : Fichier > Ajouter à l'écran d'accueil"
-                    : "💻 To install on computer:\n\n1. Chrome/Edge: Click install icon in address bar\n2. Safari: File > Add to Home Screen";
-            }
-            
-            alert(message);
-        }
-        
-        // Événement pour Android/Desktop - Installation native
         window.addEventListener('beforeinstallprompt', (e) => {
-            console.log('🎯 Événement beforeinstallprompt détecté');
+            // Empêcher le prompt automatique
             e.preventDefault();
             deferredPrompt = e;
             
-            showInstallPrompt();
-        });
-        
-        // Après installation réussie
-        window.addEventListener('appinstalled', () => {
-            console.log('🎉 Application installée avec succès !');
+            console.log('✅ Installation native disponible');
             
-            // Masquer les modales
-            installProgress.classList.remove('show');
-            installSuccess.classList.add('show');
-            installPrompt.classList.remove('show');
-            fixedInstallBtn.style.display = 'none';
-            
-            // Sauvegarder l'état
-            localStorage.setItem('immoluxe-installed', 'true');
-            
-            // Masquer la modal de succès après 3 secondes
-            setTimeout(() => {
-                installSuccess.classList.remove('show');
-            }, 3000);
+            // Mettre à jour le bouton pour installer nativement
+            installBtn.onclick = async function() {
+                if (deferredPrompt) {
+                    try {
+                        // Montrer le prompt d'installation
+                        deferredPrompt.prompt();
+                        
+                        // Attendre la réponse
+                        const { outcome } = await deferredPrompt.userChoice;
+                        
+                        if (outcome === 'accepted') {
+                            console.log('🎉 Application installée!');
+                            installBtn.style.display = 'none';
+                        } else {
+                            console.log('❌ Installation refusée');
+                            // Montrer les instructions manuelles
+                            installModal.classList.add('show');
+                            showInstructions(detectPlatform());
+                        }
+                        
+                        deferredPrompt = null;
+                    } catch (error) {
+                        console.error('❌ Erreur installation:', error);
+                        // Fallback aux instructions
+                        installModal.classList.add('show');
+                        showInstructions(detectPlatform());
+                    }
+                } else {
+                    // Pas de prompt natif, montrer instructions
+                    installModal.classList.add('show');
+                    showInstructions(detectPlatform());
+                }
+            };
         });
         
-        // Attacher les événements d'installation
-        fixedInstallBtn.addEventListener('click', handleInstallation);
-        
-        installBtn.addEventListener('click', async () => {
-            installPrompt.classList.remove('show');
-            await handleInstallation();
-        });
-        
-        dismissBtn.addEventListener('click', () => {
-            installPrompt.classList.remove('show');
-            const expiry = new Date();
-            expiry.setDate(expiry.getDate() + 7); // Ne pas montrer pendant 7 jours
-            localStorage.setItem('immoluxe-prompt-dismissed', expiry.getTime());
-        });
-        
-        // Vérifier si la bannière a été rejetée récemment
-        const dismissedTime = localStorage.getItem('immoluxe-prompt-dismissed');
-        if (dismissedTime && Date.now() < parseInt(dismissedTime)) {
-            installPrompt.style.display = 'none';
+        // ============================================
+        // DÉTECTION SI DÉJÀ INSTALLÉ
+        // ============================================
+        function isAppInstalled() {
+            return window.matchMedia('(display-mode: standalone)').matches ||
+                   window.navigator.standalone === true ||
+                   document.referrer.includes('android-app://');
         }
         
-        // ============================================
-        // INITIALISATION AU CHARGEMENT
-        // ============================================
+        // MASQUER LE BOUTON SI DÉJÀ INSTALLÉ
         window.addEventListener('DOMContentLoaded', () => {
-            // Initialiser les textes
-            updateInstallButtonText();
-            updateIOSModalText(currentLang);
-            
-            // Initialiser le placeholder du textarea
-            const textarea = document.getElementById('message');
-            textarea.setAttribute('placeholder', currentLang === 'fr' 
-                ? 'Décrivez vos besoins au Sénégal...' 
-                : 'Describe your needs in Senegal...');
-            
-            // Masquer le bouton si déjà installé
             if (isAppInstalled()) {
-                fixedInstallBtn.style.display = 'none';
-                installPrompt.style.display = 'none';
+                installBtn.style.display = 'none';
+                document.querySelector('.install-info').innerHTML = '<p><strong>✅ Application installée</strong></p>';
             }
-            
-            // Aide iOS au premier chargement
-            if (isIOSDevice() && !localStorage.getItem('immoluxe-ios-help-shown') && !isAppInstalled()) {
-                setTimeout(() => {
-                    iosModal.classList.add('show');
-                    localStorage.setItem('immoluxe-ios-help-shown', 'true');
-                }, 2000);
-            }
-            
-            // Vérifier et afficher la bannière d'installation
-            showInstallPrompt();
         });
         
         // ============================================
-        // NAVIGATION MENU
+        // GESTION FORMULAIRE
         // ============================================
-        const menuBtn = document.getElementById('menuBtn');
-        const navDrawer = document.getElementById('navDrawer');
-        const drawerClose = document.getElementById('drawerClose');
-        const overlay = document.getElementById('overlay');
-        const navLinks = document.querySelectorAll('.nav-link');
-        
-        menuBtn.addEventListener('click', () => {
-            navDrawer.classList.add('open');
-            overlay.classList.add('active');
-        });
-        
-        drawerClose.addEventListener('click', () => {
-            navDrawer.classList.remove('open');
-            overlay.classList.remove('active');
-        });
-        
-        overlay.addEventListener('click', () => {
-            navDrawer.classList.remove('open');
-            overlay.classList.remove('active');
-        });
-        
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navDrawer.classList.remove('open');
-                overlay.classList.remove('active');
-            });
-        });
-        
-        // ============================================
-        // FORMULAIRE WHATSAPP
-        // ============================================
-        const clientForm = document.getElementById('clientForm');
-        const loading = document.getElementById('loading');
-        const whatsappRedirect = document.getElementById('whatsappRedirect');
-        const whatsappLink = document.getElementById('whatsappLink');
-        
-        function getRegionLabel(value) {
-            const regions = {
-                'dakar': 'Dakar',
-                'thies': currentLang === 'fr' ? 'Thiès' : 'Thiès',
-                'saint-louis': currentLang === 'fr' ? 'Saint-Louis' : 'Saint-Louis',
-                'ziguinchor': currentLang === 'fr' ? 'Ziguinchor' : 'Ziguinchor',
-                'diourbel': currentLang === 'fr' ? 'Diourbel' : 'Diourbel',
-                'touba': currentLang === 'fr' ? 'Touba' : 'Touba',
-                'kaolack': currentLang === 'fr' ? 'Kaolack' : 'Kaolack',
-                'tamba': currentLang === 'fr' ? 'Tambacounda' : 'Tambacounda',
-                'autre': currentLang === 'fr' ? 'Autre région' : 'Other region'
-            };
-            return regions[value] || value;
-        }
-        
-        function getBesoinLabel(value) {
-            const besoins = {
-                'location': currentLang === 'fr' ? 'Location d\'appartement' : 'Apartment rental',
-                'achat-maison': currentLang === 'fr' ? 'Achat d\'une maison' : 'House purchase',
-                'achat-terrain': currentLang === 'fr' ? 'Achat d\'un terrain' : 'Land purchase',
-                'achat-villa': currentLang === 'fr' ? 'Achat d\'une villa' : 'Villa purchase',
-                'conseil': currentLang === 'fr' ? 'Conseil en immobilier' : 'Real estate advice',
-                'architecture': currentLang === 'fr' ? 'Conception architecturale' : 'Architectural design',
-                'negociation': currentLang === 'fr' ? 'Service de négociation' : 'Negotiation service',
-                'autre': currentLang === 'fr' ? 'Autre' : 'Other'
-            };
-            return besoins[value] || value;
-        }
-        
-        clientForm.addEventListener('submit', function(e) {
+        document.querySelector('.form-container button[type="submit"]').addEventListener('click', function(e) {
             e.preventDefault();
-            
-            loading.style.display = 'block';
-            whatsappRedirect.classList.remove('show');
             
             const nom = document.getElementById('nom').value;
             const prenom = document.getElementById('prenom').value;
             const email = document.getElementById('email').value;
             const telephone = document.getElementById('telephone').value;
-            const region = document.getElementById('region').value;
-            const besoin = document.getElementById('besoin').value;
-            const message = document.getElementById('message').value;
             
-            const regionLabel = getRegionLabel(region);
-            const besoinLabel = getBesoinLabel(besoin);
-            
-            let whatsappMessage;
-            if (currentLang === 'fr') {
-                whatsappMessage = `*NOUVELLE DEMANDE IMMOLUXE.SN*%0A%0A` +
-                                 `*👤 Client:* ${prenom} ${nom}%0A` +
-                                 `*📧 Email:* ${email}%0A` +
-                                 `*📱 Téléphone:* ${telephone}%0A` +
-                                 `*📍 Région Sénégal:* ${regionLabel}%0A` +
-                                 `*🎯 Besoin:* ${besoinLabel}%0A` +
-                                 `*💬 Message:* ${message || 'Non spécifié'}%0A%0A` +
-                                 `*📅 Date:* ${new Date().toLocaleDateString('fr-FR')}%0A` +
-                                 `*⏰ Heure:* ${new Date().toLocaleTimeString('fr-FR')}`;
-            } else {
-                whatsappMessage = `*NEW IMMOLUXE.SN REQUEST*%0A%0A` +
-                                 `*👤 Client:* ${prenom} ${nom}%0A` +
-                                 `*📧 Email:* ${email}%0A` +
-                                 `*📱 Phone:* ${telephone}%0A` +
-                                 `*📍 Senegal Region:* ${regionLabel}%0A` +
-                                 `*🎯 Need:* ${besoinLabel}%0A` +
-                                 `*💬 Message:* ${message || 'Not specified'}%0A%0A` +
-                                 `*📅 Date:* ${new Date().toLocaleDateString('en-US')}%0A` +
-                                 `*⏰ Time:* ${new Date().toLocaleTimeString('en-US')}`;
+            // Validation simple
+            if (!nom || !prenom || !email || !telephone) {
+                alert('Veuillez remplir tous les champs obligatoires (*)');
+                return;
             }
             
-            const whatsappNumber = '221778982925';
-            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+            // Préparer message WhatsApp
+            const message = `Bonjour IMMOLUXE.SN,%0A%0AJe suis intéressé(e) par vos services immobiliers au Sénégal.%0A%0A*Informations personnelles:*%0A👤 Nom: ${nom} ${prenom}%0A📧 Email: ${email}%0A📱 Téléphone: ${telephone}%0A%0A*Message:*%0AJ'aimerais obtenir plus d'informations sur vos services.`;
             
-            setTimeout(() => {
-                loading.style.display = 'none';
-                whatsappLink.href = whatsappUrl;
-                whatsappRedirect.classList.add('show');
-                whatsappRedirect.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                
-                setTimeout(() => {
-                    window.open(whatsappUrl, '_blank');
-                }, 2000);
-                
-                clientForm.reset();
-                const textarea = document.getElementById('message');
-                textarea.setAttribute('placeholder', currentLang === 'fr' 
-                    ? 'Décrivez vos besoins au Sénégal...' 
-                    : 'Describe your needs in Senegal...');
-            }, 1500);
+            // Ouvrir WhatsApp
+            window.open(`https://wa.me/221778982925?text=${message}`, '_blank');
+            
+            // Réinitialiser le formulaire
+            document.getElementById('nom').value = '';
+            document.getElementById('prenom').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('telephone').value = '';
+            
+            alert('Redirection vers WhatsApp...');
         });
-        
-        // ============================================
-        // CONTENU DYNAMIQUE
-        // ============================================
-        function updateDynamicContent() {
-            const servicesGrid = document.getElementById('servicesGrid');
-            const productsGrid = document.getElementById('productsGrid');
-            
-            const services = [
-                { icon: '🏢', fr: { title: 'Vente Immobilière', desc: 'Transaction de propriétés résidentielles et commerciales' }, en: { title: 'Real Estate Sales', desc: 'Residential and commercial property transactions' } },
-                { icon: '🔑', fr: { title: 'Location de Prestige', desc: 'Gestion locative haut de gamme' }, en: { title: 'Prestige Rentals', desc: 'High-end rental management' } },
-                { icon: '📐', fr: { title: 'Conseil Architecture', desc: 'Design et planification de projets' }, en: { title: 'Architecture Consulting', desc: 'Project design and planning' } },
-                { icon: '⚖️', fr: { title: 'Négociation Expert', desc: 'Optimisation de vos transactions' }, en: { title: 'Expert Negotiation', desc: 'Optimization of your transactions' } },
-                { icon: '📊', fr: { title: 'Évaluation de Biens', desc: 'Expertise et estimation de valeur' }, en: { title: 'Property Valuation', desc: 'Expert appraisal and value estimation' } },
-                { icon: '🤝', fr: { title: 'Accompagnement', desc: 'Suivi personnalisé de A à Z' }, en: { title: 'Personalized Support', desc: 'Personalized follow-up from A to Z' } }
-            ];
-            
-            const products = [
-                { icon: '🏰', fr: { title: 'Villas de Luxe', desc: 'Propriétés exclusives avec toutes commodités' }, en: { title: 'Luxury Villas', desc: 'Exclusive properties with all amenities' } },
-                { icon: '🏬', fr: { title: 'Appartements Premium', desc: 'Résidences sécurisées et modernes' }, en: { title: 'Premium Apartments', desc: 'Secure and modern residences' } },
-                { icon: '🏡', fr: { title: 'Maisons de Charme', desc: 'Habitations traditionnelles rénovées' }, en: { title: 'Charming Houses', desc: 'Renovated traditional homes' } },
-                { icon: '🌳', fr: { title: 'Terrains Viabilisés', desc: 'Parcelles prêtes à construire' }, en: { title: 'Developed Land', desc: 'Ready-to-build plots' } },
-                { icon: '🏢', fr: { title: 'Bureaux & Commerces', desc: 'Espaces professionnels de qualité' }, en: { title: 'Offices & Commercial', desc: 'Quality professional spaces' } },
-                { icon: '🌴', fr: { title: 'Résidences Secondaires', desc: 'Maisons de vacances au Sénégal' }, en: { title: 'Second Homes', desc: 'Vacation homes in Senegal' } }
-            ];
-            
-            servicesGrid.innerHTML = '';
-            productsGrid.innerHTML = '';
-            
-            services.forEach(service => {
-                const serviceCard = document.createElement('div');
-                serviceCard.className = 'service-card';
-                serviceCard.innerHTML = `
-                    <div class="service-icon">${service.icon}</div>
-                    <h3>${service[currentLang].title}</h3>
-                    <p>${service[currentLang].desc}</p>
-                `;
-                servicesGrid.appendChild(serviceCard);
-            });
-            
-            products.forEach(product => {
-                const productCard = document.createElement('div');
-                productCard.className = 'product-card';
-                productCard.innerHTML = `
-                    <div class="product-icon">${product.icon}</div>
-                    <h3>${product[currentLang].title}</h3>
-                    <p>${product[currentLang].desc}</p>
-                `;
-                productsGrid.appendChild(productCard);
-            });
-        }
-        
-        // Initialiser le contenu dynamique
-        updateDynamicContent();
         
         // ============================================
         // GESTION DU SCROLL POUR LE FOOTER
@@ -1606,9 +839,10 @@
             const scrollPosition = window.innerHeight + window.pageYOffset;
             const documentHeight = document.body.offsetHeight;
             
-            if (scrollPosition >= documentHeight - 50) {
-                footer.style.position = 'relative';
-                footer.style.bottom = '0';
+            // Si on est en bas de page, le footer reste en bas
+            if (scrollPosition >= documentHeight - 100) {
+                footer.style.position = 'absolute';
+                footer.style.bottom = '80px';
             } else {
                 footer.style.position = 'fixed';
                 footer.style.bottom = '80px';
@@ -1616,17 +850,19 @@
         });
         
         // ============================================
-        // OFFLINE DETECTION
+        // INITIALISATION
         // ============================================
-        window.addEventListener('online', () => {
-            console.log('✅ Connecté à Internet');
-        });
-        
-        window.addEventListener('offline', () => {
-            console.log('❌ Hors ligne');
-            alert(currentLang === 'fr' 
-                ? 'Vous êtes hors ligne. Certaines fonctionnalités peuvent être limitées.' 
-                : 'You are offline. Some features may be limited.');
+        window.addEventListener('DOMContentLoaded', function() {
+            // Vérifier la connexion
+            if (!navigator.onLine) {
+                console.log('⚠️ Mode hors ligne');
+            }
+            
+            // Détecter plateforme et adapter le texte
+            const platform = detectPlatform();
+            if (platform === 'ios') {
+                installBtn.innerHTML = '<span>📱</span> Ajouter à l\'écran d\'accueil';
+            }
         });
     </script>
 </body>
